@@ -18,7 +18,9 @@ The following changes were made to files due to issues discovered in the convers
 
 ```python
 if div_start not in [len(body_lines), len(body_lines) - 1]:  
-    raise ValueError("parsing error: didn't find the end of the div")```  
+    raise ValueError("parsing error: didn't find the end of the div")
+```  
+
 in the same file because they were incorrectly raising an error:
 
 3. The stable branch of IPython does not include a file necessary to generate the CSS styles for the notebook. To remedy this, I copied the file `$PYTHONSITE/IPython/frontend/html/notebook/static/css/notebook.css`, where `$PYTHONSITE` is the location of the python site-package directory, to `style.min.css` within the same directory.
