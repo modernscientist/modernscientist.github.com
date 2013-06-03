@@ -12,7 +12,7 @@ These setup notes are based on an installation of the following:
 
 The following changes were made to files due to issues discovered in the conversion process:
 
-* In the file `notebook.py` in the liquid tags plugin, 
+* In the file `notebook.py` in the liquid tags plugin line 182, 
 
 ```python
 ConverterBloggerHTML(nb_path)
@@ -24,16 +24,16 @@ must be changed to
 ConverterBloggerHTML(infile=nb_path)
 ```
 
-on line 182 of this file, as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
+as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
 
-* Remove two lines (144-145),
+* Remove the following two lines (144-145),
 
 ```python
 if div_start not in [len(body_lines), len(body_lines) - 1]:  
     raise ValueError("parsing error: didn't find the end of the div")
 ```  
 
-in the same file because they were incorrectly raising an error:
+in the same file because they were incorrectly raising an error.
 
 * The stable branch of IPython does not include a file necessary to generate the CSS styles for the notebook. To remedy this, I copied the file `$PYTHONSITE/IPython/frontend/html/notebook/static/css/notebook.css`, where `$PYTHONSITE` is the location of the python site-package directory, to `style.min.css` within the same directory.
 
@@ -48,3 +48,5 @@ to
 ```css
 body{font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;} a{color:#0088cc;text-decoration:none;}
 ```
+
+which was taken from the header of Jake Vanderplas' [blog](http://jakevdp.github.io).
