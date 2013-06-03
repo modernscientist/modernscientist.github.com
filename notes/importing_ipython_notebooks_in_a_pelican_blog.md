@@ -49,4 +49,4 @@ to
 body{font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;} a{color:#0088cc;text-decoration:none;}
 ```
 
-which was taken from the header of Jake Vanderplas' [blog](http://jakevdp.github.io).
+which was borrowed from the header of Jake Vanderplas' [blog](http://jakevdp.github.io).
