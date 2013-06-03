@@ -12,7 +12,15 @@ These setup notes are based on an installation of the following:
 
 The following changes were made to files due to issues discovered in the conversion process:
 
-* In the file `notebook.py` in the liquid tags plugin, `ConverterBloggerHTML(nb_path)` must be changed to `ConverterBloggerHTML(infile=nb_path)` on line 182 of this file, as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
+* In the file `notebook.py` in the liquid tags plugin, 
+
+```python ConverterBloggerHTML(nb_path)```
+
+must be changed to
+
+```python ConverterBloggerHTML(infile=nb_path)```
+
+on line 182 of this file, as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
 
 * Remove two lines (144-145),
 
