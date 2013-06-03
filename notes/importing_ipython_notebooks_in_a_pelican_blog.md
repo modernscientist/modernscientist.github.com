@@ -12,9 +12,9 @@ These setup notes are based on an installation of the following:
 
 The following changes were made to files due to issues discovered in the conversion process:
 
-1. In the file `notebook.py` in the liquid tags plugin, `ConverterBloggerHTML(nb_path)` must be changed to `ConverterBloggerHTML(infile=nb_path)` on line 182 of this file, as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
+* In the file `notebook.py` in the liquid tags plugin, `ConverterBloggerHTML(nb_path)` must be changed to `ConverterBloggerHTML(infile=nb_path)` on line 182 of this file, as discovered by [Thomas Wiecki](https://mobile.twitter.com/TWiecki/status/336847153374838784). 
 
-2. Remove two lines (144-145),
+* Remove two lines (144-145),
 
 ```python
 if div_start not in [len(body_lines), len(body_lines) - 1]:  
@@ -23,17 +23,16 @@ if div_start not in [len(body_lines), len(body_lines) - 1]:
 
 in the same file because they were incorrectly raising an error:
 
-3. The stable branch of IPython does not include a file necessary to generate the CSS styles for the notebook. To remedy this, I copied the file `$PYTHONSITE/IPython/frontend/html/notebook/static/css/notebook.css`, where `$PYTHONSITE` is the location of the python site-package directory, to `style.min.css` within the same directory.
+* The stable branch of IPython does not include a file necessary to generate the CSS styles for the notebook. To remedy this, I copied the file `$PYTHONSITE/IPython/frontend/html/notebook/static/css/notebook.css`, where `$PYTHONSITE` is the location of the python site-package directory, to `style.min.css` within the same directory.
 
-4. To make the notebook portion of the posts inherit font styling from the article, line 24 of `style.min.css` was changed from  
+* To make the notebook portion of the posts inherit font styling from the article, line 24 of `style.min.css` was changed from  
 
-```body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;line-height:2 px;color:#000000;background-color:#ffffff;}```
+```css
+body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;line-height:2 px;color:#000000;background-color:#ffffff;}
+```
 
 to
 
-```body{font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;} a{color:#0088cc;text-decoration:none;}```
-
-
-
-
-
+```css
+body{font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;} a{color:#0088cc;text-decoration:none;}
+```
