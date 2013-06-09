@@ -34,11 +34,11 @@
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 class="ipynb"&gt;Spectrometer Implementation and Simulation of Shaped Pulses&lt;/h2&gt;
 &lt;p&gt;Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or &lt;code&gt;n_pulse&lt;/code&gt; as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the &lt;em&gt;y&lt;/em&gt;- and &lt;em&gt;z&lt;/em&gt;-axes performed for each successive period $\Delta t$ at each relative offset from the carrier frequency:&lt;br /&gt;
-&lt;img alt="" src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /&gt;&lt;/p&gt;
+&lt;img alt="This is an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This equation and its derivation are described in equation 3.107 and surrounding text of &lt;a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html"&gt;Protein NMR Spectroscopy: Principles and Practice, Second Edition&lt;/a&gt;. The rotation matrices are&lt;br /&gt;
-&lt;img alt="" src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /&gt;&lt;/p&gt;
+&lt;img alt="This is also an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)&lt;/p&gt;
