@@ -1257,10 +1257,11 @@ init_mathjax();
           <p class="meta"><time datetime="2013-06-09T15:35:00" pubdate>2013/06/09</time></p>
 </header>
 
-  <div class="entry-content"><p>Bandwidth-selective excitation in NMR is a task commonly accomplished through the used of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired bandwidth. A simple way of accomplishing this task is to simulate the shaped pulse over a range of frequencies. Many spectrometer control programs contain software capable of this task (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.</p>
+  <div class="entry-content"><p>Bandwidth-selective excitation in NMR is commonly accomplished through the used of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired bandwidth. A simple way of accomplishing this task is to simulate the shaped pulse over a range of frequencies. Many spectrometer control programs contain software capable of this task (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.</p>
+<hr />
 <div class="ipynb">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This IPython notebook demonstrates how to perform such a simulation for one of my favorite shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning that it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity, which means its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
+<p>This IPython notebook demonstrates how to perform such a simulation for one of my favorite shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity, which means its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
 <p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into usable Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within an IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the default profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -1333,7 +1334,7 @@ init_mathjax();
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Input Shaped Pulse Amplitude and Intensity</h2>
 <p>Two options for determining the amplitude and intensity of a shaped pulse are presented. The first (used in this demonstration) calculates the necessary values for a Reburp pulse. The second option will read a Reburp pulse file (or any other shaped pulse file) from a Bruker instrument if the correct path to the file is given.</p>
-<h3 class="ipynb">Calculate the Shaped Pulse From a Fourier Series</h3>
+<h3 class="ipynb"><em>Alternative 1:</em> Calculate the Shaped Pulse From a Fourier Series</h3>
 <p>The Reburp pulse is relatively easy to calculate--the pulse is the cosine portion of a Fourier series and the coefficients for this series are published in the original <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">manuscript</a> describing the "burp" family of pulses.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -1355,7 +1356,7 @@ init_mathjax();
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column if <code>puleShapeArray</code> is the magnitude of the intensity to the first column. The second column is phase, which is 0 when intensity is positive, 180 when it's negative.</p>
+<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column in <code>puleShapeArray</code> is the magnitude of the intensity. The second column is phase, which is 0 when intensity is positive, 180 when it's negative.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1370,7 +1371,7 @@ init_mathjax();
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb">Read a Bruker Shaped Pulse File</h3>
+<h3 class="ipynb"><em>Alternative 2:</em> Read a Bruker Shaped Pulse File</h3>
 <p>Reading a Bruker shaped pulse file requires entering the path to the file. For most versions of TopSpin, the file resides in a path similar to the one below. This file can be copied onto a local computer for reading by this notebook.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -2642,7 +2643,7 @@ VgAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Speed Comparison for NumPy and Two Fortran Functions Using F2PY Magic</h2>
+<h2 class="ipynb">Speed Comparison for NumPy and Fortran Functions Using F2PY Magic</h2>
 <p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook and, thus, benefit from the great increase in speed it afforded over NumPy. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be shared so easily, the original (slow) function has been included for the sake of sharing what I've learned with others.</p>
 <h3 class="ipynb">A Slow NumPy Function</h3>
 <p>This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the mathematical problem: as a series of loops and nested function calls.</p>
