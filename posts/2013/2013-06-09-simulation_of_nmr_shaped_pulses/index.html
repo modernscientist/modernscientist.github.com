@@ -1279,7 +1279,7 @@ init_mathjax();
 <div class="ipynb">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This IPython notebook demonstrates how to simulate one of my favorite NMR shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity because its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
-<p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within this IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the notebook profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.</p>
+<p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within this IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the notebook profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, <a href="http://docs.sympy.org/0.7.0/index.html">SymPy</a>.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1422,7 +1422,7 @@ init_mathjax();
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Simulation of the Shaped Pulse</h2>
+<h2 class="ipynb">Visualizing the Shaped Pulse</h2>
 <p>Normalize the magnitude of the pulse to <code>1</code> and convert the phase to radians.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -2660,9 +2660,9 @@ VgAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Speed Comparison for NumPy and Fortran Functions Using F2PY Magic</h2>
+<h2 class="ipynb">Calculating the Propagator: NumPy vs Fortran Functions Using F2PY Magic</h2>
 <p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook to utilize the great increase in speed it can provide over Python. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be visualized and shared so easily, the original (slow) function has been included for the sake of demonstrating what I've learned.</p>
-<h3 class="ipynb">A Slow NumPy Function</h3>
+<h3 class="ipynb"><em>Alternative 1:</em> A Slow NumPy Function</h3>
 <p>This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the problem mathematically: as a series of nested loops and rotations.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -2721,7 +2721,8 @@ VgAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As the name implies, this function is pretty slow. One could use python's <a href="http://docs.python.org/2/library/profile.html">profiler</a> to determine where the bottlenecks are, but it's also easy to guess that the culprits are the pair of nested <code>for</code> loops and, on the inside of these loops, a call to <code>grotation</code>, the generalized rotation function, that itself calls two functions, <code>yrotation</code> and <code>zrotation</code>, two times each. To speed up the calculation, we should eliminate as much of the looping and function calls as possible.</p>
-<p>The looping can be reduced by improving the vectorization of the function so that it operates on matrices instead of looping through each point of the pulse and frequency range. The calls to the rotation functions can be eliminated by calculating each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using <a href="http://docs.sympy.org/0.7.0/index.html">SymPy</a>.</p>
+<h3 class="ipynb"><em>Alternative 2:</em> The Improved NumPy Function</h3>
+<p>The looping can be reduced by improving the vectorization of the function so that it operates on matrices instead of looping through each point of the pulse and frequency range. The calls to the rotation functions can be eliminated by calculating each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using SymPy.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2829,7 +2830,6 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb">The Improved NumPy Function</h3>
 <p>Using the elements of the rotation matrix and a few other vectorization tricks, I improved the function. In my opinion, the individual calculation of matrix elements makes this function more difficult to read, but readability wasn't the primary goal of this exercise.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -2941,6 +2941,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="ipynb"><em>Alternative 3:</em> The Fortran Function Using F2PY Magic</h3>
 <p>Before trying to optimize the NumPy version, I wrote a fortran version to calculate the propagator for the pulse. I was able to further improve the speed of the fortran function using some of the techniques learned from the NumPy function optimization. This improved version is presented below. My fortran skills haven't been dusted off since my freshman year of college, so I'm certain there are ways to further improve this function.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
