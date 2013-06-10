@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>themodernscientist</title><link>http://www.themodernscientist.com/</link><description>biophysicist, mac-unix zealot, pythonista</description><atom:link href="http://themodernscientist.com/feeds/main_rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 09 Jun 2013 15:35:00 -0400</lastBuildDate><item><title>Simulation of NMR Shaped Pulses: NumPy vs Fortran</title><link>http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/</link><description>&lt;p&gt;Bandwidth-selective excitation in NMR is commonly accomplished through the use of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired bandwidth. A simple way of accomplishing this task is to simulate the shaped pulse over a range of frequencies. Many spectrometer control programs contain software capable of this task (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>themodernscientist</title><link>http://www.themodernscientist.com/</link><description>biophysicist, mac-unix zealot, pythonista</description><atom:link href="http://themodernscientist.com/feeds/main_rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 09 Jun 2013 15:35:00 -0400</lastBuildDate><item><title>Simulation of NMR Shaped Pulses: NumPy vs Fortran</title><link>http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/</link><description>&lt;p&gt;Bandwidth-selective excitation in NMR is commonly accomplished through the use of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired frequency range. Simulating the shaped pulse over a range of frequencies is one way of accomplishing this task. Many spectrometer control programs contain software capable of this (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This IPython notebook demonstrates how to perform such a simulation for one of my favorite shaped pulses, the &lt;a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q"&gt;Reburp&lt;/a&gt; pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity because its excitation profile closely approximates that of a &lt;a href="http://en.wikipedia.org/wiki/Top-hat_filter"&gt;top hat function&lt;/a&gt;, which will be evident when the calculated excitation profile is plotted.&lt;/p&gt;
-&lt;p&gt;This simulation requires installation of a fortran compiler, the &lt;a href="http://www.f2py.com"&gt;f2py package&lt;/a&gt; for converting fortran code into usable Python modules, and the &lt;code&gt;f2pymagic&lt;/code&gt; &lt;a href="https://github.com/ipython/ipython/pull/2674"&gt;extension&lt;/a&gt; for compiling the fortran code within this IPython notebook. I installed &lt;code&gt;gfortran&lt;/code&gt; and &lt;code&gt;f2py&lt;/code&gt; via MacPorts. The &lt;code&gt;f2pymagic&lt;/code&gt; extension was installed in the IPython profile used for notebooks by placing the file in the &lt;code&gt;~/.ipython/profile_notebook/extensions&lt;/code&gt; directory, where &lt;code&gt;profile_notebook&lt;/code&gt; should be changed to the name of the default profile. The &lt;code&gt;extensions&lt;/code&gt; directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.&lt;/p&gt;
+&lt;p&gt;This IPython notebook demonstrates how to simulate one of my favorite NMR shaped pulses, the &lt;a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q"&gt;Reburp&lt;/a&gt; pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity because its excitation profile closely approximates that of a &lt;a href="http://en.wikipedia.org/wiki/Top-hat_filter"&gt;top hat function&lt;/a&gt;, which will be evident when the calculated excitation profile is plotted.&lt;/p&gt;
+&lt;p&gt;This simulation requires installation of a fortran compiler, the &lt;a href="http://www.f2py.com"&gt;f2py package&lt;/a&gt; for converting fortran code into Python modules, and the &lt;code&gt;f2pymagic&lt;/code&gt; &lt;a href="https://github.com/ipython/ipython/pull/2674"&gt;extension&lt;/a&gt; for compiling the fortran code within this IPython notebook. I installed &lt;code&gt;gfortran&lt;/code&gt; and &lt;code&gt;f2py&lt;/code&gt; via MacPorts. The &lt;code&gt;f2pymagic&lt;/code&gt; extension was installed in the IPython profile used for notebooks by placing the file in the &lt;code&gt;~/.ipython/profile_notebook/extensions&lt;/code&gt; directory, where &lt;code&gt;profile_notebook&lt;/code&gt; should be changed to the name of the notebook profile. The &lt;code&gt;extensions&lt;/code&gt; directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -23,7 +23,7 @@
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;load_ext&lt;/span&gt; &lt;span class="n"&gt;f2pymagic&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -33,13 +33,13 @@
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 class="ipynb"&gt;Spectrometer Implementation and Simulation of Shaped Pulses&lt;/h2&gt;
-&lt;p&gt;Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or &lt;code&gt;n_pulse&lt;/code&gt; as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the &lt;em&gt;y&lt;/em&gt;- and &lt;em&gt;z&lt;/em&gt;-axes performed for each successive period $\Delta t$ at each relative offset from the carrier frequency:&lt;br /&gt;
+&lt;p&gt;Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or &lt;code&gt;n_pulse&lt;/code&gt; as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the &lt;em&gt;y&lt;/em&gt;- and &lt;em&gt;z&lt;/em&gt;-axes performed for each successive period $\Delta t$ at each relative frequency:&lt;br /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img alt="This is an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img alt="This is an image because nbconvert doesn't render the LaTeX correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /&gt;&lt;br /&gt;
 &lt;/p&gt;
-&lt;p&gt;where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This equation and its derivation are described in equation 3.107 and surrounding text of &lt;a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html"&gt;Protein NMR Spectroscopy: Principles and Practice, Second Edition&lt;/a&gt;. The rotation matrices are&lt;br /&gt;
+&lt;p&gt;where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This calculation and its derivation are described in equation 3.107 and surrounding text of &lt;a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html"&gt;Protein NMR Spectroscopy: Principles and Practice, Second Edition&lt;/a&gt;. The rotation matrices are:&lt;br /&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img alt="This is also an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img alt="This is also an image because nbconvert doesn't render the LaTeX correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /&gt;&lt;br /&gt;
 &lt;/p&gt;
 &lt;p&gt;where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)&lt;/p&gt;
 &lt;p&gt;Note that, while the simulation in this notebook does consider the effects of resonance offset, it does not consider evolution during the pulse itself. Furthermore, this method will not work as implemented to simulate adiabatic pulses.&lt;/p&gt;
@@ -98,7 +98,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This makes the data look just like the values from Bruker's shaped pulse file. The first column in &lt;code&gt;puleShapeArray&lt;/code&gt; is the magnitude of the intensity. The second column is phase, which is &lt;code&gt;0&lt;/code&gt; when intensity is positive, and &lt;code&gt;180&lt;/code&gt; when it's negative.&lt;/p&gt;
+&lt;p&gt;This makes the data look just like the values from Bruker's shaped pulse file. The first column in &lt;code&gt;puleShapeArray&lt;/code&gt; is the magnitude of the intensity. The second column is phase, which in this case is &lt;code&gt;0&lt;/code&gt; when intensity is positive, and &lt;code&gt;180&lt;/code&gt; when it's negative (recall that $\cos(\pi) = -1$).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -1517,9 +1517,10 @@ VgAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;None of my attempts at automatically vectorizing this function were successful.&lt;a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#fn:sympytheano"&gt;1&lt;/a&gt; Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's &lt;code&gt;simplify&lt;/code&gt; function for algebraic simplification.&lt;/p&gt;
 &lt;/div&gt;
+
+&lt;p&gt;None of my attempts at automatically vectorizing this function were successful.&lt;sup id="fnref:sympytheano"&gt;&lt;a href="#fn:sympytheano" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's &lt;code&gt;simplify&lt;/code&gt; function for algebraic simplification.&lt;/p&gt;
+&lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[22]:&lt;/div&gt;
@@ -1669,7 +1670,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;f2py&lt;/span&gt;
 &lt;span class="o"&gt;!&lt;/span&gt; -*- f90 -*-
@@ -1712,7 +1713,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 &lt;span class="n"&gt;prop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;spread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n_freq&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;do&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n_pulse&lt;/span&gt;
-
+&lt;span class="o"&gt;!&lt;/span&gt;   Is there a way to &lt;span class="k"&gt;do &lt;/span&gt;this without reshaping?
     &lt;span class="n"&gt;r11&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,:,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n_freq&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="n"&gt;r12&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,:,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n_freq&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="n"&gt;r13&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,:,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n_freq&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -1753,6 +1754,12 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 &lt;/div&gt;
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
+&lt;div class="hbox output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_display_data"&gt;
+&lt;pre class="ipynb"&gt;Compilation went OK...&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="hbox output_area"&gt;
 &lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_display_data"&gt;
@@ -1824,12 +1831,13 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest, however.&lt;a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#fn:numbacython"&gt;2&lt;/a&gt; The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)&lt;/p&gt;
 &lt;/div&gt;
+
+&lt;p&gt;As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest.&lt;sup id="fnref:numbacython"&gt;&lt;a href="#fn:numbacython" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)&lt;/p&gt;
+&lt;div class="ipynb"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 class="ipynb"&gt;Visualizing the Effects of the Shaped Pulse on Magnetization&lt;/h2&gt;
-&lt;p&gt;The effects of the shaped pulse on the initial (&lt;em&gt;z&lt;/em&gt;) magnetization can easily visualized by plotting. It is also a convenient way to compare the results of the NumPy and fortran functions.&lt;/p&gt;
+&lt;p&gt;The effects of the shaped pulse on the initial magnetization can be visualized by plotting. It is also a convenient way to compare the results of the NumPy and fortran functions.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -2488,9 +2496,9 @@ Y0B2IHIAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The result is an inversion of the magnetization from the &lt;em&gt;z&lt;/em&gt;-axis for the frequency range of -2000 to 2000 Hz. Note the inverted "top hat" shape referred to earlier in the post. This is exactly what is expected from a 180º pulse with the added benefit of bandwidth selectivity. Just outside of this range, the pulse does not fully affect the magnetization and the results can be unpredictable (see below). Further outside of the bandwidth limit, at around -4000 and 4000 Hz, the pulse has little effect on the magnetization. Again, exactly as expected.&lt;/p&gt;
-&lt;p&gt;The slightly different values obtained with NumPy and Fortran are a curiosity. I tested the values determined for the rotation matrix (&lt;code&gt;r&lt;/code&gt;) for both functions and they are identical within the limits of floating point error. So, my guess is this variation arises from an accumulation of floating point error in the recursive multiplication loop that calculates the propagator. I also tried setting all  real variables in the fortran function to 64-bit (as is the default in NumPy), but there was no change in the results.&lt;/p&gt;
-&lt;p&gt;The effect of the shaped pulse on the &lt;em&gt;x&lt;/em&gt;- and &lt;em&gt;y&lt;/em&gt;-components is quite different from that on the &lt;em&gt;z&lt;/em&gt;-component, however recall that only starting &lt;em&gt;z&lt;/em&gt; magnetization was used for this calculation. Thus, these values are insignificant unless the magnetization is poorly aligned along the &lt;em&gt;z&lt;/em&gt;-axis. The numerical differences between the NumPy and fortran functions are also evident here.&lt;/p&gt;
+&lt;p&gt;The result is an inversion of the magnetization from the &lt;em&gt;z&lt;/em&gt;-axis for the frequency range of approximately -2000 to 2000 Hz. Note the inverted "top hat" shape referred to earlier in the post. This is exactly what is expected from a 180º pulse with the added benefit of bandwidth selectivity. Just outside of this range, the pulse does not fully invert the magnetization and the results can be unpredictable (see below). Further outside of the bandwidth limit, at around -4000 and 4000 Hz, the pulse has little effect on the magnetization. Again, exactly as expected.&lt;/p&gt;
+&lt;p&gt;The slightly different values obtained with NumPy and fortran are a curiosity. I tested the values determined for the rotation matrix (&lt;code&gt;r&lt;/code&gt;) for both functions and they are identical within the limits of floating point error. So, my guess is the variation arises from an accumulation of floating point error in the recursive multiplication loop that calculates the propagator. I also tried setting all real variables in the fortran function to 64-bit (as is the default in NumPy), but there was no change in the results.&lt;/p&gt;
+&lt;p&gt;The effect of the shaped pulse on the &lt;em&gt;x&lt;/em&gt;- and &lt;em&gt;y&lt;/em&gt;-components is quite different from that on the &lt;em&gt;z&lt;/em&gt;-component, however recall that only magnetization starting on the &lt;em&gt;z&lt;/em&gt;-axis was used for this calculation. Thus, these values are insignificant unless the magnetization is poorly aligned along the &lt;em&gt;z&lt;/em&gt;-axis. The numerical differences between the NumPy and fortran functions are also evident here.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -3993,7 +4001,7 @@ IcQCAADAcQixAAAAcBxCLAAAAByHEAsAAADHIcQCAADAcf4POw/iPx/YrAgAAAAASUVORK5CYII=
 &lt;p&gt;Ideally this function could be vectorized with something like SymPy's &lt;a href="http://docs.sympy.org/dev/modules/utilities/lambdify.html"&gt;lambdify&lt;/a&gt;, &lt;a href="http://ojensen.wordpress.com/2010/08/10/fast-ufunc-ish-hydrogen-solutions/"&gt;autowrap&lt;/a&gt;, or &lt;a href="http://docs.sympy.org/0.7.0/modules/utilities/autowrap.html#ufuncify"&gt;ufuncify&lt;/a&gt; functions or with the &lt;a href="http://matthewrocklin.com/blog/work/2013/03/19/SymPy-Theano-part-1/"&gt;Theano&lt;/a&gt; package. Unfortunately, &lt;code&gt;lambdify&lt;/code&gt; isn't compatible with NumPy arrays. Likewise, &lt;code&gt;autowrap&lt;/code&gt; isn't compatible with SymPy's &lt;code&gt;Matrix&lt;/code&gt; function &lt;a href="https://groups.google.com/forum/?fromgroups#!msg/sympy/Lo62rCmPTm8/G4GuHzp5wpQJ"&gt;yet&lt;/a&gt;. I was unsuccessful in getting &lt;code&gt;unfuncify&lt;/code&gt; to work with this case, and my MacBook Air doesn't have the graphics card necessary for GPU computing, so I didn't attempt to use Theano.&amp;#160;&lt;a href="#fnref:sympytheano" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:numbacython"&gt;
-&lt;p&gt;It would also be interesting to compare the speed of these functions to versions implemented in &lt;a href="http://numba.pydata.org"&gt;Numba&lt;/a&gt; and &lt;a href="http://www.cython.org"&gt;Cython&lt;/a&gt;. My efforts at implementing this subroutine in NumBa were not very successful and I'm not fond of C, so I decided to pass on Cython.&amp;#160;&lt;a href="#fnref:numbacython" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It would also be interesting to compare the speed of these functions to versions implemented in &lt;a href="http://numba.pydata.org"&gt;Numba&lt;/a&gt; and &lt;a href="http://www.cython.org"&gt;Cython&lt;/a&gt;. My efforts at implementing this subroutine in Numba were not very successful and I'm not fond of C, so I decided to pass on Cython.&amp;#160;&lt;a href="#fnref:numbacython" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">modernscientist</dc:creator><pubDate>Sun, 09 Jun 2013 15:35:00 -0400</pubDate><guid>tag:www.themodernscientist.com,2013-06-09:posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/</guid><category>science</category><category>python</category></item><item><title>My Octopelican Python Blog</title><link>http://www.themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/</link><description>&lt;p&gt;Many have asked about my blog design and how I incorporate IPython notebooks, such as the one used in the &lt;a href="http://themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/"&gt;previous post&lt;/a&gt;. I merely glued all the pieces together for this setup, so to give credit where it is due and to provide a documented how-to for my future self, I've described both blog design and incorporating IPython notebooks into posts.&lt;/p&gt;
