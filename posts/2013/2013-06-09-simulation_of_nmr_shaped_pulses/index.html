@@ -1261,8 +1261,8 @@ init_mathjax();
 <hr />
 <div class="ipynb">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This IPython notebook demonstrates how to perform such a simulation for one of my favorite shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity, which means its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
-<p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into usable Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within an IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the default profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.</p>
+<p>This IPython notebook demonstrates how to perform such a simulation for one of my favorite shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity because its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
+<p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into usable Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within this IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the default profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, SymPy.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1292,15 +1292,15 @@ init_mathjax();
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Spectrometer Implementation and Simulation of Shaped Pulses</h2>
 <p>Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or <code>n_pulse</code> as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the <em>y</em>- and <em>z</em>-axes performed for each successive period $\Delta t$ at each relative offset from the carrier frequency:<br />
-<img alt="This is an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /></p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
+</p>
+<p><img alt="This is an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /><br />
+</p>
 <p>where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This equation and its derivation are described in equation 3.107 and surrounding text of <a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html">Protein NMR Spectroscopy: Principles and Practice, Second Edition</a>. The rotation matrices are<br />
-<img alt="This is also an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /></p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
+</p>
+<p><img alt="This is also an image because the LaTeX didn't render correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /><br />
+</p>
 <p>where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)</p>
-<p>Note that, while the calculation in this notebook does consider the effects of resonance offset, it does not consider evolution during the pulse itself. Furthermore, this method will not work as written to simulate adiabatic pulses.</p>
+<p>Note that, while the simulation in this notebook does consider the effects of resonance offset, it does not consider evolution during the pulse itself. Furthermore, this method will not work as implemented to simulate adiabatic pulses.</p>
 <h2 class="ipynb">Setup Pulse and Frequency Range Properties</h2>
 <p>Enter the length of the pulse (in $\mu$s), the minimum and maximum offset of the frequency range (both in hertz), the number of steps in the frequency range, and the input magnetization ('Mx', 'My', 'Mz').</p>
 </div>
@@ -1356,7 +1356,7 @@ init_mathjax();
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column in <code>puleShapeArray</code> is the magnitude of the intensity. The second column is phase, which is 0 when intensity is positive, 180 when it's negative.</p>
+<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column in <code>puleShapeArray</code> is the magnitude of the intensity. The second column is phase, which is <code>0</code> when intensity is positive, and <code>180</code> when it's negative.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1406,7 +1406,7 @@ init_mathjax();
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Simulation of the Shaped Pulse</h2>
-<p>Normalize the magnitude of the pulse to "1" and convert the phases to radians.</p>
+<p>Normalize the magnitude of the pulse to <code>1</code> and convert the phase to radians.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2044,7 +2044,7 @@ rkJggg==
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>x</em>- and <em>y</em>-components of the pulse are the product of the intensity and the complex phase.</p>
+<p>The <em>x</em>- and <em>y</em>-components of the pulse are the products of the intensity and the complex phase.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2644,9 +2644,9 @@ VgAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Speed Comparison for NumPy and Fortran Functions Using F2PY Magic</h2>
-<p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook and, thus, benefit from the great increase in speed it afforded over NumPy. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be visualized and shared so easily, the original (slow) function has been included for the sake of sharing what I've learned with others.</p>
+<p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook to utilize the great increase in speed it can provide over Python. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be visualized and shared so easily, the original (slow) function has been included for the sake of demonstrating what I've learned.</p>
 <h3 class="ipynb">A Slow NumPy Function</h3>
-<p>This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the mathematical problem: as a series of loops and nested function calls.</p>
+<p>This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the problem mathematically: as a series of nested loops and rotations.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2703,8 +2703,8 @@ VgAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As the name implies, this function is pretty slow. One could use python's <a href="http://docs.python.org/2/library/profile.html">profiler</a> to determine where the bottlenecks are, but it's also easy to guess that the culprits are the pair of nested <code>for</code> loops and, on the inside of these loops, a call to <code>grotation</code>, the generalized rotation function, that itself calls two functions, <code>yrotation</code> and <code>zrotation</code>, two times each. To speed up the calculation, as much of the looping and superfluous function calls should be eliminated as possible.</p>
-<p>The looping can be reduced by improving the vectorization of the algorithm so that it operates on matrices instead of looping through each point of the pulse and frequency range. One way to eliminate the function calls is to calculate each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using <a href="http://docs.sympy.org/0.7.0/index.html">SymPy</a>.</p>
+<p>As the name implies, this function is pretty slow. One could use python's <a href="http://docs.python.org/2/library/profile.html">profiler</a> to determine where the bottlenecks are, but it's also easy to guess that the culprits are the pair of nested <code>for</code> loops and, on the inside of these loops, a call to <code>grotation</code>, the generalized rotation function, that itself calls two functions, <code>yrotation</code> and <code>zrotation</code>, two times each. To speed up the calculation, we should eliminate as much of the looping and function calls as possible.</p>
+<p>The looping can be reduced by improving the vectorization of the function so that it operates on matrices instead of looping through each point of the pulse and frequency range. The calls to the rotation functions can be eliminated by calculating each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using <a href="http://docs.sympy.org/0.7.0/index.html">SymPy</a>.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2776,7 +2776,7 @@ VgAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>None of my attempts at automatically vectorizing this function were successful.[1] Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
+<p>None of my attempts at automatically vectorizing this function were successful.<a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#fn:sympytheano">1</a> Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2812,7 +2812,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 class="ipynb">The Improved NumPy Function</h3>
-<p>Using the elements of the rotation matrix and a few other vectorization tricks, I came up with a new version of the function. In my opinion, the individual calculation of matrix elements makes this function more difficult to read, but that wasn't the goal of this exercise.</p>
+<p>Using the elements of the rotation matrix and a few other vectorization tricks, I improved the function. In my opinion, the individual calculation of matrix elements makes this function more difficult to read, but readability wasn't the primary goal of this exercise.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2878,7 +2878,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected, this subroutine runs much faster. (And I'd love to hear from anyone who can improve the speed of this function even more.)</p>
+<p>As expected, this subroutine runs much more quickly. (And I'd love to hear from anyone who can improve the speed of this function even more.)</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2923,7 +2923,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Before trying to optimize the NumPy version, I wrote a fortran version to calculate the propagator for the pulse. I was able to further improve the speed of the fortran function using some of the techniques learned from the NumPy optimization. This improved version is presented below. My fortran skills haven't been dusted off since my freshman year of college, so I'm certain there are ways to further improve this function.</p>
+<p>Before trying to optimize the NumPy version, I wrote a fortran version to calculate the propagator for the pulse. I was able to further improve the speed of the fortran function using some of the techniques learned from the NumPy function optimization. This improved version is presented below. My fortran skills haven't been dusted off since my freshman year of college, so I'm certain there are ways to further improve this function.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3083,7 +3083,7 @@ r[2,2] = -cos(a)*cos(t)**2 + cos(a) + cos(t)**2
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest, however.[2] The relative speed of the fortran function will likely grow as the number of points increases, but there is also a lesson here about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about knowing the nuances of a language.)</p>
+<p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest, however.<a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#fn:numbacython">2</a> The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Visualizing the Effects of the Shaped Pulse on Magnetization</h2>
@@ -3747,8 +3747,8 @@ Y0B2IHIAAAAASUVORK5CYII=
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The result is an inversion of the magnetization from the <em>z</em>-axis for the frequency range of -2000 to 2000 Hz. Note the inverted "top hat" shape referred to earlier in the post. This is exactly what is expected from a 180º pulse with the added benefit of bandwidth selectivity. Just outside of this range, the pulse does not fully affect the magnetization and the results can be unpredictable (see below). Further outside of the bandwidth limit, at around -4000 and 4000 Hz, the pulse has little effect on the magnetization. Again, exactly as expected.</p>
-<p>One curiosity is the slightly different values obtained with NumPy and Fortran. I tested the values determined for the rotation matrix (<code>r</code>) for the two functions and they are identical within the limits of floating point error. So, my guess is the differences arise from an accumulation of floating point differences in the recursive multiplication loop that calculates the propagator. The original (slow) NumPy function produces results that are identical to the faster NumPy function. I tried setting all the real variables in the fortran function to 64-bit (as is the default in NumPy), but there was no change in the results.</p>
-<p>The effect of the shaped pulse on the <em>x</em>- and <em>y</em>-components is quite different from that on the <em>z</em>-component, however recall that only <em>z</em> magnetization was used for this calculation. Thus, these values are insignificant unless the magnetization is poorly aligned along the <em>z</em>-axis. The numerical differences between the NumPy and fortran functions are also evident here.</p>
+<p>The slightly different values obtained with NumPy and Fortran are a curiosity. I tested the values determined for the rotation matrix (<code>r</code>) for both functions and they are identical within the limits of floating point error. So, my guess is this variation arises from an accumulation of floating point error in the recursive multiplication loop that calculates the propagator. I also tried setting all  real variables in the fortran function to 64-bit (as is the default in NumPy), but there was no change in the results.</p>
+<p>The effect of the shaped pulse on the <em>x</em>- and <em>y</em>-components is quite different from that on the <em>z</em>-component, however recall that only starting <em>z</em> magnetization was used for this calculation. Thus, these values are insignificant unless the magnetization is poorly aligned along the <em>z</em>-axis. The numerical differences between the NumPy and fortran functions are also evident here.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
