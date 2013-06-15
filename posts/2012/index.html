@@ -38,6 +38,8 @@ pre.ipynb {
   margin-bottom: 0;
   padding: 0;}
 
+img.anim_icon{padding:0; border:0; -webkit-box-shadow:none; -box-shadow:none} /*MLG*/
+
 .ipynb div,, div, span, object, iframe,
 .ipynb h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
@@ -87,7 +89,8 @@ input, select { vertical-align: middle; }
  * Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/
  */
 
-div.ipynb { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
+/*div.ipynb { font:13px/1.231 sans-serif; *font-size:small; }*/ /* Hack retained to preserve specificity */
+div.ipynb { font:inherit; *font-size:small; } /*MLG*/
 select, input, textarea, button { font:99% sans-serif; }
 
 /* Normalize monospace sizing:
@@ -122,8 +125,8 @@ textarea{overflow:auto;vertical-align:top;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-/*body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#000000;background-color:#ffffff;}*/
-div.ipynb {font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;}
+/*div.ipynb {font: inherit; font-size: inherit; background-color: inherit; font-family: inherit;}*/
+div.ipynb {margin:0;font-family:inherit;font-size:inherit;line-height:20px;color:#000000;background-color:inherit;} /*MLG*/
 a{color:#0088cc;text-decoration:none;}
 a:hover,a:focus{color:#005580;text-decoration:underline;}
 .img-rounded{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}
@@ -988,7 +991,8 @@ pre .coffeescript .javascript,pre .javascript .xml,pre .tex .formula,pre .xml .j
 .cm-s-ipython span.cm-error{color:#f00;}
 .cm-s-ipython span.cm-operator{color:#AA22FF;font-weight:bold;}
 .cm-s-ipython span.cm-meta{color:#AA22FF;}
-div.ipynb {background-color:#ffffff;}
+/*div.ipynb {background-color:#ffffff;}*/
+div.ipynb {background-color:inherit;} /*MLG*/
 body.notebook_app{overflow:hidden;}
 blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777;}
 span#save_widget{padding:5px;margin:0px 0px 0px 300px;display:inline-block;}
