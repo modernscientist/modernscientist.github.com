@@ -58,4 +58,4 @@ And the following was inserted at approximately line 28,
 ```css
 img.anim_icon{padding:0; border:0; -webkit-box-shadow:none; -box-shadow:none}
 ```
-all of which were borrowed from the header of Jake Vanderplas' [blog](http://jakevdp.github.io).
+all of which were borrowed from the CSS file of Jake Vanderplas' [blog](https://github.com/jakevdp/PythonicPerambulations/blob/master/_nb_header_mod.html).
