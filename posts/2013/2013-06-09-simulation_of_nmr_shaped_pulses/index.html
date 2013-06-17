@@ -1041,7 +1041,8 @@ div.output_stderr{background:#fdd;}
 div.output_latex{text-align:left;}
 div.text_cell{padding:5px 5px 5px 5px;}
 div.text_cell_input{color:#000000;border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
-div.text_cell_render{outline:none;resize:none;width:inherit;border-style:none;padding:5px;color:#000000;}
+/*div.text_cell_render{outline:none;resize:none;width:inherit;border-style:none;padding:5px;color:#000000;}*/ /*MLG*/
+div.text_cell_render{outline:none;resize:none;width:inherit;border-style:none;padding:0;color:#000000;} /*MLG*/
 .CodeMirror{line-height:1.231;height:auto;background:none;}
 .CodeMirror-scroll{overflow-y:hidden;overflow-x:auto;}
 .CodeMirror-lines{padding:0.4em;}
@@ -3311,7 +3312,7 @@ Relative speed up of 1 times for cython over the fortran function.
 </div>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Jonathan <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-926513659">reports</a> that on his system, this cython function is about 15% faster than fortran. In my hands, it is slightly slower. Most likely this can be attributed to differences in our systems and setup. Clearly, both functions offer some advantage over the vectorized numpy function, however.</p>
+<p>Joshua <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-926513659">reports</a> that on his system, this cython function is about 15% faster than fortran. In my hands, it is slightly slower. Most likely this can be attributed to differences in our systems and setup. Clearly, both functions offer some advantage over the vectorized numpy function, however.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 class="ipynb">Visualizing the Effects of the Shaped Pulse on Magnetization</h2>
