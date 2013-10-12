@@ -4,13 +4,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Simulation of NMR Shaped Pulses: NumPy vs Fortran</title>
+  <title>themodernscientist</title>
   <meta name="author" content="modernscientist">
 
-      <link href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate"
+  <link href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate"
         title="themodernscientist RSS Feed" />
-  
-      <style type="text/css">
+
+    <style type="text/css">
 /**
  * HTML5 ✰ Boilerplate
  *
@@ -1209,7 +1209,7 @@ init_mathjax = function() {
 }
 init_mathjax();
 </script>
-  
+
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -1228,10 +1228,10 @@ init_mathjax();
         rel="stylesheet" type="text/css">
 </head><body>
   <header role="banner">
-    <hgroup>
+<hgroup>
   <h1><a href="http://www.themodernscientist.com/">themodernscientist</a></h1>
-      <h2>biophysicist, mac-unix zealot, pythonista</h2>
-  </hgroup>          
+    <h2>biophysicist, mac-unix zealot, pythonista</h2>
+</hgroup>      
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
        MathJax.Hub.Config({
            config: ["MMLorHTML.js"],
@@ -1248,11 +1248,11 @@ init_mathjax();
        });
     </script>
 
-      </header>
+  </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-      <li><a href="http://feeds.uri.lv/themodernscientist-rss" rel="subscribe-rss">RSS</a></li>
-      <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" rel="subscribe-email">Email</a></li>
-  </ul>
+  <li><a href="http://feeds.uri.lv/themodernscientist-rss" rel="subscribe-rss">RSS</a></li>
+  <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" rel="subscribe-email">Email</a></li>
+</ul>
 
 <form action="" method="get">
   <fieldset role="search">
@@ -1264,34 +1264,36 @@ init_mathjax();
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
 <!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-      <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-      <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
-   -->
+    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
+    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
+ -->
 
     <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
 
-            <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-          <li><a href="http://www.themodernscientist.com/pages/disclaimer.html">Disclaimer</a></li>
-      </ul></nav>
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+      <li><a href="http://www.themodernscientist.com/pages/disclaimer.html">Disclaimer</a></li>
+</ul></nav>
   <div id="main">
     <div id="content">
-      <div>
+<div>
   <article class="hentry" role="article">
-    <header>
-          <h1 class="entry-title">Simulation of NMR Shaped Pulses: NumPy vs Fortran</h1>
-          <p class="meta"><time datetime="2013-06-09T15:35:00" pubdate>2013/06/09</time></p>
+<header>
+      <h1 class="entry-title">Simulation of NMR Shaped Pulses: NumPy vs Fortran</h1>
+      <p class="meta"><time datetime="2013-06-09T15:35:00" pubdate>2013/06/09</time></p>
 </header>
 
   <div class="entry-content"><p>Bandwidth-selective excitation in NMR is commonly accomplished through the use of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired frequency range. Simulating the shaped pulse over a range of frequencies is one way of accomplishing this task. Many spectrometer control programs contain software capable of this (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.</p>
 <hr />
-<div class="ipynb">
+<p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This IPython notebook demonstrates how to simulate one of my favorite NMR shaped pulses, the <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">Reburp</a> pulse. This is a refocusing pulse, meaning it rotates magnetization 180º regardless of initial state of the magnetization. The Reburp pulse has excellent bandwidth selectivity because its excitation profile closely approximates that of a <a href="http://en.wikipedia.org/wiki/Top-hat_filter">top hat function</a>, which will be evident when the calculated excitation profile is plotted.</p>
 <p>This simulation requires installation of a fortran compiler, the <a href="http://www.f2py.com">f2py package</a> for converting fortran code into Python modules, and the <code>f2pymagic</code> <a href="https://github.com/ipython/ipython/pull/2674">extension</a> for compiling the fortran code within this IPython notebook. I installed <code>gfortran</code> and <code>f2py</code> via MacPorts. The <code>f2pymagic</code> extension was installed in the IPython profile used for notebooks by placing the file in the <code>~/.ipython/profile_notebook/extensions</code> directory, where <code>profile_notebook</code> should be changed to the name of the notebook profile. The <code>extensions</code> directory may need to be created. Additional required packages include NumPy, Matplotlib, and, optionally, <a href="http://docs.sympy.org/0.7.0/index.html">SymPy</a>.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1300,22 +1302,24 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The following command loads the <code>f2pymagic</code> extension:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">f2pymagic</span>
 </pre></div>
 
 </div>
 </div>
-</div>
-</div>
 
+</div></p>
 <h2>Spectrometer Implementation and Simulation of Shaped Pulses</h2>
 <p>Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or <code>n_pulse</code> as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the <em>y</em>- and <em>z</em>-axes performed for each successive period $\Delta t$ at each relative frequency:<br />
 </p>
@@ -1327,14 +1331,16 @@ init_mathjax();
 </p>
 <p>where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)</p>
 <p>Note that, while the simulation in this notebook does consider the effects of resonance offset, it does not consider evolution during the pulse itself. Furthermore, this method will not work as implemented to simulate adiabatic pulses.</p>
-<div class="ipynb">
+<p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Setup Pulse and Frequency Range Properties</h2>
-<p>Enter the length of the pulse (in $\mu$s), the minimum and maximum offset of the frequency range (both in hertz), the number of steps in the frequency range, and the input magnetization ('Mx', 'My', 'Mz').</p>
+<h2 id="setup-pulse-and-frequency-range-properties">Setup Pulse and Frequency Range Properties</h2>
+<p>Enter the length of the pulse (in <span class="math">\(\mu\)</span>s), the minimum and maximum offset of the frequency range (both in hertz), the number of steps in the frequency range, and the input magnetization ('Mx', 'My', 'Mz').</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[6]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pulseLength</span> <span class="o">=</span> <span class="mf">1000.</span> <span class="c"># in microseconds</span>
 <span class="n">offset</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">5000.</span><span class="p">,</span> <span class="mf">5000.</span><span class="p">]</span> <span class="c"># in hertz</span>
@@ -1344,13 +1350,16 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Calculate the frequency range and spacing for each of these points.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">deltaomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">n_freq</span>
 <span class="n">relativeomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span><span class="n">deltaomega</span><span class="p">)</span>
@@ -1358,16 +1367,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Input Shaped Pulse Amplitude and Intensity</h2>
-<p>Two options for determining the amplitude and intensity of a shaped pulse are presented. The first (used in this demonstration) calculates the necessary values for a Reburp pulse. The second option will read a Reburp pulse file (or any other shaped pulse file) from a Bruker instrument if the correct path to the file is given.</p>
-<h3 class="ipynb"><em>Alternative 1:</em> Calculate the Shaped Pulse From a Fourier Series</h3>
-<p>The Reburp pulse is relatively easy to calculate--the pulse is the cosine portion of a Fourier series and the coefficients for this series are published in the original <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">manuscript</a> describing the "burp" family of pulses.</p>
+<h2 id="input-shaped-pulse-amplitude-and-intensity">Input Shaped Pulse Amplitude and Intensity</h2>
+<p>Two options for determining the amplitude and intensity of a shaped pulse are presented. The first (used in this demonstration) calculates the necessary values for a Reburp pulse. The second option will read a Reburp pulse file (or any other shaped pulse file) from a Bruker instrument if the correct path to the file is given. ### <em>Alternative 1:</em> Calculate the Shaped Pulse From a Fourier Series The Reburp pulse is relatively easy to calculate--the pulse is the cosine portion of a Fourier series and the coefficients for this series are published in the original <a href="http://www.sciencedirect.com/science/article/pii/002223649190034Q">manuscript</a> describing the &quot;burp&quot; family of pulses.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">n_pulse</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c"># number of points in the pulse, set by user</span>
 <span class="n">totalRotation</span> <span class="o">=</span> <span class="mf">180.</span> <span class="c"># in degrees, set by user</span>
@@ -1382,13 +1392,16 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column in <code>puleShapeArray</code> is the magnitude of the intensity. The second column is phase, which in this case is <code>0</code> when intensity is positive, and <code>180</code> when it's negative (recall that $\cos(\pi) = -1$).</p>
+<p>This makes the data look just like the values from Bruker's shaped pulse file. The first column in <code>puleShapeArray</code> is the magnitude of the intensity. The second column is phase, which in this case is <code>0</code> when intensity is positive, and <code>180</code> when it's negative (recall that <span class="math">\(\cos(\pi) = -1\)</span>).</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pulseShapeArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pulse</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sumMat</span><span class="p">)</span>
@@ -1397,27 +1410,33 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb"><em>Alternative 2:</em> Read a Bruker Shaped Pulse File</h3>
+<h3 id="alternative-2-read-a-bruker-shaped-pulse-file"><em>Alternative 2:</em> Read a Bruker Shaped Pulse File</h3>
 <p>Reading a Bruker shaped pulse file requires entering the path to the file. For most versions of TopSpin, the file resides in a path similar to the one below. This file can be copied onto a local computer for reading by this notebook.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pulseFile</span> <span class="o">=</span> <span class="s">&#39;/opt/topspin/exp/stan/nmr/lists/wave/Reburp.1000&#39;</span> <span class="c"># path to shaped pulse file, set by user</span>
 </pre></div>
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Read in the data from the pulse file and extract necessary information.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
@@ -1431,14 +1450,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Visualizing the Shaped Pulse</h2>
+<h2 id="visualizing-the-shaped-pulse">Visualizing the Shaped Pulse</h2>
 <p>Normalize the magnitude of the pulse to <code>1</code> and convert the phase to radians.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pulseShapeInten</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">pulseShapePhase</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
@@ -1446,13 +1468,16 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The magnitude and phase of the pulse can be seen by plotting.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -1470,17 +1495,27 @@ init_mathjax();
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[11]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.legend.Legend at 0x10da59fd0&gt;</pre>
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[11]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;matplotlib.legend.Legend at 0x10da59fd0&gt;
+</pre>
+
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAs8AAAIXCAYAAABjH7P1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3XtYVVX+P/D3QURFMTK8AYJAmmhjqelImZWmleZg5ZSk
 U2gXp5pG62flWKPWlJVaw0zRWNP0taycrlhNo07mJe2mhpcy84bc8YaKCigI5/fHdp9E0ThyWOuz
@@ -2065,18 +2100,23 @@ x49HmTJlcPLkScycORP9+/eXxFkIYfdk5FkIIUQmly9fRnBwMHbv3o2kpCRUqFABvXv3RmhoaJ67
 ggghhLWT5FkIIYQQQggj6bUOQAghhBBCCGshybMQQgghhBBGkuRZCCGEEEIII0nyLIQQQgghhJEk
 eRZCCCGEEMJIkjwLIYQQQghhJEmehRBCCCGEMJIkz0IIIYQQQhjp/wOKXKTvGqHRkQAAAABJRU5E
 rkJggg==
-"></img>
+">
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <em>x</em>- and <em>y</em>-components of the pulse are the products of the intensity and the complex phase.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">xPulseShape</span> <span class="o">=</span> <span class="n">pulseShapeInten</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">)</span>
 <span class="n">yPulseShape</span> <span class="o">=</span> <span class="n">pulseShapeInten</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">)</span>
@@ -2084,13 +2124,16 @@ rkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>These can also be plotted. Note that the amplitude is negated everywhere the phase was 180º and the value of the phase is now zero everywhere.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[13]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -2107,17 +2150,27 @@ rkJggg==
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[13]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.legend.Legend at 0x10d6ebf50&gt;</pre>
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[13]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;matplotlib.legend.Legend at 0x10d6ebf50&gt;
+</pre>
+
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtUAAAIbCAYAAAAkUWKvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3Xl4lOXZ/vFzQsIaICqgJGQngbCIrAVkFVRwQ4S3QlUK
 qLWIVkRRCla0VtqKItYX9XUFBXElVCqgv4oooBUhBsGGJWRH9iXsWzK/P24nEEhgJpmZ55mZ7+c4
@@ -2632,18 +2685,23 @@ JiQiUosj1UREVCArKyuMGTMG6enpmDBhAqpVq4affvoJM2fORFBQEAtqIrJ4HKkmIqJCuXDhAkJD
 Q7Fv3z7cunULtWvXRr9+/RAWFlbsLiVERKaORTURERERUTFpVQcgIiIiIjJ1LKqJiIiIiIqJRTUR
 ERERUTGxqCYiIiIiKiYW1URERERExcSimoiIiIiomFhUExEREREVE4tqIiIiIqJi+n9Na4/4GvzW
 VgAAAABJRU5ErkJggg==
-"></img>
+">
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The shaped pulse has a bandwidth just like a rectangular (hard) pulse, except that this bandwidth is scaled by the intensity.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">scalingFactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xPulseShape</span><span class="p">)</span><span class="o">/</span><span class="n">n_pulse</span>
 <span class="n">gammaB1max</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">pulseLength</span> <span class="o">*</span> <span class="mf">360.</span><span class="o">/</span><span class="n">totalRotation</span><span class="p">)</span><span class="o">/</span><span class="n">scalingFactor</span> <span class="o">*</span> <span class="mf">1e6</span>
@@ -2652,13 +2710,16 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Setup the starting magnization on the <em>x</em>-, <em>y</em>-, or <em>z</em>-axis. The default is <em>z</em> magnetization if nothing is set or an invalid choice is made.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">inputVector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
 <span class="n">inputMagnetizationDict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;mx&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s">&#39;my&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s">&#39;mz&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span> <span class="p">}</span>
@@ -2669,16 +2730,17 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Calculating the Propagator: NumPy vs Fortran Functions Using F2PY Magic</h2>
-<p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook to utilize the great increase in speed it can provide over Python. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be visualized and shared so easily, the original (slow) function has been included for the sake of demonstrating what I've learned.</p>
-<h3 class="ipynb"><em>Alternative 1:</em> A Slow NumPy Function</h3>
-<p>This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the problem mathematically: as a series of nested loops and rotations.</p>
+<h2 id="calculating-the-propagator-numpy-vs-fortran-functions-using-f2py-magic">Calculating the Propagator: NumPy vs Fortran Functions Using F2PY Magic</h2>
+<p>This exercise was started as demonstration for incorporating f2pymagic in an IPython notebook to utilize the great increase in speed it can provide over Python. However, spending additional time optimizing the NumPy function resulted in a considerable speed increase on its own. Since the web-centric nature of IPython notebooks allows technical information to be visualized and shared so easily, the original (slow) function has been included for the sake of demonstrating what I've learned. ### <em>Alternative 1:</em> A Slow NumPy Function This was a first attempt at writing a function to calculate the effect of a shaped pulse on a frequency range. This function is written exactly how I think about the problem mathematically: as a series of nested loops and rotations.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
     <span class="c"># Functions for the y and z-rotations and the the function for a generic rotation</span>
@@ -2709,36 +2771,45 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[17]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">1 loops, best of 3: 1min 26s per loop
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+1 loops, best of 3: 1min 26s per loop
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As the name implies, this function is pretty slow. One could use python's <a href="http://docs.python.org/2/library/profile.html">profiler</a> to determine where the bottlenecks are, but it's also easy to guess that the culprits are the pair of nested <code>for</code> loops and, on the inside of these loops, a call to <code>grotation</code>, the generalized rotation function, that itself calls two functions, <code>yrotation</code> and <code>zrotation</code>, two times each. To speed up the calculation, we should eliminate as much of the looping and function calls as possible.</p>
-<h3 class="ipynb"><em>Alternative 2:</em> The Improved NumPy Function</h3>
-<p>The looping can be reduced by improving the vectorization of the function so that it operates on matrices instead of looping through each point of the pulse and frequency range. The calls to the rotation functions can be eliminated by calculating each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using SymPy.</p>
+<p>As the name implies, this function is pretty slow. One could use python's <a href="http://docs.python.org/2/library/profile.html">profiler</a> to determine where the bottlenecks are, but it's also easy to guess that the culprits are the pair of nested <code>for</code> loops and, on the inside of these loops, a call to <code>grotation</code>, the generalized rotation function, that itself calls two functions, <code>yrotation</code> and <code>zrotation</code>, two times each. To speed up the calculation, we should eliminate as much of the looping and function calls as possible. ### <em>Alternative 2:</em> The Improved NumPy Function The looping can be reduced by improving the vectorization of the function so that it operates on matrices instead of looping through each point of the pulse and frequency range. The calls to the rotation functions can be eliminated by calculating each of the nine elements of the matrix resulting from <code>grotation</code>. This can even be done symbolically using SymPy.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">spy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s">&#39;a,b,t,p&#39;</span><span class="p">)</span>
 <span class="n">zr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">spy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="o">-</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
@@ -2749,38 +2820,53 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This function can be evaluated numerically, if desired.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[19]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">gr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[19]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">[6.12323399573676e-17,                 -1.0, 0]
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[19]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[6.12323399573676e-17,                 -1.0, 0]
 [                 1.0, 6.12323399573676e-17, 0]
-[                   0,                    0, 1]</pre>
+[                   0,                    0, 1]
+</pre>
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Unfortunately, it can't be evalued numerically with NumPy's <code>ndarrays</code> because it hasn't been vectorized.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[20]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">an</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -2793,25 +2879,31 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Sad trombone. The SymPy function doesn&apos;t work with NumPy arrays.
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Sad trombone. The SymPy function doesn&apos;t work with NumPy arrays.
+
 </pre>
 </div>
 </div>
-</div>
-</div>
+
 </div>
 </div>
 
+</div></p>
 <p>None of my attempts at automatically vectorizing this function were successful.<sup id="fnref:sympytheano"><a href="#fn:sympytheano" rel="footnote">1</a></sup> Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[21]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">r</span> <span class="o">=</span> <span class="n">gr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -2821,12 +2913,15 @@ VgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">r[0,0] = sin(p)**2*cos(a) + sin(t)**2*cos(p)**2 + cos(a)*cos(p)**2*cos(t)**2
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+r[0,0] = sin(p)**2*cos(a) + sin(t)**2*cos(p)**2 + cos(a)*cos(p)**2*cos(t)**2
 r[0,1] = -sin(a)*cos(t) - sin(p)*sin(t)**2*cos(a)*cos(p) + sin(p)*sin(t)**2*cos(p)
 r[0,2] = (sin(a)*sin(p) - cos(a)*cos(p)*cos(t) + cos(p)*cos(t))*sin(t)
 r[1,0] = sin(a)*cos(t) - sin(p)*sin(t)**2*cos(a)*cos(p) + sin(p)*sin(t)**2*cos(p)
@@ -2835,18 +2930,23 @@ r[1,2] = (-sin(a)*cos(p) - sin(p)*cos(a)*cos(t) + sin(p)*cos(t))*sin(t)
 r[2,0] = -((cos(a) - 1)*cos(p)*cos(t) + sin(a)*sin(p))*sin(t)
 r[2,1] = (-(cos(a) - 1)*sin(p)*cos(t) + sin(a)*cos(p))*sin(t)
 r[2,2] = sin(t)**2*cos(a) + cos(t)**2
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using the elements of the rotation matrix and a few other vectorization tricks, I improved the function. In my opinion, the individual calculation of matrix elements makes this function more difficult to read, but readability wasn't the primary goal of this exercise.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[22]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
     <span class="c"># Use broadcasting to create 2D arrays (n_freq x n_rows) for each of the angles</span>
@@ -2927,59 +3027,78 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As expected, this subroutine runs much more quickly. (And I'd love to hear from anyone who can improve the speed of this function even more.)</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">1 loops, best of 3: 428 ms per loop
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+1 loops, best of 3: 428 ms per loop
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[31]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s"> times for the vectorized NumPy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.428</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Relative speed up of 201 times for the vectorized NumPy function.
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Relative speed up of 201 times for the vectorized NumPy function.
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb"><em>Alternative 3:</em> The Fortran Function Using F2PY Magic</h3>
+<h3 id="alternative-3-the-fortran-function-using-f2py-magic"><em>Alternative 3:</em> The Fortran Function Using F2PY Magic</h3>
 <p>Before trying to optimize the NumPy version, I wrote a fortran version to calculate the propagator for the pulse. I was able to further improve the speed of the fortran function using some of the techniques learned from the NumPy function optimization. This improved version is presented below. My fortran skills haven't been dusted off since my freshman year of college, so I'm certain there are ways to further improve this function.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[26]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">f2py</span>
 <span class="o">!</span> -*- f90 -*-
@@ -3061,20 +3180,31 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
-<pre class="ipynb">propcalc is ready for use</pre>
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+propcalc is ready for use
+</pre>
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[27]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
     <span class="c"># Setup the angles using broadcasting as before</span>
@@ -3091,31 +3221,42 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[28]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">10 loops, best of 3: 140 ms per loop
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+10 loops, best of 3: 140 ms per loop
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[32]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s"> times for fortran over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s"> times for fortran over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
@@ -3123,52 +3264,66 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Relative speed up of 614 times for fortran over the slow numpy function.
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Relative speed up of 614 times for fortran over the slow numpy function.
 Relative speed up of 3 times for fortran over the vectorized numpy function.
+
 </pre>
 </div>
 </div>
-</div>
-</div>
+
 </div>
 </div>
 
+</div></p>
 <p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest.<sup id="fnref:numbacython"><a href="#fn:numbacython" rel="footnote">2</a></sup> The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)</p>
-<div class="ipynb">
+<p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb"><em>Alternative 4:</em> A Propagator Function Written in C</h3>
+<h3 id="alternative-4-a-propagator-function-written-in-c"><em>Alternative 4:</em> A Propagator Function Written in C</h3>
 <p><a href="https://twitter.com/synapticarbors">Joshua Adelman</a> has kindly provided a Cython version of the propagator function.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[33]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">cythonmagic</span>
 </pre></div>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">The cythonmagic extension is already loaded. To reload it, use:
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+The cythonmagic extension is already loaded. To reload it, use:
   %reload_ext cythonmagic
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[34]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">cython</span> <span class="o">-</span><span class="n">c</span><span class="o">=-</span><span class="mo">03</span>
 <span class="c">#!python</span>
@@ -3263,10 +3418,13 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[35]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">inv2</span> <span class="o">=</span> <span class="n">inputVector</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">pulseprop_cython</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inv2</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
@@ -3274,21 +3432,29 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">10 loops, best of 3: 152 ms per loop
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+10 loops, best of 3: 152 ms per loop
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[36]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s"> times for cython over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.152</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s"> times for cython over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.152</span><span class="p">)</span>
@@ -3297,30 +3463,38 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Relative speed up of 566 times for cython over the slow numpy function.
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Relative speed up of 566 times for cython over the slow numpy function.
 Relative speed up of 3 times for cython over the vectorized numpy function.
 Relative speed up of 1 times for cython over the fortran function.
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Joshua <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-926513659">reports</a> that on his system, this cython function is about 15% faster than fortran. In my hands, it is slightly slower. Most likely this can be attributed to differences in our systems and setup. Clearly, both functions offer some advantage over the vectorized numpy function, however.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Visualizing the Effects of the Shaped Pulse on Magnetization</h2>
+<h2 id="visualizing-the-effects-of-the-shaped-pulse-on-magnetization">Visualizing the Effects of the Shaped Pulse on Magnetization</h2>
 <p>The effects of the shaped pulse on the initial magnetization can be visualized by plotting. It is also a convenient way to compare the results of the NumPy and fortran functions.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[37]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">xyzdata_numpyS</span> <span class="o">=</span> <span class="n">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 <span class="n">xyzdata_numpyF</span> <span class="o">=</span> <span class="n">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
@@ -3330,13 +3504,16 @@ Relative speed up of 1 times for cython over the fortran function.
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This simulation started with <em>z</em>-magnetization, so let's see how the shaped pulse affected that.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[38]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -3354,17 +3531,27 @@ Relative speed up of 1 times for cython over the fortran function.
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[38]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.legend.Legend at 0x10e70cb50&gt;</pre>
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[38]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;matplotlib.legend.Legend at 0x10e70cb50&gt;
+</pre>
+
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArEAAAIXCAYAAACLnwbeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3XtclHX6//HXDAwHxfNkrXhC5JRaJvk1pdQsDx1E3VxL
 JVM6Wtl2wvq2Hay0Nmk3a7OvPeq3udWKq60WtWa1mVbUmquZuqJooqir6ah4RgaY3x83MzCcZGAG
@@ -3892,19 +4079,24 @@ jRgxQkeOHNGjjz6qAQMGqLy8XE8//bQmTpyol156qcOv7/f7deGFF+qBBx7Q7bff3gk9jjR16lRJ
 0m9/+9sueX0AyYkgFgBsrKqqStOnT9fq1at14MABDRo0SBMnTtTMmTNPWM+2tcrLy3XLLbfo008/
 lcvl6pTXDNqxY4euuOIKffLJJ+rbt2+nvjaA5EYQCwAAgLhDiS0AAADEHYJYAAAAxB2CWAAAAMQd
 glgAAADEHYJYAAAAxB2CWAAAAMQdglgAAADEHYJYAAAAxJ3/DwkOe/beVXMdAAAAAElFTkSuQmCC
-"></img>
+">
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The result is an inversion of the magnetization from the <em>z</em>-axis for the frequency range of approximately -2000 to 2000 Hz. Note the inverted "top hat" shape referred to earlier in the post. This is exactly what is expected from a 180º pulse with the added benefit of bandwidth selectivity. Just outside of this range, the pulse does not fully invert the magnetization and the results can be unpredictable (see below). Further outside of the bandwidth limit, at around -4000 and 4000 Hz, the pulse has little effect on the magnetization. Again, exactly as expected.</p>
-<p>The effect of the shaped pulse on the <em>x</em>- and <em>y</em>-components is quite different from that on the <em>z</em>-component, particularly near the limit ($\pm$2500 Hz) for the inverted tophat.</p>
+<p>The result is an inversion of the magnetization from the <em>z</em>-axis for the frequency range of approximately -2000 to 2000 Hz. Note the inverted &quot;top hat&quot; shape referred to earlier in the post. This is exactly what is expected from a 180º pulse with the added benefit of bandwidth selectivity. Just outside of this range, the pulse does not fully invert the magnetization and the results can be unpredictable (see below). Further outside of the bandwidth limit, at around -4000 and 4000 Hz, the pulse has little effect on the magnetization. Again, exactly as expected.</p>
+<p>The effect of the shaped pulse on the <em>x</em>- and <em>y</em>-components is quite different from that on the <em>z</em>-component, particularly near the limit ($$2500 Hz) for the inverted tophat.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[39]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -3922,17 +4114,27 @@ glgAAADEHYJYAAAAxB2CWAAAAMQdglgAAADEHYJYAAAAxJ3/DwkOe/beVXMdAAAAAElFTkSuQmCC
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[39]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.legend.Legend at 0x1096f1fd0&gt;</pre>
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[39]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;matplotlib.legend.Legend at 0x1096f1fd0&gt;
+</pre>
+
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArEAAAIXCAYAAACLnwbeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3Xt81PWV//HXzGQIlyi3iEoQDUguSpSLFCGKSA0oyoAu
 RUGkiMWKFrXV0Mu2altht0x3RVv607WtlLpAwYpGV0VWq9hIgQUvsQQCcglEWwhyh5BJMr8/vnP7
@@ -4598,15 +4800,20 @@ wsaOHUtjYyM///nPGTRoEDU1Ndx7773MmjWLBx98sMPP7/P5OOWUU7jxxhv5wQ9+0Al7HG3evHkA
 cLlcnfKcAdu3b+fss8/mnXfeoW/fvp363CKS3RTEioiIiEjaUYstEREREUk7CmJFREREJO0oiBUR
 ERGRtKMgVkRERETSjoJYEREREUk7CmJFREREJO0oiBURERGRtKMgVkRERETSzv8HjLXBvJ4jNAQA
 AAAASUVORK5CYII=
-"></img>
+">
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[40]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -4624,17 +4831,27 @@ AAAASUVORK5CYII=
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[40]:</div>
-<div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.legend.Legend at 0x109728e50&gt;</pre>
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[40]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;matplotlib.legend.Legend at 0x109728e50&gt;
+</pre>
+
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArEAAAIXCAYAAACLnwbeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3Xt4VNW9//H3zCSES0BuYksQCUhIkCiCFCEWFQ14I2BL
 0XATYrGKovYS9Ggr9FTsz8QekZaWPvZUigocUNDoUSwVFU0pckAFayAoN6VaCXJPQm7z+2PPbWcm
@@ -5240,14 +5457,15 @@ W7dq5MiR2rRpk0aPHt0lPwNA90MQCwAONmbMGDU0NOjXv/61Bg4cqMrKSt1zzz2aNWuWHn744Q5/
 PFizZs1SaWlpq/Vs26qyslKXX365PvjgA/l8vk75niE1NTU666yz9N577+noo4/u1O8NoHsjiAUA
 AIDrUGILAAAArkMQCwAAANchiAUAAIDrEMQCAADAdQhiAQAA4DoEsQAAAHAdglgAAAC4DkEsAAAA
 XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
-"></img>
-</div>
-</div>
-</div>
-</div>
+">
+
 </div>
 </div>
 
+</div>
+</div>
+
+</div></p>
 <hr />
 <p><em>Edit:</em> The original version of this notebook contained two errors. The <a href="https://gist.github.com/mlgill/5774126">first</a> involved the modification of NumPy ndarray views during matrix multiplication within the faster NumPy function. The <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-929405468">second</a> chose <code>vectorComponent</code> from the wrong axis at the conclusion of the faster NumPy function and in the Python wrapper that calls the Fortran function. This resulted in an inversion of the <em>y</em>-axis magnetization. Both errors have been corrected. Thanks to <a href="https://twitter.com/synapticarbors">Joshua Adelman</a> for catching the second error. A minor change to the matrix simplification calculation due to an update of the SymPy package was also made, however this change had no effect on the result.</p>
 <p><em>Edit:</em> A Cython version of the propagator function provided by Joshua Adelman has been added above.</p>
@@ -5264,87 +5482,93 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 </ol>
 </div></div>
     <footer>
-      <p class="meta">
+<p class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">modernscientist</span>
   </span>
-  <time datetime="2013-06-09T15:35:00" pubdate>2013/06/09</time>    <span class="categories">
-        <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
-        <a class="category" href="http://www.themodernscientist.com/tag/python.html">python</a>
-      </span>
-  </p>    </footer>
+<time datetime="2013-06-09T15:35:00" pubdate>2013/06/09</time>  <span class="categories">
+    <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
+    <a class="category" href="http://www.themodernscientist.com/tag/python.html">python</a>
+  </span>
+</p>    </footer>
   </article>
 
-    <section>
+  <section>
     <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
   </section>
-  </div>
-      <aside class="sidebar">
+</div>
+<aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
-            <li class="post">
+      <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2013/2013-10-12-automated_notifications_of_experiment_progress/">Automated Notifications of Experiment Progress: Combining Shell, SSH, Growl, and Prowl</a>
+      </li>
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-14-visualization_of_nmr_shaped_pulses/">Visualization of NMR Shaped Pulses: Fun with Javascript Animation</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/">Simulation of NMR Shaped Pulses: NumPy vs Fortran</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/">My Octopelican Python Blog</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/">Binary Integer Programming With Python</a>
       </li>
-            <li class="post">
-          <a href="http://www.themodernscientist.com/posts/2013/2013-05-26-please_update_your_rss_subscription/">Please Update Your RSS Subscription</a>
-      </li>
-          </ul>
+    </ul>
   </section>
 
-   
+ 
 
   <section>
   <h1>Tags</h1>
-      <a href="http://www.themodernscientist.com/tag/python.html">python</a>
-      <a href="http://www.themodernscientist.com/tag/science.html">science</a>
-      <a href="http://www.themodernscientist.com/tag/life.html">life</a>
-      <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
-      <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-    <!--     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-      <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-      <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-      <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-      <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-  -->
+    <a href="http://www.themodernscientist.com/tag/life.html">life</a>
+    <a href="http://www.themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://www.themodernscientist.com/tag/python.html">python</a>
+    <a href="http://www.themodernscientist.com/tag/science.html">science</a>
+    <a href="http://www.themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
+  <!--     <ul><li class="tag-4"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+-->
   </section>
 
   <!-- 
     <section>
         <h1>Subscribe</h2>
         <ul>
-        	        	        	<li><a href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate">RSS</a></li>
-        	        	            <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" type="application/rss+xml" rel="alternate">Email</a></li>
-                    </ul>
+        	<li><a href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate">RSS</a></li>
+            <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" type="application/rss+xml" rel="alternate">Email</a></li>
+        </ul>
     </section>
  -->
-    
+
     <section>
         <h1>Social</h2>
         <ul>
-                    <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-                    <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
-                    <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
-                    <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
-                </ul>
+            <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
+            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
+            <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
+            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
+        </ul>
     </section>
-  </aside>    </div>
+</aside>    </div>
   </div>
   <footer role="contentinfo"><p>
   Copyright &copy; 2013 - modernscientist -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-      <script type="text/javascript">
+    <script type="text/javascript">
 	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -5355,10 +5579,10 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
-	  	        var disqus_identifier = 'http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/';
+	        var disqus_identifier = 'http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/';
 	        var disqus_url = 'http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/';
 	        var disqus_title = 'Simulation of NMR Shaped Pulses: NumPy vs Fortran';
-	  	  var disqus_shortname = 'themodernscientist';
+	  var disqus_shortname = 'themodernscientist';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

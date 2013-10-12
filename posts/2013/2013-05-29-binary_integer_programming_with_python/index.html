@@ -4,13 +4,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Binary Integer Programming With Python</title>
+  <title>themodernscientist</title>
   <meta name="author" content="modernscientist">
 
-      <link href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate"
+  <link href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate"
         title="themodernscientist RSS Feed" />
-  
-      <style type="text/css">
+
+    <style type="text/css">
 /**
  * HTML5 ✰ Boilerplate
  *
@@ -1209,7 +1209,7 @@ init_mathjax = function() {
 }
 init_mathjax();
 </script>
-  
+
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -1228,14 +1228,14 @@ init_mathjax();
         rel="stylesheet" type="text/css">
 </head><body>
   <header role="banner">
-    <hgroup>
+<hgroup>
   <h1><a href="http://www.themodernscientist.com/">themodernscientist</a></h1>
-      <h2>biophysicist, mac-unix zealot, pythonista</h2>
-  </hgroup>      </header>
+    <h2>biophysicist, mac-unix zealot, pythonista</h2>
+</hgroup>  </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-      <li><a href="http://feeds.uri.lv/themodernscientist-rss" rel="subscribe-rss">RSS</a></li>
-      <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" rel="subscribe-email">Email</a></li>
-  </ul>
+  <li><a href="http://feeds.uri.lv/themodernscientist-rss" rel="subscribe-rss">RSS</a></li>
+  <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" rel="subscribe-email">Email</a></li>
+</ul>
 
 <form action="" method="get">
   <fieldset role="search">
@@ -1247,37 +1247,37 @@ init_mathjax();
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
 <!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-      <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-      <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
-   -->
+    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
+    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
+ -->
 
     <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
 
-            <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-          <li><a href="http://www.themodernscientist.com/pages/disclaimer.html">Disclaimer</a></li>
-      </ul></nav>
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+      <li><a href="http://www.themodernscientist.com/pages/disclaimer.html">Disclaimer</a></li>
+</ul></nav>
   <div id="main">
     <div id="content">
-      <div>
+<div>
   <article class="hentry" role="article">
-    <header>
-          <h1 class="entry-title">Binary Integer Programming With Python</h1>
-          <p class="meta"><time datetime="2013-05-29T20:14:00" pubdate>2013/05/29</time></p>
+<header>
+      <h1 class="entry-title">Binary Integer Programming With Python</h1>
+      <p class="meta"><time datetime="2013-05-29T20:14:00" pubdate>2013/05/29</time></p>
 </header>
 
   <div class="entry-content"><p>My research is focused on <a href="http://themodernscientist.com/pages/about.html">biomolecular NMR</a> and, as such, often involves transferring resonance assignments from one multidimensional NMR spectrum to another. In theory this should be a simple task, but it can be extremely time consuming due to small variations in the sample used to acquire the data or in the way the data were acquired.</p>
 <p>The good news, however, is that it is possible to automate this process using an optimization. Optimization problems, such as aligning x-ray crystallographic models of homologous proteins, are often encountered in structural biology. In the case of a structural alignment, the transformed structure can occupy any set of coordinates, provided the shape of the molecule itself is not changed. The transfer of resonance assignments is different in that individual resonances are either matched with each other or not. The transformation from one set of data onto another is effectively discrete (more specifically, it is binary). This type of optimization is known as “binary integer programming.” </p>
 <p>When I attempted to write a script to perform this type of optimization using python, I found some excellent background <a href="http://www.sce.carleton.ca/faculty/chinneck/po/Chapter13.pdf">reading</a> but very little information on how to implement such a calculation. Being someone who learns by example, I thought it would be useful to share how I setup a simple binary integer programming calculation using two different python libraries<sup id="fnref:openopt"><a href="#fn:openopt" rel="footnote">2</a></sup> that interact with open source solvers written in ANSI C.<sup id="fnref:slow_os"><a href="#fn:slow_os" rel="footnote">1</a></sup></p>
 <hr />
-<div class="ipynb">
+<p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This notebook demonstrates how to use python to interface with two open source packages for binary integer programming, <a href="http://www.gnu.org/software/glpk/">GLPK</a> and <a href="http://lpsolve.sourceforge.net">lp_solve</a>. These packages are demonstrated using two python libraries, <a href="http://cvxopt.org">CVXOPT</a>, which interacts with GLPK, and lp_solve's own python interface. An example for matching five <em>x,y</em>-coordinate pairs from two different data sets is shown for each library.</p>
-<h2 class="ipynb">Setup notes and module import</h2>
-<p>CVXOPT must be installed with GLPK support and lp_solve with python bindings must be installed. GLPK, lp_solve (without python interface), and CVXOPT are available via <a href="http://macports.org">MacPorts</a>. I have created a <a href="https://github.com/mlgill/macports-lp_solve-python">GitHub repository</a> with the MacPorts configuration files necessary to install lp_solve with its python bindings. Alternatively, the python functionality for lp_solve could be installed in a separate repository with <code>virtualenv</code>. The import statements below assume that GLPK and CVXOPT have been installed as provided by MacPorts and the modified lp_solve from GitHub has been installed within MacPorts as well. Finally, numpy is required for working with arrays. Matplotlib is required only if plotting the results of the optimization is desired.</p>
+<p>This notebook demonstrates how to use python to interface with two open source packages for binary integer programming, <a href="http://www.gnu.org/software/glpk/">GLPK</a> and <a href="http://lpsolve.sourceforge.net">lp_solve</a>. These packages are demonstrated using two python libraries, <a href="http://cvxopt.org">CVXOPT</a>, which interacts with GLPK, and lp_solve's own python interface. An example for matching five <em>x,y</em>-coordinate pairs from two different data sets is shown for each library. ## Setup notes and module import CVXOPT must be installed with GLPK support and lp_solve with python bindings must be installed. GLPK, lp_solve (without python interface), and CVXOPT are available via <a href="http://macports.org">MacPorts</a>. I have created a <a href="https://github.com/mlgill/macports-lp_solve-python">GitHub repository</a> with the MacPorts configuration files necessary to install lp_solve with its python bindings. Alternatively, the python functionality for lp_solve could be installed in a separate repository with <code>virtualenv</code>. The import statements below assume that GLPK and CVXOPT have been installed as provided by MacPorts and the modified lp_solve from GitHub has been installed within MacPorts as well. Finally, numpy is required for working with arrays. Matplotlib is required only if plotting the results of the optimization is desired.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1289,14 +1289,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Create two data sets</h2>
+<h2 id="create-two-data-sets">Create two data sets</h2>
 <p>The first data set contains five <em>x,y</em>-coordinate pairs where the first column is <em>x</em>- and the second column is <em>y</em>-data.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">],[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">],[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">],[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">],[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">]])</span>
 <span class="k">print</span> <span class="n">data1</span>
@@ -1304,28 +1307,36 @@ init_mathjax();
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">[[ 1.5  7.2]
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[[ 1.5  7.2]
  [ 2.1  7.1]
  [ 4.9  8.1]
  [ 3.5  8.2]
  [ 1.6  6.4]]
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The second data set is similar to the first but has random noise added to it. The order of the points is also shuffled so the optimization solution isn't trivial.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="mf">5.</span>
@@ -1336,13 +1347,16 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Add some names for the data points and shuffle them in the same way for the second data set. This will be useful later when determining if the peaks were correctly matched.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[6]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">data1names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;peak1&#39;</span><span class="p">,</span><span class="s">&#39;peak2&#39;</span><span class="p">,</span><span class="s">&#39;peak3&#39;</span><span class="p">,</span><span class="s">&#39;peak4&#39;</span><span class="p">,</span><span class="s">&#39;peak5&#39;</span><span class="p">])</span>
 <span class="n">data2names</span> <span class="o">=</span> <span class="n">data1names</span><span class="p">[</span><span class="n">peakReorder</span><span class="p">]</span>
@@ -1350,14 +1364,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Calculate the distance between each pair of data points</h2>
+<h2 id="calculate-the-distance-between-each-pair-of-data-points">Calculate the distance between each pair of data points</h2>
 <p>The goal of the optimization is to minimize the sum of the distance between each set of matched points. Thus, the cartesian distance must be calculated for each point in <code>data1</code> and the set of points in <code>data2</code>. The simplest way to do this is with a distance matrix containing all peaks from <code>data1</code> along one axis and those from <code>data2</code> along the second axis.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">xdist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">ydist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
@@ -1367,22 +1384,25 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the above line, <code>n_data1</code> and <code>n_data2</code> are the number of points in <code>data1</code> and <code>data2</code>, respectively.</p>
-<h2 class="ipynb">Setup the binary integer programming problem</h2>
+<h2 id="setup-the-binary-integer-programming-problem">Setup the binary integer programming problem</h2>
 <p>In addition to calculating the distance matrix, the optimization requires setting constraints to ensure that each point in one data set is paired with at most one point in the corresponding data set. This is accomplished using the following two constraints:</p>
-<p>$\matrix{A} \space \times \space \matrix{X} \space = \space \matrix{b}$</p>
-<p>$\matrix{C} \space \times \space \matrix{X} \space \leq \space \matrix{d}$</p>
-<p>where $\matrix{A}$ and $\matrix{C}$ are binary (all values are either <code>0</code> or <code>1</code>) matrices whose first dimensions are <code>n_data1</code> and <code>n_data2</code>, respectively, and both second dimensions are the product of the two data set sizes, <code>n_data1</code> $\times$ <code>n_data2</code>. $\matrix{b}$ and $\matrix{d}$ are column vectors of length <code>n_data1</code> and <code>n_data2</code>, respectively, whose value is <code>1</code> everywhere. Given these constraints, the goal of the optimization is to find a matrix $\matrix{X}$ that minimizes the target function:</p>
-<p>$\matrix{f} \space \times \space \matrix{X}$</p>
-<p>where $\matrix{f}$ is the distance matrix calculated above, except that it has been "flattened": converted to a column vector of length <code>n_data1</code> $\times$ <code>n_data2</code>. $\matrix{X}$ is a flattened form of the binary-valued transformation matrix, where the position of the ones in this matrix maps <code>data2</code> onto <code>data1</code>.</p>
-<p>An in-depth discussion of integer programming theory is beyond both the scope of this post and the extent of my optimization knowledge, but I'd like to provide further explanation of how I think about the target (minimized) function and constraint equations. In the target function, $\matrix{X}$ selects the set of distances in $\matrix{f}$ that correspond to matched points so that the sum of these values can be determined and minimized. In the first constraint equation, matrix $\matrix{A}$ ensures there is only a single <code>1</code> value in each "row" of $\matrix{X}$, so each point in <code>data1</code> is paired to exactly one point in <code>data2</code>. Pretending for a moment that the inequality in the second constraint is actually an equality, this equation accomplishes the analogous goal of ensuring each point in <code>data2</code> is paired to exactly one point in <code>data1</code>. The inequality enables one of the data sets (<code>data2</code> as setup here) to have extra points that are not matched to any points in <code>data1</code>.</p>
+<p><span class="math">\(\matrix{A} \space \times \space \matrix{X} \space = \space \matrix{b}\)</span></p>
+<p><span class="math">\(\matrix{C} \space \times \space \matrix{X} \space \leq \space \matrix{d}\)</span></p>
+<p>where <span class="math">\(\matrix{A}\)</span> and <span class="math">\(\matrix{C}\)</span> are binary (all values are either <code>0</code> or <code>1</code>) matrices whose first dimensions are <code>n_data1</code> and <code>n_data2</code>, respectively, and both second dimensions are the product of the two data set sizes, <code>n_data1</code> <span class="math">\(\times\)</span> <code>n_data2</code>. <span class="math">\(\matrix{b}\)</span> and <span class="math">\(\matrix{d}\)</span> are column vectors of length <code>n_data1</code> and <code>n_data2</code>, respectively, whose value is <code>1</code> everywhere. Given these constraints, the goal of the optimization is to find a matrix <span class="math">\(\matrix{X}\)</span> that minimizes the target function:</p>
+<p><span class="math">\(\matrix{f} \space \times \space \matrix{X}\)</span></p>
+<p>where <span class="math">\(\matrix{f}\)</span> is the distance matrix calculated above, except that it has been &quot;flattened&quot;: converted to a column vector of length <code>n_data1</code> <span class="math">\(\times\)</span> <code>n_data2</code>. <span class="math">\(\matrix{X}\)</span> is a flattened form of the binary-valued transformation matrix, where the position of the ones in this matrix maps <code>data2</code> onto <code>data1</code>.</p>
+<p>An in-depth discussion of integer programming theory is beyond both the scope of this post and the extent of my optimization knowledge, but I'd like to provide further explanation of how I think about the target (minimized) function and constraint equations. In the target function, <span class="math">\(\matrix{X}\)</span> selects the set of distances in <span class="math">\(\matrix{f}\)</span> that correspond to matched points so that the sum of these values can be determined and minimized. In the first constraint equation, matrix <span class="math">\(\matrix{A}\)</span> ensures there is only a single <code>1</code> value in each &quot;row&quot; of <span class="math">\(\matrix{X}\)</span>, so each point in <code>data1</code> is paired to exactly one point in <code>data2</code>. Pretending for a moment that the inequality in the second constraint is actually an equality, this equation accomplishes the analogous goal of ensuring each point in <code>data2</code> is paired to exactly one point in <code>data1</code>. The inequality enables one of the data sets (<code>data2</code> as setup here) to have extra points that are not matched to any points in <code>data1</code>.</p>
 <p>These matrices are setup as follows:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">)))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -1393,14 +1413,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Implementation using CVXOPT and GLPK</h2>
-<p>Having setup the constraints above, the remaining steps for performing the optimization using CVXOPT are relatively simple. CVXOPT is capable of many types of optimization, thus the variable <code>binVars</code> is used to define the position of all elements in $\matrix{X}$ which are both integer and binary. (For this optimization, that is every element of $\matrix{X}$. Because $\matrix{f}$ is the same length as $\matrix{X}$ and is already defined, its length is used to determine <code>binVars</code>.) Also note that CVXOPT's integer programming function, <code>ilp</code>, does not accept numpy matrices and instead requires its own <code>matrix</code> function that is imported above. Lastly, all the functions use their own variable names, so they are listed as named arguments to eliminate confusion.</p>
+<h2 id="implementation-using-cvxopt-and-glpk">Implementation using CVXOPT and GLPK</h2>
+<p>Having setup the constraints above, the remaining steps for performing the optimization using CVXOPT are relatively simple. CVXOPT is capable of many types of optimization, thus the variable <code>binVars</code> is used to define the position of all elements in <span class="math">\(\matrix{X}\)</span> which are both integer and binary. (For this optimization, that is every element of <span class="math">\(\matrix{X}\)</span>. Because <span class="math">\(\matrix{f}\)</span> is the same length as <span class="math">\(\matrix{X}\)</span> and is already defined, its length is used to determine <code>binVars</code>.) Also note that CVXOPT's integer programming function, <code>ilp</code>, does not accept numpy matrices and instead requires its own <code>matrix</code> function that is imported above. Lastly, all the functions use their own variable names, so they are listed as named arguments to eliminate confusion.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">binVars</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c"># ilp won&#39;t accept numpy&#39;s arange even when as a set</span>
 <span class="n">output_cvxopt</span> <span class="o">=</span> <span class="n">ilp</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">f</span><span class="p">),</span><span class="n">G</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">C</span><span class="p">),</span><span class="n">h</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="n">A</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="n">b</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>\
@@ -1409,13 +1432,16 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The variable <code>output_cvxopt</code> contains several variables, one of which indicates if the optimization converged and, if it did, another variable containing $\matrix{X}$. Normally, it's good practice to check that the optimization converged, but in this case it's known to work. The transformation matrix, <code>X_cvxopt</code>, is reshaped into a two-dimensional matrix so it can easily be used to determine the order of <code>data2</code> data points that matches them with those in <code>data1</code>.</p>
+<p>The variable <code>output_cvxopt</code> contains several variables, one of which indicates if the optimization converged and, if it did, another variable containing <span class="math">\(\matrix{X}\)</span>. Normally, it's good practice to check that the optimization converged, but in this case it's known to work. The transformation matrix, <code>X_cvxopt</code>, is reshaped into a two-dimensional matrix so it can easily be used to determine the order of <code>data2</code> data points that matches them with those in <code>data1</code>.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">X_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_cvxopt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
 <span class="n">match_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">X_cvxopt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -1423,14 +1449,17 @@ init_mathjax();
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb">Sanity check the optimization results</h3>
+<h3 id="sanity-check-the-optimization-results">Sanity check the optimization results</h3>
 <p>It is incredibly easy to get dimensions transposed, particularly when matrices have to be flattened and reshaped. Thus, it is critical to check the results. In the above optimization, the peak labels should be identical for each point if the peaks are correctly matched.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&#39;Optimization using CVXOPT succeeded? &#39;</span><span class="p">,</span> \
        <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
@@ -1438,24 +1467,32 @@ init_mathjax();
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Optimization using CVXOPT succeeded?  True
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Optimization using CVXOPT succeeded?  True
+
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Another, more graphical sanity check, involves plotting the data sets on two graphs and connecting the matched pairs.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Setup the figure, axes, and plot the data</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1495,446 +1532,31 @@ init_mathjax();
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwgAAAI+CAYAAAAYUS0TAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAAPYQAAD2EBqD+naQAAIABJREFUeJzs3XtcVVXi///3gQOCYalAn9JGRbwBDg2iopa3LM1xxsxE
-YgYMb6j4tTSNJsvGQcQJhlDsonkfMyIth+lnkYMJWSk0otknyRTRNOgjpXkbLxzYvz+MPR5BA5Or
-r+fjcR7C3uusszaPh/vs91p7rW0xDMMQAAAAAEhyqOsGAAAAAKg/CAgAAAAATAQEAAAAACYCAgAA
-AAATAQEAAACAiYAAAAAAwERAAAAAAGCy1sWHfv/99/rggw/Url07ubq61kUTAADXoaioSJs2bdLv
-fvc73XHHHXXdHABAFZ07d06HDh3SkCFD5OHhce3CRjVER0cbnTt3Ntq3b29MmTLFKCkpsdv/ww8/
-GEOHDjXatm1r+Pr6Glu2bKm0ntdff92QxIsXL168ePHixYsXr1p8vf766z97zV/lEYS1a9fqs88+
-0549e+To6Kjg4GAtXrxYM2bMMMs89dRTCggI0Hvvvac9e/Zo8ODBOnz4sJo0aWJXl5eXlyTp9ddf
-l4+PT1WbYJo+fboWLlxY7ffVpYbW5obWXok215aG1uaG1l6pfrc5LS1NMTExnL/ruYbW5obWXok2
-14aG1l6pfrc5Ly9PYWFh5nX4tVQ5IOTk5Oi3v/2tnJ2dJUn333+/3nrrLTMglJWV6Z133tG+ffsk
-Sf7+/vL29lZWVpYGDx5sV5eLi4skycfHR926datqE0zNmze/rvfVpYbW5obWXok215aG1uaG1l6p
-frc5Ly9PEufv+q6htbmhtVeizbWhobVXahhtLr8Ov5YqT1K+++67lZ6ervPnz+vs2bP6xz/+oe++
-+87c//333+vChQu6/fbbzW1t27bV0aNHq9lsAAAAAHWlyiMI48aN04EDBxQYGKhmzZopMDBQx48f
-N/dbLBZzdOFa2y43ffp0NW/e3G5baGioQkNDq9osAEANSUlJUUpKit228k4fzt8AUH9Vdv7+8ccf
-q/z+KgeEw4cPKzIyUn/9618lSQsWLFBJSYm538PDQ2VlZTp58qRuu+02SdKRI0fUvn37q9a5cOHC
-ej8MAwA3q8ou+NetW6ewsDDO3wBQj1V2/s7NzVVgYGCV3l/lW4y2bdumsWPHqrS0VIWFhVq2bJke
-e+wxc7/FYtGoUaO0ZMkSSZfmLBQVFal3795V/Ygqa4g9VA2tzQ2tvRJtri0Nrc0Nrb1Sw2xzVTXE
-Y6PNNa+htVeizbWhobVXaphtrozFMAyjKgVLS0s1adIkbd26VYZh6KmnntKUKVM0e/ZstW7dWlOn
-TtX333+vsLAw5efny83NTa+99pp69OhRoa7yBLNz5056oACgASkfQeD8DQANS3Wuv6t8i5Gjo6OW
-L19eYXtcXJz5s4eHh9LT06vRVAAAAAD1SZVvMQIAAADQ+BEQAAAAAJgICAAAAABMDSog7N69Ww4O
-Dvroo4+qVP7kyZOaO3eudu3add2feerUKbm4uOjDDz+87joA4Gb0j3/8Q0OGDJGHh4eaNGmitm3b
-aty4cTp48KBZZtmyZXJwcNDKlSsrrePw4cNycHBQcHCwzpw5Iy8vL7m5udnVUS42NlYODg565ZVX
-7LZ//vnnGjNmjNq0aSMXFxd5eHiob9++eumll+yW65akuXPnysHBocLrV7/6lSZOnKgffvhBkhQR
-EVFpuStf33zzzS/6Gy5cuFAODtX7qt69e7fmzp2rEydOVPvzVqxYobvvvltNmzZVy5Yt9cgjj6ig
-oKDa9QBo2BpUQKiuEydOKCYm5roDwsWLFzVnzhxdvHjxBrcMABq3adOmaeTIkXJyclJiYqLeeust
-/b//9/+0ZcsWBQQEaOfOnZKk0aNHq0mTJnrrrbcqrWfDhg2SpPDwcLm5uWnNmjU6f/68xo8fb1fu
-yy+/1Lx58/TAAw8oKirK3P73v/9d3bt3V3Z2tp544gmtX79eycnJatu2raZPn6577rmn0ocHrVmz
-Runp6UpPT9e7776rSZMmac2aNRo5cqQkadasWeb+9PR03X///ZJkty09PV233377L/9jVtPu3bsV
-ExNT7YCwdOlSTZw4Ub/5zW+UkpKiv/zlL/rkk080aNAgnT9/voZaC6BeMurAzp07DUnGzp07q/W+
-Xbt2GRaLxcjKyqpS+YKCAsNisRjLly+vdhv79+9vNG/e3LBYLIbFYjG2bNlS7ToAoLF5/fXXf/b8
-vWbNGsNisRixsbEV9h07dsxo06aN4ePjY24LDg42nJycjB9++KFC+aCgIMPDw8MoKSkxt82cOdOw
-WCzGSy+9ZBiGYdhsNqNHjx5GixYtjKNHj5rldu/ebVitVuN3v/udceHChQp1b9y40XBwcDBGjx5t
-bvvzn/9sWCwW4/DhwxXKl++r7Ngfe+wxw2KxXO1Pct2SkpKqXe+qVasMi8ViHDhwoFrva9++vfHA
-Aw/YbcvIyDAsFouxdOnSatUFoP6pzvV3vR1BKCkp0Z/+9CfdeeeduuWWWzRw4EB99dVXdmU2btyo
-oKAgNWvWTB4eHho8eLA++eQTSVJmZqb5FOeJEydq4MCBkiTDMLRgwQJ16tRJrq6uat26tcaMGaOj
-R4/a1T1s2DA988wzmjhxYi0cLQA0HvPnz5ePj4+effbZCvs8PT01f/58tWvXTkVFRZIujQ7YbDa9
-8847dmW/+eYbffbZZwoJCZHV+t9VuefPny9fX1/96U9/0qFDh/S3v/1N//73v5WcnKzWrVvblXNx
-cdHf//53OTs7V2jLiBEj9Nhjj2nDhg06dOjQzx5X9+7dJem6brkZMGDAz94q9N133ykkJES33Xab
-mjdvrscee0ynT5+uUO5a32Fz587VuHHjJEkdO3ZUTEyMJOn48eOaNGmS7rrrLjVt2lQdO3bUM888
-Y95iderUKRUUFOjBBx+0+6xevXpJujRCA+AmUvN5paKqJJgnnnjCcHR0NGbMmGFs2LDBmDZtmtG0
-aVNzBGH79u2Gg4ODERYWZrz99tvGmjVrjICAAKNp06bG8ePHjePHj5u9WE8++aTx2WefGYZhGPHx
-8Yazs7Px/PPPG2lpacaiRYsMDw8PIygoqNJ2bN26lREEAPjJz40gfPPNN4bFYjGio6OrXGdJSYnh
-4eFRofc6MTHRsFgsxo4dOyq8Jzc313B2dja6d+9uuLq6GiNHjrTbX1paajRr1sx4+OGHr/nZ6enp
-hsViMVavXm0YxrVHEF599dWrtufnRhBycnKMDz744Kr7S0tLjYCAAKNly5bG3/72NyM1NdUYOnSo
-4eLiYjg4OJjlfu477MCBA+YIy+rVq438/HzDMAzjt7/9rXHHHXcYr7zyipGWlmY888wzhqOjo/H0
-008bhmEYFy5cMLZs2WJ8++23du0qH0FISEi4atsBNAzVGUGo8oPSatO3336rJUuWaM6cOfrzn/8s
-SXrkkUckSS+99JIk6X//93/Vt29frV271nxf69at9cADD+iLL75Qv3791K9fP0mSn5+f2fOzf/9+
-Pf744/rLX/5ivq+4uFgLFiyolWMDgMbs22+/lSRzBLcqrFarHn30US1ZskQ//PCD3N3dJUnr169X
-x44dFRQUVOE9AQEBeuaZZxQTE6OWLVvqtddes9tfXFysM2fOqFOnTtf87Hbt2kmSOZpR7uzZszpz
-5owk6cKFC8rOzlZMTIx8fX3Vs2fPKh9buR49elxz/zvvvKPdu3frww8/1IABAyRJwcHBCggI0Bdf
-fGGW+7nvMG9vb3Xt2lWS1LdvX7Vv316GYaioqEjJyckKDg6WJA0fPlzbtm1TTk6OJMnZ2Vn33Xef
-XZt27dqliIgINW/eXGFhYdU+ZgANV70MCB999JEuXryo8PBwu+3BwcFmQJgwYYImTJigkydP6sCB
-Azp06JDefPNNSZLNZrtq3eVfIkVFRTp48KAKCgr07rvvyjAMlZWVVXu1CADAfzk6OkqSysrKqvW+
-8PBwvfzyy3r77bcVGRmpI0eOKCcnR3Pnzr3qe/79739LurRi3f79+81gcbnLb02qTPkE5SZNmtht
-9/Pzq1C2Xbt2ev3112WxWH7ucKrtX//6l+666y4zHEiSxWLRI488oj179pjbruc7zGKxKDc3V4Zh
-KD8/X4cOHdL+/fv1v//7v/r1r39dofyZM2c0b948vfjii2rRooU2btyoO+6444YfM4D6q14GhMOH
-D0uS7rzzTrvtl68GUVBQoIkTJyozM1Oenp7q2LGjfvWrX/1s3RkZGZo2bZr279+vNm3ayMfHR+7u
-7jIM48YeBADchMrnAOTn51+1zP79+5WWlqaQkBDzvN2zZ0917NhRb731liIjI7VhwwYZhnHVnuul
-S5fqvffe0/PPP6+lS5fqscce0+7du+Xq6ipJcnd3V9OmTa/ZDknat2+fJKlz58522zds2GBeFFss
-Ft12223y9fWtwl/g+hw+fLjCd56kCqsgXe932MKFCzV//nxzqdiAgAB5eHhUKLdlyxZFRESosLBQ
-4eHhSkxMrDR4AWjc6mV3ebNmzSRVHPItLCyUdGmicfmkrP3796uoqEgfffSRxo4de816f/zxRz38
-8MPq2rWrjh8/roMHD2rTpk3q3bt3zRwIANxkWrVqpU6dOumf//ynSktLKy3zyiuv6E9/+pN5ri8X
-Hh6urKwsFRcXa/369brnnnvk5eVV4f0HDhzQzJkz1a9fP82dO1cvvfSS9u/fr6efftosY7VaNXDg
-QL3//vvmrUKVWb58uW677Ta7nnvp0oTkPn36qE+fPurdu3eNhgPp0vfeld950n+/96Tr/w7bsmWL
-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
-UmxsrJYtW6aEhARFRkZq3Lhx8vf3V3R0tIYMGWIu/hAUFKSXX35ZgYGB6tWrl0aNGqX8/Hy7etPS
-0jRt2jRt3LhRPXr0kCSdOHFC06dP12uvvSar1cpqc/VUbY8u7d27V46Ojho6dKjdfqvVetWFSKqC
-VYyAWrQ3J0fxV9kXJCk2J6c2m4ObWPmQ9HPPPaeHH35Yb775pkJCQvT555+rS5cudd08oEEIDAy0
-+/ns2bPKysrSoUOHlJycbO6z2WxycXGRJE2YMEEpKSlatGiRCgoKlJ2dLTc3N7NscXGxQkND5ejo
-qM6dO5vbZ86cqREjRqhXr16SLj3UklGE+uny0aUzZ85owoQJcnV11eTJkxUSEqLExER1795d6enp
-GjVqlHJzc+Xj42M3ulRSUqKZM2cqMjJSW7dutau/fHRpy5Yt8vX1la+vr7nPMAy99dZbys/P14MP
-Pnjdx0BAAGqRo82my/t7yiwWXXR2ltVmk2NpqRx/epoxUNMuH5KWpHnz5mn9+vXKyMggIABV4Ojo
-aDdX7Ny5c5Iu9dxGR0drzJgx5j7DMNSsWTOVlJSob9++cnV11ZgxYzR69Gjt27dPsbGxdvWsWLFC
-ixcv1qxZs/Tmm29KkrZu3arCwkKtXLlSklRSUiLp0v/l//znPzV+vKiepKQkc/QnNjZWkydP1unT
-p83RJUny9/fXp59+qrVr1youLk5BQUEaPHiwGQxHjRqlpKQku3rLR5fS0tLM+svt3LlTvXr1Umlp
-qUaPHv2LzuUEBKAWlVqtMvTf24uO3X67tvfpI5vVKpvVqvZubkpJSblmHQ4ODrJarTf85eDgwHB1
-HcnMzNT999+v9evXa9asWTp58qSCg4OVlJQkFxcXbd68WbNmzdL+/fvVpUsXxcbGatiwYZIu9TZG
-RUUpIyNDhmGod+/eSk5OrnQCY0JCgl544QV99NFHNTIkDdxMSktLlZeXZ84P2LFjh9zd3eXv76/C
-wkK7J9FHRERoyJAh6tKli3Jzc1VcXCx3d3dJUlZWll29bdq0UUREhLy8vDRw4EBFRUWpX79+2rJl
-i2w/dSIZhqHo6GhZrVYtWLCglo4Y1VGbo0vlunbtql27dmn37t168sknNXv2bL3wwgvX1X4CAlCL
-fHv2VPbever10+93/N//6eGNGyVJ2yXlRkRc9SFo5crKymSz2ar8On/+vN3vpaWllZYrLS2t0jE4
-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
-AECd4RYfAKh/uMUIAFAnBgwYoNLS0rpuBgDgCowg/IzMzEx5eXn9bLnExESFh4fXQosAoGEoLi7W
-2LFPyc9vmDp3Hi4/v2EaO/YpFRcX13XTAADXwAjCDZCbm6tFixZpwIABdd0UAKgXjh07pj59HlV+
-fpykeEkWSWXauzdH27aFaPv2VHl6etZxKwEAlWEE4Rfq0KGDunfvrqNHj9Z1UwCg3nj66YSfwkEv
-XQoH0qWvnF7Kz5+v6Oj4umscAOCaGk1AyMzMlNVq1caNG+Xt7S0PDw9NmTJF58+flyRt3rxZ/v7+
-cnV1VUBAgDZt2mS+t7i4WMHBwWrRooWaN2+uoUOHav/+/ZV+TkJCgjw8PJSXlydJevfdd7Vr1y79
-/ve/r/mDBIAGIidnr6Sgq+wN+mk/AKA+alS3GJWVlSkxMVFvvPGGzpw5owkTJsjV1VWTJ09WSEiI
-EhMT1b17d6Wnp2vUqFHKzc2Vj4+PZsyYoRMnTigjI0MlJSWaOXOmIiMjtXXrVrv6V61apXnz5mnL
-li3y8fGRJPPfli1bymaz1foxA0BdMwxDpaWlKikpMV8XLhj678jBlRxksznWZhMBANXQqAKCJCUl
-JalHjx6SpNjYWE2ePFmnT59WZGSk+SAef39/ffrpp1q7dq3i4uIUFBSkwYMHq3PnzpKkUaNGKSkp
-ya7etLQ0TZs2TWlpaWb9lzMMo4aPDACuT1lZmWw2my5evGh3EV9SUlJhW2Vlyl+S9OWXX0qS0tPT
-tW/fPvMzHB0d5ezsLCcnJzk5Oclm+4+kq4WEMlmtrF50NZmZmRo7dqwKCgoq3Z+Tk6PHH39ce/bs
-UYsWLTRlyhQ999xztdxKAI1ZowsIgYGBdj+fPXtWWVlZOnTokJKTk819NptNLi4ukqQJEyYoJSVF
-ixYtUkFBgbKzs+Xm5maWLS4uVmhoqBwdHc0QAQA3QmW971W5kL9ye1lZ2VU/w2KxmBfuTk5OcnZ2
-ltVqtbugd3Z21i233GK3rXy7k5OTrFarLBaL+TkPPvigunXrdtXPHDjwX1q9OluX5iBcKVs9e/r+
-wr/czenkyZMaNmyYHnnkES1fvlyfffaZpkyZoo4dOyokJKSumwegkWhUAcHR0VEODv+dVnHu3DlJ
-ktVqVXR0tMaMGWPuMwxDzZo1U0lJifr27StXV1eNGTNGo0eP1r59+xQbG2tXz4oVK7R48WLNmjVL
-b775Zu0dFIA6Vd77XpXe9vLfK+utv5Yre9+vfDk7O8vNza3CRfvlL0fH+nXLTnx8tLZtC1F+/nxd
-movgIKlMUra8vZ9VfHxq3TawgXrvvfckSa+88oocHBzUtWtXbd26VcuXLycgALhhGlVAKC0tVV5e
-njkvYMeOHXJ3d5e/v78KCwvVqVMns2xERISGDBmiLl26KDc3V8XFxXJ3d5ckZWVl2dXbpk0bRURE
-yMvLSwMHDlRUVJT69etnV4angQK175f2vpfvq63e95uJp6entm9PVXR0vHJyYmWzOcpqLVXPnr6K
-j28cS5xmZmbq/vvv1/r16zVr1iydPHlSwcHBSkpKkouLizZv3qxZs2Zp//796tKli2JjYzVs2DBJ
-l0amo6KilJGRIcMw1Lt3byUnJ6tjx44VPichIUEvvPCCPvroIx0/flz33nuvXWeYh4eHdu3aVWvH
-DaDxa1QBQZKioqIUHx+voqIizZ07V5GRkRo+fLgGDBigXr16qUePHkpNTVVaWpri4uIkXeq9W7Zs
-mYYNG6YtW7Zo6dKlunjxor799lu7uvv376+HHnpI06ZN065du+xO0MxBACoyDKNa97pfvHjxunrf
-r9arXlnve2Vl61vve2Ph6empVasS6roZNao2F8fw9fWVr6+vpk6dau4/deqU3nnnHd177721fegA
-GrFGFxDCw8M1YsQIXbhwQeHh4YqJiZGjo6NWrlypOXPmqLCwUHfffbc2bdqkVq1aSZKWLFmi559/
-Xn/961/18MMPKyMjQ0OGDNGCBQsUHBxs1/OXkJAgPz8/LVmyRFFRUeZ2i8Vy0/UQomGrrPe9upNW
-q9v7XtlF+tV63y/vref/FuqzulocIy8vT48++qhOnDihOXPm1PBRAriZNLqAEBERYZ6QLxcaGqrQ
-0NBK3zN+/HiNHz/ebtuRI0fMnw8ePGj+3KFDB124cKFCHatWrbreJgOVulbv+9Uu5G9077uTkxO9
-78DPqIvFMRISEjRnzhx5eXkpKyuLBTQA3FCNLiAAtcEwDJWVlVX5thl634HGqS4Wx5g0aZJWrFih
-mTNnKiYmRk2aNKmFIwVwM2lUAYELIZS7vPe9qqvPVLZSzbVUpff9lltuUfPmzel9Bxqp2l4cIyMj
-Q8uWLdOaNWsUHh5eewcK4KbSaALCgAEDVFrKg3cagvrW+17ZhTu97wCqqjYXx9i4caP8/f3Vp08f
-HThwwCzn5OSktm3b1upxA2i8GkxAKC4uVnx0tPbm5MjRZlOp1Srfnj0VHR/fKJbLq0+q2/t+tX3X
-Ut77fq0e+Ct7368sS+87gPqgNhbH6Nq1q1599VUdOnRIe/bsqbAcart27ezmywHAL2Ex6mB9ztzc
-XAUGBmrnzp3XfBJnuWPHjunRPn0Ul5+vIEkWXXrcTo6k2d7eSt2+/aYJCVfrfa/uhfy1Rluu1ft+
-td72ysrR+w40PuvWrVNYWFiVz9+NWWZmpu677z7ZbDa7eQgAUB9V5/q7QYwgJDz9tOLy89Xrsm0O
-knpJmp+fr/joaCXUk1WEfq73/edum7lRve9Nmza9Zu/7tm3bNHbsWBUUFFT6GTk5OXr88ce1Z88e
-tWjRQlOmTNFzzz1XE38yAAAA1CMNIiDszclR/FX2BUmKzcmpUj3lve9VnbRaUlJS6bKRv7T3/Vr3
-vteH3veTJ09q2LBheuSRR7R8+XJ99tlnmjJlijp27KiQkJA6axcA1DeMlAJojBpEQHC02XT5KfjM
-Lbdoz913q8TJSSVOTmrn6al//vOf5ko017pr6kb0vjf2e9/fe+89SdIrr7wiBwcHde3aVVu3btXy
-5csJCABuGsXFxYqOjldOzl7ZbI6yWkvVs6ev4uOj5enpyeIYABqtBhEQSq1WGZIZEpwvXlSrwkI5
-Xbwoa0mJXm7bVoMGDaoXve83WmZmpu6//36tX79es2bN0smTJxUcHKykpCS5uLho8+bNmjVrlvbv
-368uXbooNjZWw4YNk3Tpyy0qKkoZGRkyDEO9e/dWcnJyhclt0qVJcC+88II++ugjHT9+XPfee6/d
-PbUeHh7atWtXrR03ANSlY8eOqU+fR5WfHycpXuWz3/buzdG2bSHavj31ppn7BuDm0yBmVfn27Kns
-y353LilRu0OH1LqwUAeLi9Wha1fzYVGNKRyUKysrU2Jiot544w2lpqYqPT1ds2fP1tdff62QkBBN
-nz5d2dnZCg0N1ahRo5SXlydJmjFjhk6cOKGMjAylp6fr1KlTioyMrFD/qlWrNG/ePL3//vvy9fXV
-1KlTtXHjRnP/qVOn9M477+juu++utWMGgLr09NMJP4WDXvpv99Sl2W/5+fMVHX21G18BoOFrECMI
-0fHxCtm2TfN/WsXIQZdWMcqW9Ky3t1LjG/+JOikpST169JAkxcbGavLkyTp9+rQiIyM1btw4SZK/
-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
-AABJRU5ErkJggg==
-"></img>
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="ipynb">Implementation using lp_solve</h2>
-<p>The <code>lp_solve</code> wrapper requires all constraint functions to be entered as a single matrix, so $\matrix{A}$ and $\matrix{C}$ must be combined and, likewise, $\matrix{b}$ and $\matrix{d}$. The relationships ($\leq$, =, and $\geq$) are determined by a vector with a negative, zero, or positive value, respectively.</p>
+<h2 id="implementation-using-lp_solve">Implementation using lp_solve</h2>
+<p>The <code>lp_solve</code> wrapper requires all constraint functions to be entered as a single matrix, so <span class="math">\(\matrix{A}\)</span> and <span class="math">\(\matrix{C}\)</span> must be combined and, likewise, <span class="math">\(\matrix{b}\)</span> and <span class="math">\(\matrix{d}\)</span>. The relationships (<span class="math">\(\leq\)</span>, =, and <span class="math">\(\geq\)</span>) are determined by a vector with a negative, zero, or positive value, respectively.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[13]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">))</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">b</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
@@ -1944,13 +1566,16 @@ AABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As with CVXOPT, a set of integers, <code>binVars2</code>, is used set every value of $\matrix{X}$ to an integer. For <code>lp_solve</code>, the indexing for this set should start at <code>1</code> instead of <code>0</code>. To ensure that each of these integers is binary, a lower bound of <code>0</code> and upper bound of <code>1</code> has to be set as well.</p>
+<p>As with CVXOPT, a set of integers, <code>binVars2</code>, is used set every value of <span class="math">\(\matrix{X}\)</span> to an integer. For <code>lp_solve</code>, the indexing for this set should start at <code>1</code> instead of <code>0</code>. To ensure that each of these integers is binary, a lower bound of <code>0</code> and upper bound of <code>1</code> has to be set as well.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">binVars2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">vlb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
@@ -1959,26 +1584,32 @@ AABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Important</strong>: <code>lp_solve</code> maximizes the target function. To get the optimization to minimize the function, the value of $\matrix{f}$ must be negated.</p>
+<p><strong>Important</strong>: <code>lp_solve</code> maximizes the target function. To get the optimization to minimize the function, the value of <span class="math">\(\matrix{f}\)</span> must be negated.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span>
 </pre></div>
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The optimization is performed and then the transformation matrix $\matrix{X}$ and matched list are calculated as with CVXOPT.</p>
+<p>The optimization is performed and then the transformation matrix <span class="math">\(\matrix{X}\)</span> and matched list are calculated as with CVXOPT.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">output_lpsolve</span> <span class="o">=</span> <span class="n">lp_solve</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">fneg</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">G</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">h</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span><span class="n">vlb</span><span class="o">=</span><span class="n">vlb</span><span class="p">,</span><span class="n">vub</span><span class="o">=</span><span class="n">vub</span><span class="p">,</span><span class="n">xint</span><span class="o">=</span><span class="n">binVars2</span><span class="p">)</span>
 <span class="n">X_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_lpsolve</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
@@ -1987,13 +1618,16 @@ AABJRU5ErkJggg==
 
 </div>
 </div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 class="ipynb">Sanity check the optimization results</h3>
+<h3 id="sanity-check-the-optimization-results">Sanity check the optimization results</h3>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[17]:
+</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&#39;Optimization using lp_solve succeeded? &#39;</span><span class="p">,</span> \
       <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_lpsolve</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
@@ -2001,23 +1635,27 @@ AABJRU5ErkJggg==
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Optimization using lp_solve succeeded?  True
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Optimization using lp_solve succeeded?  True
+
 </pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The data could be checked graphically as well if desired.</p>
+
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The data could be checked graphically as well if desired.</p>
+</div></p>
 <hr />
 <p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/BinaryIntegerProgramming.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/BinaryIntegerProgramming.ipynb">here</a>.</em> </p>
 <div class="footnote">
@@ -2032,87 +1670,93 @@ AABJRU5ErkJggg==
 </ol>
 </div></div>
     <footer>
-      <p class="meta">
+<p class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">modernscientist</span>
   </span>
-  <time datetime="2013-05-29T20:14:00" pubdate>2013/05/29</time>    <span class="categories">
-        <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
-        <a class="category" href="http://www.themodernscientist.com/tag/python.html">python</a>
-      </span>
-  </p>    </footer>
+<time datetime="2013-05-29T20:14:00" pubdate>2013/05/29</time>  <span class="categories">
+    <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
+    <a class="category" href="http://www.themodernscientist.com/tag/python.html">python</a>
+  </span>
+</p>    </footer>
   </article>
 
-    <section>
+  <section>
     <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
   </section>
-  </div>
-      <aside class="sidebar">
+</div>
+<aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
-            <li class="post">
+      <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2013/2013-10-12-automated_notifications_of_experiment_progress/">Automated Notifications of Experiment Progress: Combining Shell, SSH, Growl, and Prowl</a>
+      </li>
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-14-visualization_of_nmr_shaped_pulses/">Visualization of NMR Shaped Pulses: Fun with Javascript Animation</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/">Simulation of NMR Shaped Pulses: NumPy vs Fortran</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/">My Octopelican Python Blog</a>
       </li>
-            <li class="post">
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/">Binary Integer Programming With Python</a>
       </li>
-            <li class="post">
-          <a href="http://www.themodernscientist.com/posts/2013/2013-05-26-please_update_your_rss_subscription/">Please Update Your RSS Subscription</a>
-      </li>
-          </ul>
+    </ul>
   </section>
 
-   
+ 
 
   <section>
   <h1>Tags</h1>
-      <a href="http://www.themodernscientist.com/tag/python.html">python</a>
-      <a href="http://www.themodernscientist.com/tag/science.html">science</a>
-      <a href="http://www.themodernscientist.com/tag/life.html">life</a>
-      <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
-      <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-    <!--     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-      <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-      <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-      <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-      <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-  -->
+    <a href="http://www.themodernscientist.com/tag/life.html">life</a>
+    <a href="http://www.themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://www.themodernscientist.com/tag/python.html">python</a>
+    <a href="http://www.themodernscientist.com/tag/science.html">science</a>
+    <a href="http://www.themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
+  <!--     <ul><li class="tag-4"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+-->
   </section>
 
   <!-- 
     <section>
         <h1>Subscribe</h2>
         <ul>
-        	        	        	<li><a href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate">RSS</a></li>
-        	        	            <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" type="application/rss+xml" rel="alternate">Email</a></li>
-                    </ul>
+        	<li><a href="http://feeds.uri.lv/themodernscientist-rss" type="application/rss+xml" rel="alternate">RSS</a></li>
+            <li><a href="http://uri.lv/e/mailverify?feed_id=themodernscientist-rss&loc=en" type="application/rss+xml" rel="alternate">Email</a></li>
+        </ul>
     </section>
  -->
-    
+
     <section>
         <h1>Social</h2>
         <ul>
-                    <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-                    <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
-                    <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
-                    <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
-                </ul>
+            <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
+            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
+            <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
+            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
+        </ul>
     </section>
-  </aside>    </div>
+</aside>    </div>
   </div>
   <footer role="contentinfo"><p>
   Copyright &copy; 2013 - modernscientist -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-      <script type="text/javascript">
+    <script type="text/javascript">
 	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -2123,10 +1767,10 @@ AABJRU5ErkJggg==
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
-	  	        var disqus_identifier = 'http://www.themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/';
+	        var disqus_identifier = 'http://www.themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/';
 	        var disqus_url = 'http://www.themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/';
 	        var disqus_title = 'Binary Integer Programming With Python';
-	  	  var disqus_shortname = 'themodernscientist';
+	  var disqus_shortname = 'themodernscientist';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
