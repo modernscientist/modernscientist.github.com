@@ -30,6 +30,16 @@
  * html5doctor.com/html-5-reset-stylesheet/
  */
 
+.highlight .line-numbers,html .gist .gist-file .gist-syntax .gist-highlight .line-numbers {/* MLG */
+font-size:inherit!important; /* MLG */
+line-height:inherit!important; /* MLG */
+}/* MLG */
+
+html .gist .gist-file {/* MLG */
+font-size:13px!important;/* MLG */
+line-height:135%!important;/* MLG */
+}/* MLG */
+
 pre.ipynb {
   color: black;
   background: #f7f7f7;
@@ -1268,69 +1278,71 @@ init_mathjax();
   <div class="entry-content"><p>In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's NMR spectrometers to periodically stop running during a series of multiple day experiments. The instrument is still useable while waiting for a replacement part to arrive, but periodic reboots of the hardware are necessary for the experiment to continue where it left off. Thus, it is critical to know when such a reboot is necessary. Rather than make constant trips to the building where the instrument is located, I rigged up a notification system using some basic unix and Mac tools. </p>
 <p>The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends <a href="http://growl.info/">Growl</a> notifications to my Mac, which is located in another building.<sup id="fnref:vnc"><a href="#fn:vnc" rel="footnote">1</a></sup> Because Growl on my Mac is configured to work with <a href="http://www.prowlapp.com/">Prowl</a>, a complimentary iOS notification system,<sup id="fnref:boxcar"><a href="#fn:boxcar" rel="footnote">2</a></sup> I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.</p>
 <p>This solution requires <a href="http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-4.html">SSH keys</a> to be setup so the spectrometer's computer can login to my Mac when necessary. It also requires the installation of <a href="http://growl.info/downloads#growlnotify">growlnotify</a>, a command line accessory to Growl.</p>
-<div class="highlight"><pre><span class="c">#!/bin/zsh</span>
+<div class="gist">
+    <script src='https://gist.github.com/6951180.js?file=Growl_Experiment_Status.sh'></script>
+    <noscript>
+        <pre><code>#!/bin/zsh
 
-<span class="c">#### BEGIN USER CONFIG OPTIONS ####</span>
+#### BEGIN USER CONFIG OPTIONS ####
 
-<span class="c"># Path to the data file to watch for modifications</span>
-<span class="nv">local_progress_file</span><span class="o">=</span><span class="s2">&quot;/path/to/file_that_is_periodically_modified&quot;</span>
+# Path to the data file to watch for modifications
+local_progress_file="/path/to/file_that_is_periodically_modified"
 
-<span class="c"># Interval in minutes to wait between queries</span>
-<span class="c"># Must be an integer</span>
-<span class="nv">interval_min</span><span class="o">=</span>30
+# Interval in minutes to wait between queries
+# Must be an integer
+interval_min=30
 
-<span class="c"># User account and hostname of Mac where you will be notified</span>
-<span class="nv">dest_user</span><span class="o">=</span>your_login_name
-<span class="nv">dest_address</span><span class="o">=</span>your_mac_hostname
+# User account and hostname of Mac where you will be notified
+dest_user=your_login_name
+dest_address=your_mac_hostname
 
-<span class="c"># Set to 1 to enable data synchronization or 0 to disable</span>
-<span class="nv">data_sync</span><span class="o">=</span>1
+# Set to 1 to enable data synchronization or 0 to disable
+data_sync=1
 
-<span class="c"># Paths for data synchronization</span>
-<span class="nv">local_data_path</span><span class="o">=</span><span class="s2">&quot;/path/to/local/data/directory&quot;</span>
-<span class="nv">remote_data_path</span><span class="o">=</span><span class="s2">&quot;/path/to/remote/data/directory&quot;</span>
+# Paths for data synchronization
+local_data_path="/path/to/local/data/directory"
+remote_data_path="/path/to/remote/data/directory"
 
-<span class="c">#### END USER CONFIG OPTIONS ####</span>
+#### END USER CONFIG OPTIONS ####
 
-<span class="c"># Calculate time to wait between checks in seconds</span>
-<span class="o">((</span> <span class="nv">sleep_sec</span> <span class="o">=</span> <span class="nv">$interval_min</span> * 60 <span class="o">))</span>
+# Calculate time to wait between checks in seconds
+(( sleep_sec = $interval_min * 60 ))
 
-<span class="c"># Check if the progress file exists</span>
-<span class="k">if</span> <span class="o">[[</span> -f <span class="k">${</span><span class="nv">local_progress_file</span><span class="k">}</span> <span class="o">]]</span>; <span class="k">then</span>
-        <span class="c"># Perform checks until the script is killed</span>
-        <span class="k">while</span> <span class="o">((</span>1<span class="o">))</span>; <span class="k">do</span>
+# Check if the progress file exists
+if [[ -f ${local_progress_file} ]]; then
+        # Perform checks until the script is killed
+        while ((1)); do
 
-                <span class="c"># Synchronize the data if appropriate</span>
-                <span class="k">if</span> <span class="o">((</span><span class="nv">$data_sync</span><span class="o">))</span>; <span class="k">then</span>
-<span class="k">                    </span>rsync --recursive --update --delete --owner --group <span class="se">\</span>
-                    --perms --times --compress --rsh<span class="o">=</span>ssh <span class="se">\</span>
-                    <span class="k">${</span><span class="nv">local_data_path</span><span class="k">}</span> <span class="k">${</span><span class="nv">dest_user</span><span class="k">}</span>@<span class="k">${</span><span class="nv">dest_address</span><span class="k">}</span>:<span class="k">${</span><span class="nv">remote_data_path</span><span class="k">}</span>
-                <span class="k">fi</span>
+          	# Synchronize the data if appropriate
+        		if (($data_sync)); then
+        			rsync --recursive --update --delete --owner --group \
+        			--perms --times --compress --rsh=ssh \
+					${local_data_path} ${dest_user}@${dest_address}:${remote_data_path}
+        		fi
 
-                <span class="c"># Check if the data file has been modified within the time period</span>
-                <span class="nv">mod_file</span><span class="o">=</span><span class="sb">`</span>find <span class="k">${</span><span class="nv">local_progress_file</span><span class="k">}</span> -mmin -<span class="k">${</span><span class="nv">interval_min</span><span class="k">}</span><span class="sb">`</span>
+                # Check if the data file has been modified within the time period
+                mod_file=`find ${local_progress_file} -mmin -${interval_min}`
 
-                <span class="c"># Set notification message based on modification time of data file</span>
-                <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mod_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
-<span class="k">                        </span><span class="nv">message_string</span><span class="o">=</span><span class="s2">&quot;NOTE: Experiment is stalled or complete&quot;</span>
-                <span class="k">else</span>
-<span class="k">                        </span><span class="nv">message_string</span><span class="o">=</span><span class="s2">&quot;OK: Experiment still running&quot;</span>
-                <span class="k">fi</span>
+                # Set notification message based on modification time of data file
+                if [[ $mod_file == "" ]]; then
+                        message_string="NOTE: Experiment is stalled or complete"
+                else
+                        message_string="OK: Experiment still running"
+                fi
+                
+                # Send the notification to your Mac
+                ssh ${dest_user}@${dest_address} 'echo `/usr/local/bin/growlnotify \
+                -p high -m "'$message_string'" -t "Experiment Update"`'
 
-                <span class="c"># Send the notification to your Mac</span>
-                ssh <span class="k">${</span><span class="nv">dest_user</span><span class="k">}</span>@<span class="k">${</span><span class="nv">dest_address</span><span class="k">}</span> <span class="s1">&#39;echo `/usr/local/bin/growlnotify \</span>
-<span class="s1">                -p high -m &quot;&#39;</span><span class="nv">$message_string</span><span class="s1">&#39;&quot; -t &quot;Experiment Update&quot;`&#39;</span>
-
-                <span class="c"># Wait until it&#39;s time to check again</span>
-                sleep <span class="nv">$sleep_sec</span>
-        <span class="k">done</span>
-<span class="k">else</span>
-        <span class="c"># Data file not found</span>
-        <span class="nb">echo</span> <span class="s2">&quot;File ${local_progress_file} not found.&quot;</span>
-<span class="k">fi</span>
-</pre></div>
-
-
+                # Wait until it's time to check again
+                sleep $sleep_sec
+        done
+else
+        # Data file not found
+        echo "File ${local_progress_file} not found."
+fi</code></pre>
+    </noscript>
+</div>
 <p>The script is written in the Z-shell<sup id="fnref:zsh"><a href="#fn:zsh" rel="footnote">3</a></sup> and can be downloaded <a href="https://gist.github.com/mlgill/6951180">here</a>. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync<sup id="fnref:rsync"><a href="#fn:rsync" rel="footnote">4</a></sup>. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.</p>
 <p>There are a few nuances associated with the encoding of the growlnotify string. First, the entire command has to be enclosed in quotes because it is sent through ssh to the remote Mac. Additionally, each of the arguments passed to growlnotify, such as the contents of the <code>$message_string</code> variable, must themselves be enclosed in quotes when executed on the remote Mac. I prefer to use single quotes for the growlnotify command and double quotes for the individual arguments. However, variables, such as <code>$message_string</code>, are not expanded within single quotes, so they must appear outside of the single quotes, as can be seen above. The contents of <code>$message_string</code> must still be enclosed in double quotes, which appear before and after the respective single quotes flanking <code>$message_string</code>.</p>
 <p>Once I start my experiment on the spectrometer, I setup this script to run indefinitely. An added bonus is that it will notify you when the experiment has finished. If the instrument writes progress information to a plain text log file, this file can be queried and more detailed status information that can be included in the <code>$message_string</code>.</p>
@@ -1410,14 +1422,14 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-  <!--     <ul><li class="tag-4"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+  <!--     <ul><li class="tag-4"><a href="/tag/ios.html">ios</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
 -->
   </section>
 
