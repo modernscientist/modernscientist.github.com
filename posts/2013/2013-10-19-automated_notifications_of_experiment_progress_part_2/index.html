@@ -1284,8 +1284,8 @@ init_mathjax();
 <p>Posting to Prowl requires only one additional piece of information: a Prowl API key. The API key can be generated and accessed from Prowl's <a href="https://www.prowlapp.com/api_settings.php">website</a> after logging in. The API key is circled in red below. If there are no active keys,<sup id="fnref:api"><a href="#fn:api" rel="footnote">3</a></sup> they can be generated on this page as well.</p>
 <p><img alt="" src="http://themodernscientist.com/static/images/2013-10-19_automated_notifications_of_experiment_progress_part_2_1.png" title="Prowl API Key Generation" /></p>
 <p>Posting to Prowl using an API key is described in the <a href="http://www.prowlapp.com/api.php">documentation</a>, but it is quite simple and can be accomplished from the command line with <code>curl</code> like this:</p>
-<div class="highlight"><pre>curl -s --data <span class="se">\</span>
-<span class="s2">&quot;apikey=enter_your_api_key_here&amp;application=Command Line&amp;event=Posting to Prowl&quot;</span> <span class="se">\</span>
+<div class="highlight"><pre>curl -s --data \
+&quot;apikey=enter_your_api_key_here&amp;application=Command Line&amp;event=Posting to Prowl&quot; \
 https://api.prowlapp.com/publicapi/add
 </pre></div>
 
@@ -1463,14 +1463,14 @@ fi</code></pre>
     <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-  <!--     <ul><li class="tag-2"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
 -->
   </section>
 
