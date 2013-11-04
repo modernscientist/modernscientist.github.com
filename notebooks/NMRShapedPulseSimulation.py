@@ -36,11 +36,11 @@ import sympy as spy
 # 
 # where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This calculation and its derivation are described in equation 3.107 and surrounding text of [Protein NMR Spectroscopy: Principles and Practice, Second Edition](http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html). The rotation matrices are:  
 # 
-# \begin{eqnarray*}
+# $$\begin{eqnarray*}
 # R_{x}(\beta) = \left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & cos(\beta) & -sin(\beta) \\ 0 & sin(\beta) & cos(\beta) \end{array} \right]\\
 # R_{y}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & 0 & sin(\beta) \\ 0 & 1 & 0 \\ -sin(\beta) & 0 & cos(\beta) \end{array} \right]\\
 # R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\beta) & cos(\beta) & 0 \\ 0 & 0 & 1 \end{array} \right]\\
-# \end{eqnarray*}
+# \end{eqnarray*}$$
 # 
 # where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)
 # 

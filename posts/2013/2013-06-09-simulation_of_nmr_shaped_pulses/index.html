@@ -1900,19 +1900,20 @@ In&nbsp;[5]:
 </div>
 </div>
 
-</div></p>
-<h2>Spectrometer Implementation and Simulation of Shaped Pulses</h2>
-<p>Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number ($N$ or <code>n_pulse</code> as used here) of rectangular pulses of length $\Delta t$, where the total pulse length, $\tau_{p}$, is equal to $N \Delta t$. The net rotation of the entire pulse is the product of the following five rotations about the <em>y</em>- and <em>z</em>-axes performed for each successive period $\Delta t$ at each relative frequency:<br />
-</p>
-<p><img alt="This is an image because nbconvert doesn't render this LaTeX correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_1.png" /><br />
-</p>
-<p>where $\phi_{i}$, $\theta_{i}$, and $\alpha_{i}$ are the respective phase, tilt angle and effective rotation for each time $\Delta t$ in the pulse. This calculation and its derivation are described in equation 3.107 and surrounding text of <a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html">Protein NMR Spectroscopy: Principles and Practice, Second Edition</a>. The rotation matrices are:<br />
-</p>
-<p><img alt="This is also an image because nbconvert doesn't render this LaTeX correctly." src="http://themodernscientist.com/static/images/2013-06-09_simulation_of_nmr_shaped_pulses_2.png" /><br />
-</p>
-<p>where $\beta$ is an arbitrary angle, as in equation 1.35 of the same text. ($R_{x}$ is shown only for completeness and is not used in the above calculation.)</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="spectrometer-implementation-and-simulation-of-shaped-pulses">Spectrometer Implementation and Simulation of Shaped Pulses</h2>
+<p>Due to the nature of spectrometer hardware, a shaped pulse is implemented as a large number (<span class="math">\(N\)</span> or <code>n_pulse</code> as used here) of rectangular pulses of length <span class="math">\(\Delta t\)</span>, where the total pulse length, <span class="math">\(\tau_{p}\)</span>, is equal to <span class="math">\(N \Delta t\)</span>. The net rotation of the entire pulse is the product of the following five rotations about the <em>y</em>- and <em>z</em>-axes performed for each successive period <span class="math">\(\Delta t\)</span> at each relative frequency:</p>
+<p><span class="math">\(R(\tau_{p}) = \prod^{N}_{i=1} R_{z}(\phi_{i}) \space R_{y}(\theta_{i}) \space R_{z}(\alpha_{i}) \space R_{y}(-\theta_{i}) \space R_{z}(-\phi_{i})\)</span></p>
+<p>where <span class="math">\(\phi_{i}\)</span>, <span class="math">\(\theta_{i}\)</span>, and <span class="math">\(\alpha_{i}\)</span> are the respective phase, tilt angle and effective rotation for each time <span class="math">\(\Delta t\)</span> in the pulse. This calculation and its derivation are described in equation 3.107 and surrounding text of <a href="http://www.palmer.hs.columbia.edu/protein_nmr_spectroscopy/index.html">Protein NMR Spectroscopy: Principles and Practice, Second Edition</a>. The rotation matrices are:</p>
+<p><span class="math">\[\begin{eqnarray*}
+R_{x}(\beta) = \left[ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; cos(\beta) &amp; -sin(\beta) \\ 0 &amp; sin(\beta) &amp; cos(\beta) \end{array} \right]\\
+R_{y}(\beta) = \left[ \begin{array}{ccc} cos(\beta) &amp; 0 &amp; sin(\beta) \\ 0 &amp; 1 &amp; 0 \\ -sin(\beta) &amp; 0 &amp; cos(\beta) \end{array} \right]\\
+R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) &amp; -sin(\beta) &amp; 0 \\ sin(\beta) &amp; cos(\beta) &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{array} \right]\\
+\end{eqnarray*}\]</span></p>
+<p>where <span class="math">\(\beta\)</span> is an arbitrary angle, as in equation 1.35 of the same text. (<span class="math">\(R_{x}\)</span> is shown only for completeness and is not used in the above calculation.)</p>
 <p>Note that, while the simulation in this notebook does consider the effects of resonance offset, it does not consider evolution during the pulse itself. Furthermore, this method will not work as implemented to simulate adiabatic pulses.</p>
-<p>
+</div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="setup-pulse-and-frequency-range-properties">Setup Pulse and Frequency Range Properties</h2>
 <p>Enter the length of the pulse (in <span class="math">\(\mu\)</span>s), the minimum and maximum offset of the frequency range (both in hertz), the number of steps in the frequency range, and the input magnetization ('Mx', 'My', 'Mz').</p>
@@ -6113,14 +6114,14 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
     <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-  <!--     <ul><li class="tag-2"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/mac.html">mac</a></li></ul>
 -->
   </section>
 
