@@ -1850,7 +1850,7 @@ init_mathjax();
 <p>Having endured this daily nuisance of file synchronization for several years, I was thrilled to discover the recent release of <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>, which relies on the BitTorrent protocol. I used torrents in my graduate school days to download Linux distributions because I found this method was generally faster than using a web browser. Applying this protocol to the synchronization of files is, to me, a natural extension of its powerful feature set.</p>
 <p>Before delving further into the setup of BitTorrent Sync, it is important to understand how the BitTorrent protocol works. Unlike traditional cloud storage systems, such as Dropbox, the BitTorrent protocol does not utilize a centralized, master server to which all clients upload and download files. Instead, the BitTorrent protocol allows every client to upload and download to all other clients. This decentralized, peer-to-peer model requires the user to provide the devices that will serve as synchronization points (peers), but that requirement also has many advantages. In situations where large file sets are synchronized, it is often more cost efficient to provide your own hardware, which you may already own, than pay the monthly fee for increased cloud storage. The BitTorrent protocol also allows users to avoid storing data on servers belonging to someone else, potentially making BitTorrent Sync more private.</p>
 <h2>BitTorrent Sync Setup on a Mac</h2>
-<p>The Mac BitTorrent Sync application is simple to setup. The first time a folder to be synchronized is added to your torrent collection, BitTorrent Sync has to generate a shared secret code. Anyone who has this code can download and modify files in the torrent, so guard it carefully. Additional instances of this torrent should use the previously-generated shared secret. Based on my experience, BitTorrent Sync will try to use existing files for the initial synchronization, so it is possible to speed up this process by pre-populating peer directories with updated copies of the file set.</p>
+<p>The Mac BitTorrent Sync application is simple to setup. The first time a folder to be synchronized is added to your list of torrents, BitTorrent Sync has to generate a shared secret code. Anyone who has this code can download and modify files in the torrent, so guard it carefully. Additional instances of this torrent should use the previously-generated shared secret. Based on my experience, BitTorrent Sync will try to use existing files for the initial synchronization, so it is possible to speed up this process by pre-populating peer directories with updated copies of the file set.</p>
 <p>There are some additional options for controlling BitTorrent Sync that don't reside within the application. Inside each synchronized folder is a file called <code>.SyncIgnore</code> and a directory called <code>.SyncArchive</code>. The former contains a list of files and folders that will be ignored during synchronization, with support for basic file globbing, such as '<code>*</code>' and '<code>?</code>'. The <code>.SyncArchive</code> directory contains old versions of all files that have been changed or deleted. The <code>.SyncArchive</code> option seems to keep versions indefinitely and can optionally be disabled within the application on each of the peers.</p>
 <h2>Other Features and Comparison to Dropbox</h2>
 <p>The features offered by BitTorrent Sync are similar to those of Dropbox in more ways than just the real-time synchronization of files. And there are also some important differences. The previously mentioned options to exclude files from synchronization and store modified or deleted files are similar to Dropbox's selective synchronization and versions features, respectively. The inclusion of file globbing in BitTorrent Sync's file exclusion implementation makes it more powerful than Dropbox's. On the other hand, I think Dropbox's file versioning system, which includes a browser component, is more user friendly.</p>
@@ -1978,14 +1978,14 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
 -->
   </section>
 
