@@ -1862,10 +1862,10 @@ init_mathjax();
 <h4>Setup on a Web Server</h4>
 <p>Based on the recommendation of several users on the BitTorrent Sync forums, I purchased a virtual private server from a backup-focused service called <a href="https://backupsy.com/aff.php?aff=210">Backupsy</a>. The service offers a variety of configurations at a very reasonable cost.<sup id="fnref:promo"><a href="#fn:promo" rel="footnote">2</a></sup></p>
 <p>I decided to use the default BitTorrent Sync command line program for <a href="http://www.bittorrent.com/sync/downloads">Linux</a> so I could configure everything exactly as I wished. Those who are familiar with the Debian package management system might prefer the user-maintained <a href="http://forum.bittorrent.com/topic/18974-debian-and-ubuntu-server-unofficial-packages-for-bittorrent-sync/">package</a>. The BitTorrent Sync program, called <code>btsync</code> on Linux, can create a default text configuration file. I used this as well as <a href="http://blog.bittorrent.com/2013/09/17/sync-hacks-how-to-set-up-bittorrent-sync-on-ubuntu-server-13-04/">online resources</a> to get started. </p>
-<p>The Linux version of BitTorrent Sync comes with a web interface enabled by default, which provides a convenient GUI for managing torrents. However, I opted to disable it since the only available security settings are a username and password, which could theoretically be determined via brute force methods.<sup id="fnref:sshsec"><a href="#fn:sshsec" rel="footnote">3</a></sup></p>
+<p>The Linux version of BitTorrent Sync comes with a web interface enabled by default, which provides a convenient GUI for managing torrents. However, I opted to disable it since the only available security settings are a username and password, which could theoretically be determined by brute force methods.<sup id="fnref:sshsec"><a href="#fn:sshsec" rel="footnote">3</a></sup></p>
 <p>There were two "gotchas" I discovered while setting up my web server:</p>
 <ul>
-<li>First, it seems the destination directory must exist before starting BitTorrent Sync.</li>
+<li>First, it seems the destination directory must exist before starting BitTorrent Sync otherwise no files will be downloaded.</li>
 <li>Second, the BitTorrent Sync web interface cannot be run if the <code>shared_folders</code> option is used within the configuration file. It is possible to switch between the two methods without resetting the synchronization state by modifying the configuration file (see below) and restarting BitTorrent Sync. Both options cannot be run at once, though.<sup id="fnref:manual"><a href="#fn:manual" rel="footnote">4</a></sup></li>
 </ul>
 <p>Here is my configuration file for BitTorrent Sync on my Backupsy server. The first line of the file contains an example of how the configuration file is loaded as a BitTorrent Sync instance. The web interface is setup in the <code>webui</code> section. Alternatively, the <code>shared_folders</code> section is used if <code>webui</code> is disabled, as has been setup below.</p>
@@ -1981,15 +1981,15 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
 -->
   </section>
 
