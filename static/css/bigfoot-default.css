@@ -25,6 +25,21 @@
   -moz-transition-duration: 0.25s;
   transition-duration: 0.25s;
 }
+.footnote-button:before {
+  content: "\2746";
+  position: absolute;
+  bottom: 0.6em;
+  left: 0;
+  right: 0;
+  display: block;
+  font-size: none;
+  color: black;
+  font-family: none;
+  font-weight: none;
+  font-style: none;
+  line-height: 0;
+  text-align: center; }
+  
 .footnote-button:hover {
   opacity: 0.6;
 }
