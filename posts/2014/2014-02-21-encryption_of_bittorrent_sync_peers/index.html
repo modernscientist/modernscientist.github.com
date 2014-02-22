@@ -1873,7 +1873,7 @@ init_mathjax();
 <p>The process was slightly more complicated for peers that contained an encrypted version of the torrent. First, the existing unencrypted files were moved to a different location, as a temporary backup, and empty destination directories were created for the torrents. By definition, encrypted peers contain read-only copies of the torrent. So, generating the correct shared secret required noting the read-only shared secret from one of the existing unencrypted peers. To convert this to an <em>encrypted</em> read-only secret, the first letter was changed from an <code>E</code> to an <code>F</code> and only the first 33 characters were used.</p>
 <p>After setup, the encrypted peer was allowed to synchronize the torrent. Unlike the unencrypted peers, quite a few errors were generated during this process in the log file of the encrypted peer. However, synchronization did complete, and the encrypted torrent was successfully used as the sole restore point to an unencrypted torrent on a new peer. Thus, the log errors likely refer to recoverable issues that may even be sorted out as this feature matures.</p>
 <h2>Other Notes About Encryption</h2>
-<p>I didn't measure the time required for the encrypted peer to fully synchronize, but I don't think the process took longer than it previously had for the same unencrypted torrent on this machine.<sup id="fnref:lotsoffactors"><a href="#fn:lotsoffactors" rel="footnote">4</a></sup> According to forum <a href="http://forum.bittorrent.com/topic/25854-read-only-encrypted-peers/?hl=encrypt%2A">discussion</a>, this process may take 2–3 times longer for lower end hardware, such as that containing an ARM processor, but little difference is noted for higher end computers.</p>
+<p>I didn't measure the time required for the encrypted peer to fully synchronize, but I don't think the process took longer than it previously had for the same unencrypted torrent on this machine.<sup id="fnref:lotsoffactors"><a href="#fn:lotsoffactors" rel="footnote">4</a></sup> According to forum <a href="http://forum.bittorrent.com/topic/25854-read-only-encrypted-peers/?hl=encrypt%2A">discussion</a>, this process may take 2–3 times longer for lower end hardware, such as that containing an ARM processor, but little difference is noted for higher end computers. Torrent encryption may also slow down the listing of files on mobile devices.</p>
 <p>The resulting encrypted torrent maintained the same folder structure as the unencrypted peers, except that all file contents and file/directory names were encrypted. I suspect the directory structure is maintained in effort to keep encrypted peers compatible with other API features, such as selective file synchronization. File exclusion entries in <code>.SyncIgnore</code> don't seem to work, which I assume is because the file and directory names can't be matched since they are encrypted. Because the nature of the files cannot be discerned, I decided there was no point in enabling the archive feature on the encrypted peer.</p>
 <p>One concern with utilizing a seemingly unsanctioned method is that future software updates may disable loopholes allowing encryption to work without requiring the API. It is even possible such updates could cause file corruption. There are three reasons I'm not worried about either of these scenarios. First, I make incremental <em>unsynchronized</em> backups of all my files using an <code>rsync</code>-based script,<sup id="fnref:future"><a href="#fn:future" rel="footnote">5</a></sup> so there is always a recent, working copy to roll back to. Second, the forums mention encryption will eventually be added to the main program once the aforementioned speed issues are addressed. Third, the encrypted peer is by definition read-only, so (in theory) it can't make any changes to files in the torrents. Thus, I suspect it would, at worst, stop being able to connect to other peers if such software changes were made. As always, you should make your own decision about how to proceed.</p>
 <p>Happy <em>encrypted</em> synchronizing!</p>
@@ -1950,16 +1950,16 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
 -->
   </section>
 
