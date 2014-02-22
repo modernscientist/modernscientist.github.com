@@ -1862,7 +1862,7 @@ init_mathjax();
       <p class="meta"><time datetime="2014-02-21T19:48:00" pubdate>2014/02/21</time></p>
 </header>
 
-  <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the avantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref:caveat"><a href="#fn:caveat" rel="footnote">1</a></sup> Once written to a hard drive, though, these files are often not encrypted. This is the case for BitTorrent Sync and many other cloud storage options.<sup id="fnref:exceptions"><a href="#fn:exceptions" rel="footnote">2</a></sup> For BitTorrent Sync, this issue is of limited concern if all peers are under your control. However, it may be desirable to utilize peers to which others may have access, such as a virtual private server (VPS). In the previous post, I mentioned using such a server to help guarantee a synchronized peer was always accessible. In these situations, it is desirable to add additional privacy by selectively encrypting data on such peers.</p>
+  <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the avantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref:caveat"><a href="#fn:caveat" rel="footnote">1</a></sup> Once written to a hard drive, though, these files are often not encrypted. This is the case for BitTorrent Sync and many other cloud storage options.<sup id="fnref:exceptions"><a href="#fn:exceptions" rel="footnote">2</a></sup> For BitTorrent Sync, this issue is of limited concern if all peers are under your control. However, it may be desirable to utilize peers to which others may have access, such as a virtual private server (VPS). In the previous post, I mentioned using a VPS to help guarantee a synchronized peer was always accessible. In these situations, it is desirable to add additional privacy by selectively encrypting data on such peers.</p>
 <p>Previously, I didn't think peer data encryption was possible (yet). As I have since discovered, the recently added <a href="http://www.bittorrent.com/sync/developers/api">BitTorrent Sync API</a> enables the encryption of torrent data on selected peers. The BitTorrent forums also <a href="http://forum.bittorrent.com/topic/25823-generate-encrypted-read-only-secret-without-api-key/?p=76262">describe</a> how to enable this encryption without using the API, which elminates the need to apply and be approved for an API key.</p>
 <h2>Encryption for Existing Torrents</h2>
 <p>I won't repeat the above forum instructions for encrypting torrents without using the API, but it is useful to describe how <em>existing</em> torrents were converted to encrypted versions. I would also like to share some observations about how various BitTorrent Sync features apply to encrypted peers.</p>
@@ -1950,14 +1950,14 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/automation.html">automation</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/automation.html">automation</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
 -->
