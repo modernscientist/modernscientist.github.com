@@ -25,7 +25,6 @@
   -moz-transition-duration: 0.25s;
   transition-duration: 0.25s;
 }
-
 .footnote-button:hover {
   opacity: 0.6;
 }
