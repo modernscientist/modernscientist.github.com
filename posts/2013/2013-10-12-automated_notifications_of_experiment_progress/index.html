@@ -1871,8 +1871,6 @@ init_mathjax();
 
     <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
 
-      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-      <li><a href="http://www.themodernscientist.com/pages/disclaimer.html">Disclaimer</a></li>
 </ul></nav>
   <div id="main">
     <div id="content">
@@ -1884,7 +1882,7 @@ init_mathjax();
 </header>
 
   <div class="entry-content"><p>In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's NMR spectrometers to periodically stop running during a series of multiple day experiments. The instrument is still useable while waiting for a replacement part to arrive, but periodic reboots of the hardware are necessary for the experiment to continue where it left off. Thus, it is critical to know when such a reboot is necessary. Rather than make constant trips to the building where the instrument is located, I rigged up a notification system using some basic unix and Mac tools. </p>
-<p>The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends <a href="http://growl.info/">Growl</a> notifications to my Mac, which is located in another building.<sup id="fnref:vnc"><a href="#fn:vnc" rel="footnote">1</a></sup> Because Growl on my Mac is configured to work with <a href="http://www.prowlapp.com/">Prowl</a>, a complimentary iOS notification system,<sup id="fnref:boxcar"><a href="#fn:boxcar" rel="footnote">2</a></sup> I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.</p>
+<p>The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends <a href="http://growl.info/">Growl</a> notifications to my Mac, which is located in another building.<sup id="fnref:vnc"><a class="footnote-ref" href="#fn:vnc" rel="footnote">1</a></sup> Because Growl on my Mac is configured to work with <a href="http://www.prowlapp.com/">Prowl</a>, a complimentary iOS notification system,<sup id="fnref:boxcar"><a class="footnote-ref" href="#fn:boxcar" rel="footnote">2</a></sup> I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.</p>
 <p>This solution requires <a href="http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-4.html">SSH keys</a> to be setup so the spectrometer's computer can login to my Mac when necessary. It also requires the installation of <a href="http://growl.info/downloads#growlnotify">growlnotify</a>, a command line accessory to Growl.</p>
 <div class="gist">
     <script src='https://gist.github.com/6951180.js?file=Growl_Experiment_Status.sh'></script>
@@ -1951,29 +1949,29 @@ else
 fi</code></pre>
     </noscript>
 </div>
-<p>The script is written in the Z-shell<sup id="fnref:zsh"><a href="#fn:zsh" rel="footnote">3</a></sup> and can be downloaded <a href="https://gist.github.com/mlgill/6951180">here</a>. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync<sup id="fnref:rsync"><a href="#fn:rsync" rel="footnote">4</a></sup>. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.</p>
+<p>The script is written in the Z-shell<sup id="fnref:zsh"><a class="footnote-ref" href="#fn:zsh" rel="footnote">3</a></sup> and can be downloaded <a href="https://gist.github.com/mlgill/6951180">here</a>. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync<sup id="fnref:rsync"><a class="footnote-ref" href="#fn:rsync" rel="footnote">4</a></sup>. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.</p>
 <p>There are a few nuances associated with the encoding of the growlnotify string. First, the entire command has to be enclosed in quotes because it is sent through ssh to the remote Mac. Additionally, each of the arguments passed to growlnotify, such as the contents of the <code>$message_string</code> variable, must themselves be enclosed in quotes when executed on the remote Mac. I prefer to use single quotes for the growlnotify command and double quotes for the individual arguments. However, variables, such as <code>$message_string</code>, are not expanded within single quotes, so they must appear outside of the single quotes, as can be seen above. The contents of <code>$message_string</code> must still be enclosed in double quotes, which appear before and after the respective single quotes flanking <code>$message_string</code>.</p>
 <p>Once I start my experiment on the spectrometer, I setup this script to run indefinitely. An added bonus is that it will notify you when the experiment has finished. If the instrument writes progress information to a plain text log file, this file can be queried and more detailed status information that can be included in the <code>$message_string</code>.</p>
-<p>Here is an example<sup id="fnref:secret"><a href="#fn:secret" rel="footnote">5</a></sup> of the Prowl status updates I receive on my iPhone. The actual script I use derives additional information from the log file of the NMR spectrometer.</p>
-<p><img alt="" src="http://themodernscientist.com/static/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates" /></p>
+<p>Here is an example<sup id="fnref:secret"><a class="footnote-ref" href="#fn:secret" rel="footnote">5</a></sup> of the Prowl status updates I receive on my iPhone. The actual script I use derives additional information from the log file of the NMR spectrometer.</p>
+<p><img alt="&quot;Prowl Status Updates&quot;" src="http://themodernscientist.com/static/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates" /></p>
 <p>This is a script I have been meaning to write for quite some time and I plan to use it, perhaps with less frequent notification times, even after the spectrometer is repaired.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:vnc">
-<p>VNC could also be used to to check on the experiment, but I prefer a method that also notifies me when I am away from my computer.&#160;<a href="#fnref:vnc" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>VNC could also be used to to check on the experiment, but I prefer a method that also notifies me when I am away from my computer.&#160;<a class="footnote-backref" href="#fnref:vnc" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:boxcar">
-<p>There are other notification systems that will also work with Growl. I've also used <a href="http://boxcar.io/download_mac">Boxcar</a>, but I switched to Prowl after Boxcar became unreliable at times.&#160;<a href="#fnref:boxcar" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>There are other notification systems that will also work with Growl. I've also used <a href="http://boxcar.io/download_mac">Boxcar</a>, but I switched to Prowl after Boxcar became unreliable at times.&#160;<a class="footnote-backref" href="#fnref:boxcar" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:zsh">
-<p>I believe it will run in Bash with minimal or no modifications; however, if you're not using the Z-shell, you <a href="http://scottlab.ucsc.edu/~wgscott/xtal/wiki/index.php/ZSH_on_OS_X">should be</a>.&#160;<a href="#fnref:zsh" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>I believe it will run in Bash with minimal or no modifications; however, if you're not using the Z-shell, you <a href="http://scottlab.ucsc.edu/~wgscott/xtal/wiki/index.php/ZSH_on_OS_X">should be</a>.&#160;<a class="footnote-backref" href="#fnref:zsh" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:rsync">
-<p>When using rsync in a script, I prefer the long version of argument names for readability because I never remember what the short versions mean.&#160;<a href="#fnref:rsync" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>When using rsync in a script, I prefer the long version of argument names for readability because I never remember what the short versions mean.&#160;<a class="footnote-backref" href="#fnref:rsync" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:secret">
-<p>With super secret science stuff obscured.&#160;<a href="#fnref:secret" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>With super secret science stuff obscured.&#160;<a class="footnote-backref" href="#fnref:secret" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -2033,16 +2031,16 @@ fi</code></pre>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
 -->
   </section>
 
