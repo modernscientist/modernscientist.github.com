@@ -1888,7 +1888,7 @@ init_mathjax();
 <p>The general idea is to create a specific keychain entry with a title and password in one of your keychains using Keychain Access<sup id="fnref:1password"><a class="footnote-ref" href="#fn:1password" rel="footnote">3</a></sup>. Then the password contained in this entry is accessed using the AppleScript library provided by Usable Keychain Scripting. AppleScript can be called from many languages, including the shell, thus allowing the password to be retrieved wherever needed.<sup id="fnref:security"><a class="footnote-ref" href="#fn:security" rel="footnote">4</a></sup></p>
 <h2>Create a keychain password</h2>
 <p>The first step is to create a password. The main consideration here is that although multiple keychain entries can have the same name, it's difficult (and more work) to distinguish between them in an AppleScript. Thus, it's best to ensure the entry has a unique name. </p>
-<p>Here's an example I created to mount the partitions on our Drobo:<sup id="fnref:kuphog"><a class="footnote-ref" href="#fn:kuphog" rel="footnote">5</a></sup></p>
+<p>Here's an example I created to mount the partitions on our Drobo, called KUPHOG-NAS:<sup id="fnref:kuphog"><a class="footnote-ref" href="#fn:kuphog" rel="footnote">5</a></sup></p>
 <p><img alt="&quot;KUPHOG NAS drive password&quot;" src="http://themodernscientist.com/static/images/2015-01-04_secure_password_use_in_scripts_1.png" title="KUPHOG NAS drive password" /></p>
 <h2>Configure Usable Keychain Scripting</h2>
 <p>Before Usable Keychain Scripting can be called from a shell script, some setup is required. I find it easiest to do this in Script Editor. First, Usable Keychain Scripting has to be downloaded and installed in the Applications directory, if this hasn't been done already. Next, the program's AppleScript dictionary has to be installed. This is done by opening the Script Editor's Library window (located in the Window menu) and then clicking on the plus sign. This opens a window to the Applications directory, where Usable Keychain Scripting should be selected. When finished, the program will appear in the Library window, like this:</p>
@@ -2008,16 +2008,16 @@ mount_smbfs smb://<span class="nv">$USERNAME</span>:<span class="nv">$PASSWORD</
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
 -->
   </section>
 
