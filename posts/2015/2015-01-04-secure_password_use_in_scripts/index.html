@@ -1891,7 +1891,7 @@ init_mathjax();
 <p>Here's an example I created to mount the partitions on our Drobo, called KUPHOG-NAS:<sup id="fnref:kuphog"><a class="footnote-ref" href="#fn:kuphog" rel="footnote">5</a></sup></p>
 <p><img alt="&quot;KUPHOG NAS drive password&quot;" src="http://themodernscientist.com/static/images/2015-01-04_secure_password_use_in_scripts_1.png" title="KUPHOG NAS drive password" /></p>
 <h2>Configure Usable Keychain Scripting</h2>
-<p>Before Usable Keychain Scripting can be called from a shell script, some setup is required. I find it easiest to do this in Script Editor. First, Usable Keychain Scripting has to be downloaded and installed in the Applications directory, if this hasn't been done already. Next, the program's AppleScript dictionary has to be installed. This is done by opening the Script Editor's Library window (located in the Window menu) and then clicking on the plus sign. This opens a window to the Applications directory, where Usable Keychain Scripting should be selected. When finished, the program will appear in the Library window, like this:</p>
+<p>Before Usable Keychain Scripting can be called from a shell script, some setup is required. I find it easiest to do this in Script Editor. First, Usable Keychain Scripting has to be downloaded and installed in your computer's Applications directory, if this hasn't been done already. Next, the program's AppleScript dictionary has to be installed. This is done by opening the Script Editor's Library window (located in the Window menu) and then clicking on the plus sign. This opens a window to the Applications directory, where Usable Keychain Scripting should be selected. When finished, the program will appear in the Library window, like this:</p>
 <p><img alt="&quot;AppleScript dictionary installation&quot;" src="http://themodernscientist.com/static/images/2015-01-04_secure_password_use_in_scripts_2.png" title="AppleScript dictionary installation" /></p>
 <p>Then the Usable Keychain Scripting AppleScript library should be tested <em>within</em> Script Editor. This is important because your login password has to be entered the first time this AppleScript library is accessed, and the password entry window doesn't always work from a shell script.</p>
 <p>Here's a sample AppleScript that accesses the password created for the Drobo above:</p>
@@ -2008,16 +2008,16 @@ mount_smbfs smb://<span class="nv">$USERNAME</span>:<span class="nv">$PASSWORD</
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
 -->
   </section>
 
