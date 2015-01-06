@@ -1864,13 +1864,14 @@ init_mathjax();
 
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
+  
 <!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
     <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
     <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
  -->
 
     <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
-        <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+    <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
 
 </ul></nav>
   <div id="main">
@@ -1882,7 +1883,8 @@ init_mathjax();
       <p class="meta"><time datetime="2015-01-04T19:48:00" pubdate>2015/01/04</time></p>
 </header>
 
-  <div class="entry-content"><p>One of my goals for the new year<sup id="fnref:resolution"><a class="footnote-ref" href="#fn:resolution" rel="footnote">1</a></sup> is to be more security minded in my use of technology. This is a broad statement, but I have some very specific points in mind, including more regular use of a self-hosted VPN (the topic of a future blog post) and avoiding the bad habit of using passwords in shell scripts (the topic of this blog post).</p>
+  <div class="entry-content"><p><strong>NOTE:</strong> If you're using passwords in shell scripts, see Daniel Jalkut's reply below about using OS X's built-in <code>security</code> command instead of his AppleScript library.</p>
+<p>One of my goals for the new year<sup id="fnref:resolution"><a class="footnote-ref" href="#fn:resolution" rel="footnote">1</a></sup> is to be more security minded in my use of technology. This is a broad statement, but I have some very specific points in mind, including more regular use of a self-hosted VPN (the topic of a future blog post) and avoiding the bad habit of using passwords in shell scripts (the topic of this blog post).</p>
 <p>The use of security credentials, such as a password, is an integral part of life with technology. For those of us who like to automate things, the need often arises to supply such credentials in a script. The simplest, and least secure, way to do this is to enter the password in the script in plain text form. Having done this myself and seen countless other people who are way better at this automation thing than me do the <a href="http://www.macdrifter.com/2013/03/pause-timemachine-macro.html">same</a>, I know it is easy to do. I'm certainly not here to lecture anyone about best practices, but there is another option and it's not that difficult to use. This method involves a little AppleScript and <a href="http://www.red-sweater.com">Daniel Jalkut's</a> excellent utility, <a href="http://www.red-sweater.com/blog/170/usable-keychain-scripting">Usable Keychain Scripting</a>, with the latest version available <a href="http://www.red-sweater.com/blog/2035/usable-keychain-scripting-for-lion">here</a>. I don't see much mention of Usable Keychain Scripting online, so I thought a little tutorial would be a handy way to start the new year<sup id="fnref:yosemite"><a class="footnote-ref" href="#fn:yosemite" rel="footnote">2</a></sup>.</p>
 <h2>Motivation for Usable Keychain Scripting</h2>
 <p>Daniel's blog posts explain his personal motivations for writing and updating Usable Keychain Scripting, but I first discovered the application when Apple removed keychain scripting from Lion, thus making it impossible to access keychain entries with AppleScript. His utility fills that niche for me, though as mentioned, I don't use it as often as I should.</p>
@@ -2009,16 +2011,16 @@ mount_smbfs smb://<span class="nv">$USERNAME</span>:<span class="nv">$PASSWORD</
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
 -->
   </section>
 
