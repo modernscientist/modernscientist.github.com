@@ -1812,8 +1812,8 @@ init_mathjax();
 </script>
 
 
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/bigfoot.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/bigfoot.js"></script>
 <script type="text/javascript">
     var bigfoot = $.bigfoot(
         {
@@ -1825,7 +1825,8 @@ init_mathjax();
     );
 </script>
 
-<link href="http://www.themodernscientist.com/static/css/bigfoot-default.css" rel="stylesheet" type="text/css">
+<link href="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/css/bigfoot-number.css" rel="stylesheet" type="text/css">
+
 
 
   <!-- http://t.co/dKP3o1e -->
@@ -1864,14 +1865,11 @@ init_mathjax();
 
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
-<!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
- -->
+  
+    <li><a href="/Users/mlgill/Documents/blog/themodernscientist/output/archives.html">Archives</a></li>
 
-    <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
-        <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+  
 </ul></nav>
   <div id="main">
     <div id="content">
@@ -1879,7 +1877,7 @@ init_mathjax();
   <article class="hentry" role="article">
 <header>
       <h1 class="entry-title">Encryption of BitTorrent Sync Peers</h1>
-      <p class="meta"><time datetime="2014-02-21T19:48:00" pubdate>2014/02/21</time></p>
+      <p class="meta"><time datetime="2014-02-21T19:48:00-05:00" pubdate>2014/02/21</time></p>
 </header>
 
   <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the advantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref:caveat"><a class="footnote-ref" href="#fn:caveat" rel="footnote">1</a></sup> Once written to a hard drive, though, these files are often not encrypted. This is the case for BitTorrent Sync and many other cloud storage options.<sup id="fnref:exceptions"><a class="footnote-ref" href="#fn:exceptions" rel="footnote">2</a></sup> For BitTorrent Sync, this issue is of limited concern if all peers are under your control. However, it may be desirable to utilize peers to which others may have access, such as a virtual private server (VPS). In the previous post, I mentioned using a VPS to help guarantee a synchronized peer was always accessible. In these situations, it is desirable to add additional privacy by selectively encrypting data on such peers.</p>
@@ -1922,7 +1920,7 @@ init_mathjax();
   <span class="byline author vcard">
     Posted by <span class="fn">modernscientist</span>
   </span>
-<time datetime="2014-02-21T19:48:00" pubdate>2014/02/21</time>  <span class="categories">
+<time datetime="2014-02-21T19:48:00-05:00" pubdate>2014/02/21</time>  <span class="categories">
     <a class="category" href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a class="category" href="http://www.themodernscientist.com/tag/automation.html">automation</a>
   </span>
@@ -1970,16 +1968,16 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
 -->
   </section>
 
@@ -1997,7 +1995,6 @@ init_mathjax();
         <h1>Social</h2>
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
             <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
         </ul>
@@ -2005,7 +2002,7 @@ init_mathjax();
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - modernscientist -
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">

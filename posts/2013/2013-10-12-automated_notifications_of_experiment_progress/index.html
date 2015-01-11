@@ -1812,8 +1812,8 @@ init_mathjax();
 </script>
 
 
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/bigfoot.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/bigfoot.js"></script>
 <script type="text/javascript">
     var bigfoot = $.bigfoot(
         {
@@ -1825,7 +1825,8 @@ init_mathjax();
     );
 </script>
 
-<link href="http://www.themodernscientist.com/static/css/bigfoot-default.css" rel="stylesheet" type="text/css">
+<link href="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/css/bigfoot-number.css" rel="stylesheet" type="text/css">
+
 
 
   <!-- http://t.co/dKP3o1e -->
@@ -1864,14 +1865,11 @@ init_mathjax();
 
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
-<!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
- -->
+  
+    <li><a href="/Users/mlgill/Documents/blog/themodernscientist/output/archives.html">Archives</a></li>
 
-    <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
-        <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+  
 </ul></nav>
   <div id="main">
     <div id="content">
@@ -1879,7 +1877,7 @@ init_mathjax();
   <article class="hentry" role="article">
 <header>
       <h1 class="entry-title">Automated Notifications of Experiment Progress: Combining Shell, SSH, Growl, and Prowl</h1>
-      <p class="meta"><time datetime="2013-10-12T15:19:00" pubdate>2013/10/12</time></p>
+      <p class="meta"><time datetime="2013-10-12T15:19:00-04:00" pubdate>2013/10/12</time></p>
 </header>
 
   <div class="entry-content"><p>In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's NMR spectrometers to periodically stop running during a series of multiple day experiments. The instrument is still useable while waiting for a replacement part to arrive, but periodic reboots of the hardware are necessary for the experiment to continue where it left off. Thus, it is critical to know when such a reboot is necessary. Rather than make constant trips to the building where the instrument is located, I rigged up a notification system using some basic unix and Mac tools. </p>
@@ -1954,7 +1952,7 @@ fi</code></pre>
 <p>There are a few nuances associated with the encoding of the growlnotify string. First, the entire command has to be enclosed in quotes because it is sent through ssh to the remote Mac. Additionally, each of the arguments passed to growlnotify, such as the contents of the <code>$message_string</code> variable, must themselves be enclosed in quotes when executed on the remote Mac. I prefer to use single quotes for the growlnotify command and double quotes for the individual arguments. However, variables, such as <code>$message_string</code>, are not expanded within single quotes, so they must appear outside of the single quotes, as can be seen above. The contents of <code>$message_string</code> must still be enclosed in double quotes, which appear before and after the respective single quotes flanking <code>$message_string</code>.</p>
 <p>Once I start my experiment on the spectrometer, I setup this script to run indefinitely. An added bonus is that it will notify you when the experiment has finished. If the instrument writes progress information to a plain text log file, this file can be queried and more detailed status information that can be included in the <code>$message_string</code>.</p>
 <p>Here is an example<sup id="fnref:secret"><a class="footnote-ref" href="#fn:secret" rel="footnote">5</a></sup> of the Prowl status updates I receive on my iPhone. The actual script I use derives additional information from the log file of the NMR spectrometer.</p>
-<p><img alt="&quot;Prowl Status Updates&quot;" src="http://themodernscientist.com/static/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates" /></p>
+<p><img alt="&quot;Prowl Status Updates&quot;" src="http://www.themodernscientist.com/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates" /></p>
 <p>This is a script I have been meaning to write for quite some time and I plan to use it, perhaps with less frequent notification times, even after the spectrometer is repaired.</p>
 <div class="footnote">
 <hr />
@@ -1981,7 +1979,7 @@ fi</code></pre>
   <span class="byline author vcard">
     Posted by <span class="fn">modernscientist</span>
   </span>
-<time datetime="2013-10-12T15:19:00" pubdate>2013/10/12</time>  <span class="categories">
+<time datetime="2013-10-12T15:19:00-04:00" pubdate>2013/10/12</time>  <span class="categories">
     <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
     <a class="category" href="http://www.themodernscientist.com/tag/shell.html">shell</a>
     <a class="category" href="http://www.themodernscientist.com/tag/automation.html">automation</a>
@@ -2032,16 +2030,16 @@ fi</code></pre>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
 -->
   </section>
 
@@ -2059,7 +2057,6 @@ fi</code></pre>
         <h1>Social</h2>
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
             <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
         </ul>
@@ -2067,7 +2064,7 @@ fi</code></pre>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - modernscientist -
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">

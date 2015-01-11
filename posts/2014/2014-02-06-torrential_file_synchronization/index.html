@@ -1812,8 +1812,8 @@ init_mathjax();
 </script>
 
 
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/bigfoot.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/bigfoot.js"></script>
 <script type="text/javascript">
     var bigfoot = $.bigfoot(
         {
@@ -1825,7 +1825,8 @@ init_mathjax();
     );
 </script>
 
-<link href="http://www.themodernscientist.com/static/css/bigfoot-default.css" rel="stylesheet" type="text/css">
+<link href="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/css/bigfoot-number.css" rel="stylesheet" type="text/css">
+
 
 
   <!-- http://t.co/dKP3o1e -->
@@ -1864,14 +1865,11 @@ init_mathjax();
 
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
-<!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
- -->
+  
+    <li><a href="/Users/mlgill/Documents/blog/themodernscientist/output/archives.html">Archives</a></li>
 
-    <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
-        <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
-
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+  
 </ul></nav>
   <div id="main">
     <div id="content">
@@ -1879,7 +1877,7 @@ init_mathjax();
   <article class="hentry" role="article">
 <header>
       <h1 class="entry-title">Torrential File Synchronization</h1>
-      <p class="meta"><time datetime="2014-02-06T19:48:00" pubdate>2014/02/06</time></p>
+      <p class="meta"><time datetime="2014-02-06T19:48:00-05:00" pubdate>2014/02/06</time></p>
 </header>
 
   <div class="entry-content"><p>My research requires that I work in multiple locations: in the lab, at a multi-institution shared instrument facility, and sometimes in my fuzzy slippers at home. Having my data and processing scripts updated on whatever computer I happen to be using is critical to my ability to get work done. Since these files are too large for Dropbox storage to be economical, I have previously relied on programs such as <a href="http://www.cis.upenn.edu/~bcpierce/unison/">Unison</a> and <a href="http://www.econtechnologies.com/pages/cs/chrono_overview.html">ChronoSync</a>. Unfortunately, these tools require some manual effort<sup id="fnref:auto"><a class="footnote-ref" href="#fn:auto" rel="footnote">1</a></sup> to ensure my ever-growing research directory is updated when switching computers, a process that sometimes happens multiple times per day. </p>
@@ -1969,7 +1967,7 @@ init_mathjax();
   <span class="byline author vcard">
     Posted by <span class="fn">modernscientist</span>
   </span>
-<time datetime="2014-02-06T19:48:00" pubdate>2014/02/06</time>  <span class="categories">
+<time datetime="2014-02-06T19:48:00-05:00" pubdate>2014/02/06</time>  <span class="categories">
     <a class="category" href="http://www.themodernscientist.com/tag/mac.html">mac</a>
     <a class="category" href="http://www.themodernscientist.com/tag/shell.html">shell</a>
     <a class="category" href="http://www.themodernscientist.com/tag/automation.html">automation</a>
@@ -2019,16 +2017,16 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
 -->
   </section>
 
@@ -2046,7 +2044,6 @@ init_mathjax();
         <h1>Social</h2>
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
             <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
         </ul>
@@ -2054,7 +2051,7 @@ init_mathjax();
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - modernscientist -
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">

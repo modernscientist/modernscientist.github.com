@@ -1812,8 +1812,8 @@ init_mathjax();
 </script>
 
 
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://www.themodernscientist.com/static/js/bigfoot.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/js/bigfoot.js"></script>
 <script type="text/javascript">
     var bigfoot = $.bigfoot(
         {
@@ -1825,7 +1825,8 @@ init_mathjax();
     );
 </script>
 
-<link href="http://www.themodernscientist.com/static/css/bigfoot-default.css" rel="stylesheet" type="text/css">
+<link href="file:///Users/mlgill/Documents/blog/themodernscientist/output/static/css/bigfoot-number.css" rel="stylesheet" type="text/css">
+
 
 
   <!-- http://t.co/dKP3o1e -->
@@ -1864,13 +1865,11 @@ init_mathjax();
 
 <ul class="main-navigation">
   <li><a href="http://www.themodernscientist.com/">Blog</a></li>
-<!--       <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/archives.html">Archives</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/about.html">About</a></li> TODO: SUBMIT BUG MLG
-    <li><a href="/Users/mlgill/Dropbox/themodernscientist/output/pages/disclaimer.html">Disclaimer</a></li> TODO: SUBMIT BUG MLG
- -->
+  
+    <li><a href="/Users/mlgill/Documents/blog/themodernscientist/output/archives.html">Archives</a></li>
 
-    <li><a href="http://www.themodernscientist.com/archives.html">Archives</a></li>
-
+      <li><a href="http://www.themodernscientist.com/pages/about.html">About</a></li>
+  
 </ul></nav>
   <div id="main">
     <div id="content">
@@ -1880,10 +1879,11 @@ init_mathjax();
       <h1 class="entry-title">
         <a href="http://www.themodernscientist.com/posts/2015/2015-01-04-secure_password_use_in_scripts/">Secure Password Use in Scripts</a>
       </h1>
-      <p class="meta"><time datetime="2015-01-04T19:48:00" pubdate>2015/01/04</time></p>
+      <p class="meta"><time datetime="2015-01-04T19:48:00-05:00" pubdate>2015/01/04</time></p>
 </header>
 
-  <div class="entry-content"><p>One of my goals for the new year<sup id="fnref:resolution"><a class="footnote-ref" href="#fn:resolution" rel="footnote">1</a></sup> is to be more security minded in my use of technology. This is a broad statement, but I have some very specific points in mind, including more regular use of a self-hosted VPN (the topic of a future blog post) and ...</p></div>
+  <div class="entry-content"><p><strong>NOTE:</strong> If you're using passwords in shell scripts, see Daniel Jalkut's reply below about using OS X's built-in <code>security</code> command instead of his AppleScript library.</p>
+<p>One of my goals for the new year<sup id="fnref:resolution"><a class="footnote-ref" href="#fn:resolution" rel="footnote">1</a></sup> is to be more security minded in my use of technology. This is ...</p></div>
   <footer>
     <a rel="full-article" href="http://www.themodernscientist.com/posts/2015/2015-01-04-secure_password_use_in_scripts/">More &crarr;</a>
   </footer>
@@ -1893,7 +1893,7 @@ init_mathjax();
       <h1 class="entry-title">
         <a href="http://www.themodernscientist.com/posts/2014/2014-02-21-encryption_of_bittorrent_sync_peers/">Encryption of BitTorrent Sync Peers</a>
       </h1>
-      <p class="meta"><time datetime="2014-02-21T19:48:00" pubdate>2014/02/21</time></p>
+      <p class="meta"><time datetime="2014-02-21T19:48:00-05:00" pubdate>2014/02/21</time></p>
 </header>
 
   <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the advantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref:caveat"><a class="footnote-ref" href="#fn:caveat" rel="footnote">1 ...</a></sup></p></div>
@@ -1906,7 +1906,7 @@ init_mathjax();
       <h1 class="entry-title">
         <a href="http://www.themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">Torrential File Synchronization</a>
       </h1>
-      <p class="meta"><time datetime="2014-02-06T19:48:00" pubdate>2014/02/06</time></p>
+      <p class="meta"><time datetime="2014-02-06T19:48:00-05:00" pubdate>2014/02/06</time></p>
 </header>
 
   <div class="entry-content"><p>My research requires that I work in multiple locations: in the lab, at a multi-institution shared instrument facility, and sometimes in my fuzzy slippers at home. Having my data and processing scripts updated on whatever computer I happen to be using is critical to my ability to get work done ...</p></div>
@@ -1919,7 +1919,7 @@ init_mathjax();
       <h1 class="entry-title">
         <a href="http://www.themodernscientist.com/posts/2013/2013-10-19-automated_notifications_of_experiment_progress_part_2/">Automated Notifications of Experiment Progress: Prowl Extra Credit</a>
       </h1>
-      <p class="meta"><time datetime="2013-10-19T15:19:00" pubdate>2013/10/19</time></p>
+      <p class="meta"><time datetime="2013-10-19T15:19:00-04:00" pubdate>2013/10/19</time></p>
 </header>
 
   <div class="entry-content"><p>Previously, I <a href="http://themodernscientist.com/posts/2013/2013-10-12-automated_notifications_of_experiment_progress/">posted</a> about using <a href="http://growl.info/">Growl</a> in combination with <a href="http://www.prowlapp.com/">Prowl</a> to get remote notifications of experiment progress on both a Mac and iPhone. Later that day, I started thinking about some improvements to the script after a brief Twitter <a href="https://twitter.com/modernscientist/status/389159633753210880">conversation</a> with <a href="https://twitter.com/DrBunsen">Seth Brown</a>.<sup id="fnref:follow"><a class="footnote-ref" href="#fn:follow" rel="footnote">1</a></sup> </p>
@@ -1933,7 +1933,7 @@ init_mathjax();
       <h1 class="entry-title">
         <a href="http://www.themodernscientist.com/posts/2013/2013-10-12-automated_notifications_of_experiment_progress/">Automated Notifications of Experiment Progress: Combining Shell, SSH, Growl, and Prowl</a>
       </h1>
-      <p class="meta"><time datetime="2013-10-12T15:19:00" pubdate>2013/10/12</time></p>
+      <p class="meta"><time datetime="2013-10-12T15:19:00-04:00" pubdate>2013/10/12</time></p>
 </header>
 
   <div class="entry-content"><p>In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's ...</p></div>
@@ -1981,16 +1981,16 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+  <!--     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
 -->
   </section>
 
@@ -2008,7 +2008,6 @@ init_mathjax();
         <h1>Social</h2>
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
-            <li><a href="https://alpha.app.net/modernscientist" target="_blank">App.net</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
             <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
         </ul>
@@ -2016,7 +2015,7 @@ init_mathjax();
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - modernscientist -
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
