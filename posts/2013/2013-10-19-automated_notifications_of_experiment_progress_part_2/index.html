@@ -1830,6 +1830,19 @@ init_mathjax();
 
 <link href="static/css/bigfoot-number.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="static/tipuesearch/tipuesearch_set.js"></script>
+<script type="text/javascript" src="static/tipuesearch/tipuesearch.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch({
+        'show': 100,
+        'mode': 'json',
+        'showURL': false,
+        'contentLocation': 'tipuesearch_content.json'
+        });
+    });
+</script>
+
 
 
 
@@ -1845,18 +1858,6 @@ init_mathjax();
   <script src="http://www.themodernscientist.com/theme/js/ender.js"></script>
   <script src="http://www.themodernscientist.com/theme/js/octopress.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="http://www.themodernscientist.com/static/tipuesearch/tipuesearch_set.js"></script>
-    <script type="text/javascript" src="http://www.themodernscientist.com/static/tipuesearch/tipuesearch.min.js"></script>
-    <script>
-        $(document).ready(function() {
-        $('#tipue_search_input').tipuesearch({
-            'show': 100,
-            'mode': 'json',
-            'showURL': false,
-            'contentLocation': 'http://www.themodernscientist.com/tipuesearch_content.json'
-            });
-        });
-    </script>
     <link rel="stylesheet" href="http://www.themodernscientist.com/static/css/tipuesearch_CUSTOM.css">
 
   <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -2093,16 +2094,16 @@ fi</code></pre>
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+  <!--     <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
+    <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
 -->
   </section>
 
