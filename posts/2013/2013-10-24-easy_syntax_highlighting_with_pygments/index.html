@@ -1898,424 +1898,9 @@ init_mathjax();
       <p class="meta"><time datetime="2013-10-24T15:19:00-04:00" pubdate>2013/10/24</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a scientist who splits her time between both wet lab and computational work, I have learned the importance of saving code snippets for future reference. These snippets are handy when I later can't recall a clever Pandas <a href="http://pandas.pydata.org/pandas-docs/stable/indexing.html">indexing trick</a> or when I want to share code with a colleague.</p>
-</div>
-</div>
-</div></p>
+  <div class="entry-content"><p>{% notebook EasySyntaxHighlightingWithPygments.ipynb cells[1:2] %}</p>
 <p>I spend most of my time writing code in text editors<sup id="fnref:ed"><a class="footnote-ref" href="#fn:ed" rel="footnote">1</a></sup> that have syntax highlighting and I prefer my snippets similarly highlighted. While there are many syntax highlighting engines and websites in existence, one of the most powerful engines happens to be <a href="http://pygments.org/">Pygments</a>, which is python-based, as the name implies.</p>
-<p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Pygments supports an <a href="http://pygments.org/languages/">incredible list</a> of input languages, called lexers, and has numerous <a href="http://pygments.org/docs/formatters/">formatters</a> for output. There are also many options available for output <a href="http://pygments.org/docs/styles/">colors and styles</a>. All of these aspects are customizable as well. Lastly, Pygments has few dependencies and can be installed using <code>easy_install</code> or MacPorts.</p>
-<p>While Pygments does include many styles, including my favorite, <a href="http://www.monokai.nl/blog/2006/07/15/textmate-color-theme">Monokai</a>, it doesn't have a version of Monokai with a light background. For storing and sharing snippets, I prefer a light background to a dark one. So, I created my own Monokai Light style based on the color scheme <a href="https://bitbucket.org/sjl/stevelosh/src/a30885eba5d365da12b264d4beac7596ce1b6ada/media/css/pygments-monokai-light.css?at=default">here</a>. The style I created can be downloaded directly from <a href="https://github.com/mlgill/macports-pygments-monokailight/blob/master/files/monokailight/monokailight.py">here</a> and placed in the style directory within Pygments or it can be installed using MacPorts by cloning this <a href="https://github.com/mlgill/macports-pygments-monokailight">GitHub repository</a>.</p>
-<p>Pygments can be run from within a python script or from the terminal using a helper command called <code>pygmentize</code>. Both methods are demonstrated for comparison.</p>
-<h2 id="input-the-python-snippet">Input the Python Snippet</h2>
-<p>The code snippet to be highlighted will usually reside in a file or on the clipboard. For the purpose of a self-contained tutorial, it will be input as a string. Since this is predominantly a python blog, it is easy to guess which language is being used.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[1]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">python_snippet</span> <span class="o">=</span> <span class="s">r&quot;&quot;&quot;</span>
-<span class="s">#!/usr/bin/env python</span>
-
-<span class="s">import numpy as np</span>
-
-<span class="s">A = np.random.random((4,4))</span>
-<span class="s">Ainv = np.linalg.inv(A)</span>
-
-<span class="s">print &#39;A &#39;, A</span>
-<span class="s">print &#39;Ainv&#39;, Ainv</span>
-<span class="s">print &#39;A*Ainv&#39;, np.dot(A,Ainv)&quot;&quot;&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="syntax-highlighting-in-python">Syntax Highlighting in Python</h2>
-<p>Pygments is a python module and can be used in the usual fashion to perform syntax highlighting within a python script. This requires the highlighter, lexer, and formatter to be imported. Several formatter options must also be set. First, <code>full=True</code> is required to output html with a complete header. Syntax highlighting won't work without this option. Second, the selected style is specified with <code>style='monokailight'</code>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">pygments</span> <span class="kn">import</span> <span class="n">highlight</span>
-<span class="kn">from</span> <span class="nn">pygments.lexers</span> <span class="kn">import</span> <span class="n">PythonLexer</span>
-<span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="kn">import</span> <span class="n">HtmlFormatter</span>
-<span class="n">html_snippet</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span><span class="n">PythonLexer</span><span class="p">(),</span><span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;monokailight&#39;</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The style names of the snippet conflict with those used by this blog, so a regular expression substitution is needed to modify the style names of the snippet. This subsitution should not be necessary in most other use cases.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">html_snippet_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span><span class="s">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Normally, the output would be saved to a file or sent to the clipboard. For this tutorial, it will be displayed using the <code>HTML</code> command, which is one of IPython's powerful <a href="http://nbviewer.ipython.org/urls/raw.github.com/ipython/ipython/1.x/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb">display options</a>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[4]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">html_snippet_sub</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html>
-<head>
-  <title></title>
-  <meta http-equiv="content-type" content="text/html; charset=None">
-  <style type="text/css">
-td.linenos { background-color: #f0f0f0; padding-right: 10px; }
-span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
-pre { line-height: 125%; }
-body .pygmhll { background-color: #e6e3c3 }
-body  { background: #fafafa; color: #272822 }
-body .pygmc { color: #75715e } /* Comment */
-body .pygmerr { color: #960050; background-color: #1e0010 } /* Error */
-body .pygmk { color: #00a8c8 } /* Keyword */
-body .pygml { color: #ae81ff } /* Literal */
-body .pygmn { color: #111111 } /* Name */
-body .pygmo { color: #f92672 } /* Operator */
-body .pygmp { color: #111111 } /* Punctuation */
-body .pygmcm { color: #75715e } /* Comment.Multiline */
-body .pygmcp { color: #75715e } /* Comment.Preproc */
-body .pygmc1 { color: #75715e } /* Comment.Single */
-body .pygmcs { color: #75715e } /* Comment.Special */
-body .pygmge { font-style: italic } /* Generic.Emph */
-body .pygmgs { font-weight: bold } /* Generic.Strong */
-body .pygmkc { color: #00a8c8 } /* Keyword.Constant */
-body .pygmkd { color: #00a8c8 } /* Keyword.Declaration */
-body .pygmkn { color: #f92672 } /* Keyword.Namespace */
-body .pygmkp { color: #00a8c8 } /* Keyword.Pseudo */
-body .pygmkr { color: #00a8c8 } /* Keyword.Reserved */
-body .pygmkt { color: #00a8c8 } /* Keyword.Type */
-body .pygmld { color: #d88200 } /* Literal.Date */
-body .pygmm { color: #ae81ff } /* Literal.Number */
-body .pygms { color: #d88200 } /* Literal.String */
-body .pygmna { color: #75af00 } /* Name.Attribute */
-body .pygmnb { color: #111111 } /* Name.Builtin */
-body .pygmnc { color: #75af00 } /* Name.Class */
-body .pygmno { color: #00a8c8 } /* Name.Constant */
-body .pygmnd { color: #75af00 } /* Name.Decorator */
-body .pygmni { color: #111111 } /* Name.Entity */
-body .pygmne { color: #75af00 } /* Name.Exception */
-body .pygmnf { color: #75af00 } /* Name.Function */
-body .pygmnl { color: #111111 } /* Name.Label */
-body .pygmnn { color: #111111 } /* Name.Namespace */
-body .pygmnx { color: #75af00 } /* Name.Other */
-body .pygmpy { color: #111111 } /* Name.Property */
-body .pygmnt { color: #f92672 } /* Name.Tag */
-body .pygmnv { color: #111111 } /* Name.Variable */
-body .pygmow { color: #f92672 } /* Operator.Word */
-body .pygmw { color: #272822 } /* Text.Whitespace */
-body .pygmmf { color: #ae81ff } /* Literal.Number.Float */
-body .pygmmh { color: #ae81ff } /* Literal.Number.Hex */
-body .pygmmi { color: #ae81ff } /* Literal.Number.Integer */
-body .pygmmo { color: #ae81ff } /* Literal.Number.Oct */
-body .pygmsb { color: #d88200 } /* Literal.String.Backtick */
-body .pygmsc { color: #d88200 } /* Literal.String.Char */
-body .pygmsd { color: #d88200 } /* Literal.String.Doc */
-body .pygms2 { color: #d88200 } /* Literal.String.Double */
-body .pygmse { color: #8045FF } /* Literal.String.Escape */
-body .pygmsh { color: #d88200 } /* Literal.String.Heredoc */
-body .pygmsi { color: #d88200 } /* Literal.String.Interpol */
-body .pygmsx { color: #d88200 } /* Literal.String.Other */
-body .pygmsr { color: #d88200 } /* Literal.String.Regex */
-body .pygms1 { color: #d88200 } /* Literal.String.Single */
-body .pygmss { color: #d88200 } /* Literal.String.Symbol */
-body .pygmbp { color: #111111 } /* Name.Builtin.Pseudo */
-body .pygmvc { color: #111111 } /* Name.Variable.Class */
-body .pygmvg { color: #111111 } /* Name.Variable.Global */
-body .pygmvi { color: #111111 } /* Name.Variable.Instance */
-body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
-
-  </style>
-</head>
-<body>
-<h2></h2>
-
-<div class="pygmhighlight"><pre><span class="pygmc">#!/usr/bin/env python</span>
-
-<span class="pygmkn">import</span> <span class="pygmnn">numpy</span> <span class="pygmkn">as</span> <span class="pygmnn">np</span>
-
-<span class="pygmn">A</span> <span class="pygmo">=</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">random</span><span class="pygmo">.</span><span class="pygmn">random</span><span class="pygmp">((</span><span class="pygmmi">4</span><span class="pygmp">,</span><span class="pygmmi">4</span><span class="pygmp">))</span>
-<span class="pygmn">Ainv</span> <span class="pygmo">=</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">linalg</span><span class="pygmo">.</span><span class="pygmn">inv</span><span class="pygmp">(</span><span class="pygmn">A</span><span class="pygmp">)</span>
-
-<span class="pygmk">print</span> <span class="pygms">&#39;A &#39;</span><span class="pygmp">,</span> <span class="pygmn">A</span>
-<span class="pygmk">print</span> <span class="pygms">&#39;Ainv&#39;</span><span class="pygmp">,</span> <span class="pygmn">Ainv</span>
-<span class="pygmk">print</span> <span class="pygms">&#39;A*Ainv&#39;</span><span class="pygmp">,</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">dot</span><span class="pygmp">(</span><span class="pygmn">A</span><span class="pygmp">,</span><span class="pygmn">Ainv</span><span class="pygmp">)</span>
-</pre></div>
-</body>
-</html>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="highlighting-in-the-terminal-using-pygmentize">Highlighting in the Terminal Using Pygmentize</h2>
-<p>The most common way I used Pygments is from the terminal via <code>pygmentize</code>, which is an accessory command to Pygments. Here is an example with options similar to those used in the python code above:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pygmentize</span> -l python -f html -O full,style=monokailight \
-<span class="kw">-o</span> ./python_snippet.html ./python_snippet.py</code></pre>
-<p>This command will read the file <code>python_snippet.py</code> and output to the file whose name follows the <code>-o</code> flag, which is <code>python_snippet.html</code> in this case. If the output file is omitted, the html result is returned to the terminal as output. The language (lexer), output format, and options are set with the <code>-l</code>, <code>-f</code>, and <code>-O</code> flags, respectively. The options are <code>full</code>, which is analogous to the python <code>full=True</code> option and the style selection of monokailight. In many cases, <code>pygmentize</code> can guess lexer and output name from the input and output file extensions, so the <code>-l</code> and <code>-f</code> flags are not always necessary.</p>
-<p>On Mac OS X, code snippets can be copied to the clipboard, sent to <code>pygmentize</code>, and then the syntax highlighted result returned to the clipboard using the <code>pbpaste</code> and <code>pbcopy</code> commands.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pbpaste</span> <span class="kw">|</span> <span class="kw">pygmentize</span> -l python -f html -O full,style=monokailight <span class="kw">|</span> <span class="kw">pbcopy</span></code></pre>
-<h2 id="customizing-output-adding-line-numbers">Customizing Output: Adding Line Numbers</h2>
-<p>There are various options for altering the appearance of the output. Line numbers are one common option, and they can be added with <code>linenos=True</code>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">html_snippet_linenos</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span><span class="n">PythonLexer</span><span class="p">(),</span><span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;monokailight&#39;</span><span class="p">,</span><span class="n">linenos</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Alternatively, line numbers can be included in <code>pygmentize</code> output by adding the option <code>linenos=1</code>.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pygmentize</span> -l python -f html -O full,style=monokailight,linenos=1 \
-<span class="kw">-o</span> ./python_snippet_linenos.html ./python_snippet.py</code></pre>
-<p>Here is the result with line numbers after again making the necessary modifications to avoid conflicts with styles associated with this blog.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">html_snippet_linenos_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span><span class="s">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet_linenos</span><span class="p">)</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">html_snippet_linenos_sub</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[6]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html>
-<head>
-  <title></title>
-  <meta http-equiv="content-type" content="text/html; charset=None">
-  <style type="text/css">
-td.linenos { background-color: #f0f0f0; padding-right: 10px; }
-span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
-pre { line-height: 125%; }
-body .pygmhll { background-color: #e6e3c3 }
-body  { background: #fafafa; color: #272822 }
-body .pygmc { color: #75715e } /* Comment */
-body .pygmerr { color: #960050; background-color: #1e0010 } /* Error */
-body .pygmk { color: #00a8c8 } /* Keyword */
-body .pygml { color: #ae81ff } /* Literal */
-body .pygmn { color: #111111 } /* Name */
-body .pygmo { color: #f92672 } /* Operator */
-body .pygmp { color: #111111 } /* Punctuation */
-body .pygmcm { color: #75715e } /* Comment.Multiline */
-body .pygmcp { color: #75715e } /* Comment.Preproc */
-body .pygmc1 { color: #75715e } /* Comment.Single */
-body .pygmcs { color: #75715e } /* Comment.Special */
-body .pygmge { font-style: italic } /* Generic.Emph */
-body .pygmgs { font-weight: bold } /* Generic.Strong */
-body .pygmkc { color: #00a8c8 } /* Keyword.Constant */
-body .pygmkd { color: #00a8c8 } /* Keyword.Declaration */
-body .pygmkn { color: #f92672 } /* Keyword.Namespace */
-body .pygmkp { color: #00a8c8 } /* Keyword.Pseudo */
-body .pygmkr { color: #00a8c8 } /* Keyword.Reserved */
-body .pygmkt { color: #00a8c8 } /* Keyword.Type */
-body .pygmld { color: #d88200 } /* Literal.Date */
-body .pygmm { color: #ae81ff } /* Literal.Number */
-body .pygms { color: #d88200 } /* Literal.String */
-body .pygmna { color: #75af00 } /* Name.Attribute */
-body .pygmnb { color: #111111 } /* Name.Builtin */
-body .pygmnc { color: #75af00 } /* Name.Class */
-body .pygmno { color: #00a8c8 } /* Name.Constant */
-body .pygmnd { color: #75af00 } /* Name.Decorator */
-body .pygmni { color: #111111 } /* Name.Entity */
-body .pygmne { color: #75af00 } /* Name.Exception */
-body .pygmnf { color: #75af00 } /* Name.Function */
-body .pygmnl { color: #111111 } /* Name.Label */
-body .pygmnn { color: #111111 } /* Name.Namespace */
-body .pygmnx { color: #75af00 } /* Name.Other */
-body .pygmpy { color: #111111 } /* Name.Property */
-body .pygmnt { color: #f92672 } /* Name.Tag */
-body .pygmnv { color: #111111 } /* Name.Variable */
-body .pygmow { color: #f92672 } /* Operator.Word */
-body .pygmw { color: #272822 } /* Text.Whitespace */
-body .pygmmf { color: #ae81ff } /* Literal.Number.Float */
-body .pygmmh { color: #ae81ff } /* Literal.Number.Hex */
-body .pygmmi { color: #ae81ff } /* Literal.Number.Integer */
-body .pygmmo { color: #ae81ff } /* Literal.Number.Oct */
-body .pygmsb { color: #d88200 } /* Literal.String.Backtick */
-body .pygmsc { color: #d88200 } /* Literal.String.Char */
-body .pygmsd { color: #d88200 } /* Literal.String.Doc */
-body .pygms2 { color: #d88200 } /* Literal.String.Double */
-body .pygmse { color: #8045FF } /* Literal.String.Escape */
-body .pygmsh { color: #d88200 } /* Literal.String.Heredoc */
-body .pygmsi { color: #d88200 } /* Literal.String.Interpol */
-body .pygmsx { color: #d88200 } /* Literal.String.Other */
-body .pygmsr { color: #d88200 } /* Literal.String.Regex */
-body .pygms1 { color: #d88200 } /* Literal.String.Single */
-body .pygmss { color: #d88200 } /* Literal.String.Symbol */
-body .pygmbp { color: #111111 } /* Name.Builtin.Pseudo */
-body .pygmvc { color: #111111 } /* Name.Variable.Class */
-body .pygmvg { color: #111111 } /* Name.Variable.Global */
-body .pygmvi { color: #111111 } /* Name.Variable.Instance */
-body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
-
-  </style>
-</head>
-<body>
-<h2></h2>
-
-<table class="pygmhighlighttable"><tr><td class="pygmlinenos"><div class="pygmlinenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="pygmcode"><div class="pygmhighlight"><pre><span class="pygmc">#!/usr/bin/env python</span>
-
-<span class="pygmkn">import</span> <span class="pygmnn">numpy</span> <span class="pygmkn">as</span> <span class="pygmnn">np</span>
-
-<span class="pygmn">A</span> <span class="pygmo">=</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">random</span><span class="pygmo">.</span><span class="pygmn">random</span><span class="pygmp">((</span><span class="pygmmi">4</span><span class="pygmp">,</span><span class="pygmmi">4</span><span class="pygmp">))</span>
-<span class="pygmn">Ainv</span> <span class="pygmo">=</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">linalg</span><span class="pygmo">.</span><span class="pygmn">inv</span><span class="pygmp">(</span><span class="pygmn">A</span><span class="pygmp">)</span>
-
-<span class="pygmk">print</span> <span class="pygms">&#39;A &#39;</span><span class="pygmp">,</span> <span class="pygmn">A</span>
-<span class="pygmk">print</span> <span class="pygms">&#39;Ainv&#39;</span><span class="pygmp">,</span> <span class="pygmn">Ainv</span>
-<span class="pygmk">print</span> <span class="pygms">&#39;A*Ainv&#39;</span><span class="pygmp">,</span> <span class="pygmn">np</span><span class="pygmo">.</span><span class="pygmn">dot</span><span class="pygmp">(</span><span class="pygmn">A</span><span class="pygmp">,</span><span class="pygmn">Ainv</span><span class="pygmp">)</span>
-</pre></div>
-</td></tr></table></body>
-</html>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>That's it! Pygments makes it extremely easy to create syntax highlighted code snippets.</p>
-</div>
-</div>
-</div></p>
+<p>{% notebook EasySyntaxHighlightingWithPygments.ipynb cells[3:] %}</p>
 <p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/EasySyntaxHighlightingWithPygments.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/EasySyntaxHighlightingWithPygments.ipynb">here</a>.</em> </p>
 <div class="footnote">
 <hr />
@@ -2354,6 +1939,9 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2015/2015-07-22-throwing_the_book_at_your_data/">Throwing the Book at Your Data</a>
+      </li>
+      <li class="post">
           <a href="http://www.themodernscientist.com/posts/2015/2015-01-04-secure_password_use_in_scripts/">Secure Password Use in Scripts</a>
       </li>
       <li class="post">
@@ -2364,9 +1952,6 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
       </li>
       <li class="post">
           <a href="http://www.themodernscientist.com/posts/2013/2013-10-24-easy_syntax_highlighting_with_pygments/">Easy Syntax Highlighting With Pygments</a>
-      </li>
-      <li class="post">
-          <a href="http://www.themodernscientist.com/posts/2013/2013-10-19-automated_notifications_of_experiment_progress_part_2/">Automated Notifications of Experiment Progress: Prowl Extra Credit</a>
       </li>
     </ul>
   </section>
@@ -2385,16 +1970,16 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+  <!--     <ul><li class="tag-0"><a href="/tag/shell.html">shell</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/openscience.html">openscience</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-4"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
+    <ul><li class="tag-0"><a href="/tag/science.html">science</a></li></ul>
     <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
     <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
+    <ul><li class="tag-0"><a href="/tag/python.html">python</a></li></ul>
+    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
 -->
   </section>
 
@@ -2413,7 +1998,7 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
-            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
+            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">StackOverflow</a></li>
             <li><a href="https://www.linkedin.com/in/michellelynngill" target="_blank">LinkedIn</a></li>
         </ul>
     </section>
