@@ -1891,39 +1891,52 @@ init_mathjax();
 </nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="http://www.themodernscientist.com/posts/2013/2013-04-07-for_some_this_is_a_busy_week/">For Some, This is a Busy Week</a>
-      </h1>
-      <p class="meta"><time datetime="2013-04-07T23:14:00-04:00" pubdate>2013/04/07</time></p>
+      <h1 class="entry-title">Simulation of NMR Shaped Pulses: NumPy vs Fortran</h1>
+      <p class="meta"><time datetime="2013-06-09T15:35:00-04:00" pubdate>2013/06/09</time></p>
 </header>
 
-  <div class="entry-content"><p>The coming week is going to be an incredibly busy, but exciting, one for me. Besides having updated my blog so that I am now one of the cool kids with a <a href="http://blog.getpelican.com">Pelican</a>-generated blog hosted at <a href="https://github.com/modernscientist/modernscientist.github.com">GitHub</a>,<sup id="fnref:rss"><a class="footnote-ref" href="#fn:rss" rel="footnote">1</a></sup> the following things are also taking place:</p>
-</div>
-  <footer>
-    <a rel="full-article" href="http://www.themodernscientist.com/posts/2013/2013-04-07-for_some_this_is_a_busy_week/">More &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://www.themodernscientist.com/posts/2013/2013-03-16-to_my_friend/">To My Friend</a>
-      </h1>
-      <p class="meta"><time datetime="2013-03-16T19:19:00-04:00" pubdate>2013/03/16</time></p>
-</header>
-
-  <div class="entry-content"><p>This is, in so many ways, not the topic I envisioned for my second post. Sometimes life has other plans.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="http://www.themodernscientist.com/posts/2013/2013-03-16-to_my_friend/">More &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
-
-  <br />
+  <div class="entry-content"><p>Bandwidth-selective excitation in NMR is commonly accomplished through the use of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired frequency range. Simulating the shaped pulse over a range of frequencies is one way of accomplishing this task. Many spectrometer control programs contain software capable of this (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.</p>
+<hr />
+<p>{% notebook NMRShapedPulseSimulation.ipynb cells[1:39] %}</p>
+<p>None of my attempts at automatically vectorizing this function were successful.<sup id="fnref:sympytheano"><a class="footnote-ref" href="#fn:sympytheano" rel="footnote">1</a></sup> Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
+<p>{% notebook NMRShapedPulseSimulation.ipynb cells[40:51] %}</p>
+<p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest.<sup id="fnref:numbacython"><a class="footnote-ref" href="#fn:numbacython" rel="footnote">2</a></sup> The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)</p>
+<p>{% notebook NMRShapedPulseSimulation.ipynb cells[52:] %}</p>
+<hr />
+<p><em>Edit:</em> The original version of this notebook contained two errors. The <a href="https://gist.github.com/mlgill/5774126">first</a> involved the modification of NumPy ndarray views during matrix multiplication within the faster NumPy function. The <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-929405468">second</a> chose <code>vectorComponent</code> from the wrong axis at the conclusion of the faster NumPy function and in the Python wrapper that calls the Fortran function. This resulted in an inversion of the <em>y</em>-axis magnetization. Both errors have been corrected. Thanks to <a href="https://twitter.com/synapticarbors">Joshua Adelman</a> for catching the second error. A minor change to the matrix simplification calculation due to an update of the SymPy package was also made, however this change had no effect on the result.</p>
+<p><em>Edit:</em> A Cython version of the propagator function provided by Joshua Adelman has been added above.</p>
+<p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/NMRShapedPulseSimulation.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/NMRShapedPulseSimulation.ipynb">here</a>.</em> </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:sympytheano">
+<p>Ideally this function could be vectorized with something like SymPy's <a href="http://docs.sympy.org/dev/modules/utilities/lambdify.html">lambdify</a>, <a href="http://ojensen.wordpress.com/2010/08/10/fast-ufunc-ish-hydrogen-solutions/">autowrap</a>, or <a href="http://docs.sympy.org/0.7.0/modules/utilities/autowrap.html#ufuncify">ufuncify</a> functions or with the <a href="http://matthewrocklin.com/blog/work/2013/03/19/SymPy-Theano-part-1/">Theano</a> package. Unfortunately, <code>lambdify</code> isn't compatible with NumPy arrays. Likewise, <code>autowrap</code> isn't compatible with SymPy's <code>Matrix</code> function <a href="https://groups.google.com/forum/?fromgroups#!msg/sympy/Lo62rCmPTm8/G4GuHzp5wpQJ">yet</a>. I was unsuccessful in getting <code>unfuncify</code> to work with this case, and my MacBook Air doesn't have the graphics card necessary for GPU computing, so I didn't attempt to use Theano.&#160;<a class="footnote-backref" href="#fnref:sympytheano" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:numbacython">
+<p>It would also be interesting to compare the speed of these functions to versions implemented in <a href="http://numba.pydata.org">Numba</a> and <a href="http://www.cython.org">Cython</a>. My efforts at implementing this subroutine in Numba were not very successful and I'm not fond of C, so I decided to pass on Cython.&#160;<a class="footnote-backref" href="#fnref:numbacython" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">modernscientist</span>
+  </span>
+<time datetime="2013-06-09T15:35:00-04:00" pubdate>2013/06/09</time>  <span class="categories">
+    <a class="category" href="http://www.themodernscientist.com/tag/science.html">science</a>
+    <a class="category" href="http://www.themodernscientist.com/tag/python.html">python</a>
+  </span>
+</p>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
 
 <!--   <section>
@@ -1936,10 +1949,19 @@ init_mathjax();
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="http://www.themodernscientist.com/posts/2013/2013-04-07-for_some_this_is_a_busy_week/">For Some, This is a Busy Week</a>
+          <a href="http://www.themodernscientist.com/posts/2015/2015-07-22-throwing_the_book_at_your_data/">Throwing the Book at Your Data</a>
       </li>
       <li class="post">
-          <a href="http://www.themodernscientist.com/posts/2013/2013-03-16-to_my_friend/">To My Friend</a>
+          <a href="http://www.themodernscientist.com/posts/2015/2015-01-04-secure_password_use_in_scripts/">Secure Password Use in Scripts</a>
+      </li>
+      <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2014/2014-02-21-encryption_of_bittorrent_sync_peers/">Encryption of BitTorrent Sync Peers</a>
+      </li>
+      <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">Torrential File Synchronization</a>
+      </li>
+      <li class="post">
+          <a href="http://www.themodernscientist.com/posts/2013/2013-10-24-easy_syntax_highlighting_with_pygments/">Easy Syntax Highlighting With Pygments</a>
       </li>
     </ul>
   </section>
@@ -2007,6 +2029,9 @@ init_mathjax();
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
+	        var disqus_identifier = 'http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/';
+	        var disqus_url = 'http://www.themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/';
+	        var disqus_title = 'Simulation of NMR Shaped Pulses: NumPy vs Fortran';
 	  var disqus_shortname = 'themodernscientist';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
