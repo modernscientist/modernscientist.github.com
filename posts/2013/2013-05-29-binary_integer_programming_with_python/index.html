@@ -1908,23 +1908,23 @@ init_mathjax();
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This notebook demonstrates how to use python to interface with two open source packages for binary integer programming, <a href="http://www.gnu.org/software/glpk/">GLPK</a> and <a href="http://lpsolve.sourceforge.net">lp_solve</a>. These packages are demonstrated using two python libraries, <a href="http://cvxopt.org">CVXOPT</a>, which interacts with GLPK, and lp_solve's own python interface. An example for matching five <em>x,y</em>-coordinate pairs from two different data sets is shown for each library. ## Setup notes and module import CVXOPT must be installed with GLPK support and lp_solve with python bindings must be installed. GLPK, lp_solve (without python interface), and CVXOPT are available via <a href="http://macports.org">MacPorts</a>. I have created a <a href="https://github.com/mlgill/macports-lp_solve-python">GitHub repository</a> with the MacPorts configuration files necessary to install lp_solve with its python bindings. Alternatively, the python functionality for lp_solve could be installed in a separate repository with <code>virtualenv</code>. The import statements below assume that GLPK and CVXOPT have been installed as provided by MacPorts and the modified lp_solve from GitHub has been installed within MacPorts as well. Finally, numpy is required for working with arrays. Matplotlib is required only if plotting the results of the optimization is desired.</p>
+<p>This notebook demonstrates how to use python to interface with two open source packages for binary integer programming, <a href="http://www.gnu.org/software/glpk/">GLPK</a> and <a href="http://lpsolve.sourceforge.net">lp_solve</a>. These packages are demonstrated using two python libraries, <a href="http://cvxopt.org">CVXOPT</a>, which interacts with GLPK, and lp_solve's own python interface. An example for matching five <em>x,y</em>-coordinate pairs from two different data sets is shown for each library.</p>
+<h2 id="Setup-notes-and-module-import">Setup notes and module import<a class="anchor-link" href="#Setup-notes-and-module-import">&#182;</a></h2><p>CVXOPT must be installed with GLPK support and lp_solve with python bindings must be installed. GLPK, lp_solve (without python interface), and CVXOPT are available via <a href="http://macports.org">MacPorts</a>. I have created a <a href="https://github.com/mlgill/macports-lp_solve-python">GitHub repository</a> with the MacPorts configuration files necessary to install lp_solve with its python bindings. Alternatively, the python functionality for lp_solve could be installed in a separate repository with <code>virtualenv</code>. The import statements below assume that GLPK and CVXOPT have been installed as provided by MacPorts and the modified lp_solve from GitHub has been installed within MacPorts as well. Finally, numpy is required for working with arrays. Matplotlib is required only if plotting the results of the optimization is desired.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">ConnectionPatch</span>
-<span class="kn">from</span> <span class="nn">cvxopt</span> <span class="kn">import</span> <span class="n">matrix</span>
-<span class="kn">from</span> <span class="nn">cvxopt.glpk</span> <span class="kn">import</span> <span class="n">ilp</span>
-<span class="kn">from</span> <span class="nn">lp_solve.lp_solve</span> <span class="kn">import</span> <span class="n">lp_solve</span>
+<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="k">import</span> <span class="n">ConnectionPatch</span>
+<span class="kn">from</span> <span class="nn">cvxopt</span> <span class="k">import</span> <span class="n">matrix</span>
+<span class="kn">from</span> <span class="nn">cvxopt.glpk</span> <span class="k">import</span> <span class="n">ilp</span>
+<span class="kn">from</span> <span class="nn">lp_solve.lp_solve</span> <span class="k">import</span> <span class="n">lp_solve</span>
 </pre></div>
 
 </div>
@@ -1937,20 +1937,18 @@ In&nbsp;[3]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="create-two-data-sets">Create two data sets</h2>
-<p>The first data set contains five <em>x,y</em>-coordinate pairs where the first column is <em>x</em>- and the second column is <em>y</em>-data.</p>
+<h2 id="Create-two-data-sets">Create two data sets<a class="anchor-link" href="#Create-two-data-sets">&#182;</a></h2><p>The first data set contains five <em>x,y</em>-coordinate pairs where the first column is <em>x</em>- and the second column is <em>y</em>-data.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[4]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">],[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">],[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">],[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">],[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">]])</span>
-<span class="k">print</span> <span class="n">data1</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">],[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">],[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">],[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">],[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">]])</span>
+<span class="nb">print</span> <span class="n">data1</span>
 </pre></div>
 
 </div>
@@ -1963,13 +1961,11 @@ In&nbsp;[4]:
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-[[ 1.5  7.2]
+<pre>[[ 1.5  7.2]
  [ 2.1  7.1]
  [ 4.9  8.1]
  [ 3.5  8.2]
  [ 1.6  6.4]]
-
 </pre>
 </div>
 </div>
@@ -1984,17 +1980,16 @@ In&nbsp;[4]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The second data set is similar to the first but has random noise added to it. The order of the points is also shuffled so the optimization solution isn't trivial.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="mf">5.</span>
 <span class="n">peakReorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peakReorder</span><span class="p">)</span>
@@ -2012,17 +2007,16 @@ In&nbsp;[5]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Add some names for the data points and shuffle them in the same way for the second data set. This will be useful later when determining if the peaks were correctly matched.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">data1names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;peak1&#39;</span><span class="p">,</span><span class="s">&#39;peak2&#39;</span><span class="p">,</span><span class="s">&#39;peak3&#39;</span><span class="p">,</span><span class="s">&#39;peak4&#39;</span><span class="p">,</span><span class="s">&#39;peak5&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">data1names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;peak1&#39;</span><span class="p">,</span><span class="s">&#39;peak2&#39;</span><span class="p">,</span><span class="s">&#39;peak3&#39;</span><span class="p">,</span><span class="s">&#39;peak4&#39;</span><span class="p">,</span><span class="s">&#39;peak5&#39;</span><span class="p">])</span>
 <span class="n">data2names</span> <span class="o">=</span> <span class="n">data1names</span><span class="p">[</span><span class="n">peakReorder</span><span class="p">]</span>
 </pre></div>
 
@@ -2036,19 +2030,17 @@ In&nbsp;[6]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="calculate-the-distance-between-each-pair-of-data-points">Calculate the distance between each pair of data points</h2>
-<p>The goal of the optimization is to minimize the sum of the distance between each set of matched points. Thus, the cartesian distance must be calculated for each point in <code>data1</code> and the set of points in <code>data2</code>. The simplest way to do this is with a distance matrix containing all peaks from <code>data1</code> along one axis and those from <code>data2</code> along the second axis.</p>
+<h2 id="Calculate-the-distance-between-each-pair-of-data-points">Calculate the distance between each pair of data points<a class="anchor-link" href="#Calculate-the-distance-between-each-pair-of-data-points">&#182;</a></h2><p>The goal of the optimization is to minimize the sum of the distance between each set of matched points. Thus, the cartesian distance must be calculated for each point in <code>data1</code> and the set of points in <code>data2</code>. The simplest way to do this is with a distance matrix containing all peaks from <code>data1</code> along one axis and those from <code>data2</code> along the second axis.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[7]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">xdist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">xdist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">ydist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="p">(</span><span class="n">xdist</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">ydist</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
 <span class="n">n_data1</span><span class="p">,</span> <span class="n">n_data2</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span>
@@ -2065,26 +2057,24 @@ In&nbsp;[7]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the above line, <code>n_data1</code> and <code>n_data2</code> are the number of points in <code>data1</code> and <code>data2</code>, respectively.</p>
-<h2 id="setup-the-binary-integer-programming-problem">Setup the binary integer programming problem</h2>
-<p>In addition to calculating the distance matrix, the optimization requires setting constraints to ensure that each point in one data set is paired with at most one point in the corresponding data set. This is accomplished using the following two constraints:</p>
-<p><span class="math">\(\matrix{A} \space \times \space \matrix{X} \space = \space \matrix{b}\)</span></p>
-<p><span class="math">\(\matrix{C} \space \times \space \matrix{X} \space \leq \space \matrix{d}\)</span></p>
-<p>where <span class="math">\(\matrix{A}\)</span> and <span class="math">\(\matrix{C}\)</span> are binary (all values are either <code>0</code> or <code>1</code>) matrices whose first dimensions are <code>n_data1</code> and <code>n_data2</code>, respectively, and both second dimensions are the product of the two data set sizes, <code>n_data1</code> <span class="math">\(\times\)</span> <code>n_data2</code>. <span class="math">\(\matrix{b}\)</span> and <span class="math">\(\matrix{d}\)</span> are column vectors of length <code>n_data1</code> and <code>n_data2</code>, respectively, whose value is <code>1</code> everywhere. Given these constraints, the goal of the optimization is to find a matrix <span class="math">\(\matrix{X}\)</span> that minimizes the target function:</p>
-<p><span class="math">\(\matrix{f} \space \times \space \matrix{X}\)</span></p>
-<p>where <span class="math">\(\matrix{f}\)</span> is the distance matrix calculated above, except that it has been &quot;flattened&quot;: converted to a column vector of length <code>n_data1</code> <span class="math">\(\times\)</span> <code>n_data2</code>. <span class="math">\(\matrix{X}\)</span> is a flattened form of the binary-valued transformation matrix, where the position of the ones in this matrix maps <code>data2</code> onto <code>data1</code>.</p>
-<p>An in-depth discussion of integer programming theory is beyond both the scope of this post and the extent of my optimization knowledge, but I'd like to provide further explanation of how I think about the target (minimized) function and constraint equations. In the target function, <span class="math">\(\matrix{X}\)</span> selects the set of distances in <span class="math">\(\matrix{f}\)</span> that correspond to matched points so that the sum of these values can be determined and minimized. In the first constraint equation, matrix <span class="math">\(\matrix{A}\)</span> ensures there is only a single <code>1</code> value in each &quot;row&quot; of <span class="math">\(\matrix{X}\)</span>, so each point in <code>data1</code> is paired to exactly one point in <code>data2</code>. Pretending for a moment that the inequality in the second constraint is actually an equality, this equation accomplishes the analogous goal of ensuring each point in <code>data2</code> is paired to exactly one point in <code>data1</code>. The inequality enables one of the data sets (<code>data2</code> as setup here) to have extra points that are not matched to any points in <code>data1</code>.</p>
+<h2 id="Setup-the-binary-integer-programming-problem">Setup the binary integer programming problem<a class="anchor-link" href="#Setup-the-binary-integer-programming-problem">&#182;</a></h2><p>In addition to calculating the distance matrix, the optimization requires setting constraints to ensure that each point in one data set is paired with at most one point in the corresponding data set. This is accomplished using the following two constraints:</p>
+<p>$\matrix{A} \space \times \space \matrix{X} \space = \space \matrix{b}$</p>
+<p>$\matrix{C} \space \times \space \matrix{X} \space \leq \space \matrix{d}$</p>
+<p>where $\matrix{A}$ and $\matrix{C}$ are binary (all values are either <code>0</code> or <code>1</code>) matrices whose first dimensions are <code>n_data1</code> and <code>n_data2</code>, respectively, and both second dimensions are the product of the two data set sizes, <code>n_data1</code> $\times$ <code>n_data2</code>. $\matrix{b}$ and $\matrix{d}$ are column vectors of length <code>n_data1</code> and <code>n_data2</code>, respectively, whose value is <code>1</code> everywhere. Given these constraints, the goal of the optimization is to find a matrix $\matrix{X}$ that minimizes the target function:</p>
+<p>$\matrix{f} \space \times \space \matrix{X}$</p>
+<p>where $\matrix{f}$ is the distance matrix calculated above, except that it has been "flattened": converted to a column vector of length <code>n_data1</code> $\times$ <code>n_data2</code>. $\matrix{X}$ is a flattened form of the binary-valued transformation matrix, where the position of the ones in this matrix maps <code>data2</code> onto <code>data1</code>.</p>
+<p>An in-depth discussion of integer programming theory is beyond both the scope of this post and the extent of my optimization knowledge, but I'd like to provide further explanation of how I think about the target (minimized) function and constraint equations. In the target function, $\matrix{X}$ selects the set of distances in $\matrix{f}$ that correspond to matched points so that the sum of these values can be determined and minimized. In the first constraint equation, matrix $\matrix{A}$ ensures there is only a single <code>1</code> value in each "row" of $\matrix{X}$, so each point in <code>data1</code> is paired to exactly one point in <code>data2</code>. Pretending for a moment that the inequality in the second constraint is actually an equality, this equation accomplishes the analogous goal of ensuring each point in <code>data2</code> is paired to exactly one point in <code>data1</code>. The inequality enables one of the data sets (<code>data2</code> as setup here) to have extra points that are not matched to any points in <code>data1</code>.</p>
 <p>These matrices are setup as follows:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">)))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data1</span><span class="p">))</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -2101,19 +2091,17 @@ In&nbsp;[8]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="implementation-using-cvxopt-and-glpk">Implementation using CVXOPT and GLPK</h2>
-<p>Having setup the constraints above, the remaining steps for performing the optimization using CVXOPT are relatively simple. CVXOPT is capable of many types of optimization, thus the variable <code>binVars</code> is used to define the position of all elements in <span class="math">\(\matrix{X}\)</span> which are both integer and binary. (For this optimization, that is every element of <span class="math">\(\matrix{X}\)</span>. Because <span class="math">\(\matrix{f}\)</span> is the same length as <span class="math">\(\matrix{X}\)</span> and is already defined, its length is used to determine <code>binVars</code>.) Also note that CVXOPT's integer programming function, <code>ilp</code>, does not accept numpy matrices and instead requires its own <code>matrix</code> function that is imported above. Lastly, all the functions use their own variable names, so they are listed as named arguments to eliminate confusion.</p>
+<h2 id="Implementation-using-CVXOPT-and-GLPK">Implementation using CVXOPT and GLPK<a class="anchor-link" href="#Implementation-using-CVXOPT-and-GLPK">&#182;</a></h2><p>Having setup the constraints above, the remaining steps for performing the optimization using CVXOPT are relatively simple. CVXOPT is capable of many types of optimization, thus the variable <code>binVars</code> is used to define the position of all elements in $\matrix{X}$ which are both integer and binary. (For this optimization, that is every element of $\matrix{X}$. Because $\matrix{f}$ is the same length as $\matrix{X}$ and is already defined, its length is used to determine <code>binVars</code>.) Also note that CVXOPT's integer programming function, <code>ilp</code>, does not accept numpy matrices and instead requires its own <code>matrix</code> function that is imported above. Lastly, all the functions use their own variable names, so they are listed as named arguments to eliminate confusion.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">binVars</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c"># ilp won&#39;t accept numpy&#39;s arange even when as a set</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">binVars</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c"># ilp won&#39;t accept numpy&#39;s arange even when as a set</span>
 <span class="n">output_cvxopt</span> <span class="o">=</span> <span class="n">ilp</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">f</span><span class="p">),</span><span class="n">G</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">C</span><span class="p">),</span><span class="n">h</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="n">A</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="n">b</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>\
                     <span class="n">I</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">),</span><span class="n">B</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">))</span>
 </pre></div>
@@ -2128,18 +2116,17 @@ In&nbsp;[9]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The variable <code>output_cvxopt</code> contains several variables, one of which indicates if the optimization converged and, if it did, another variable containing <span class="math">\(\matrix{X}\)</span>. Normally, it's good practice to check that the optimization converged, but in this case it's known to work. The transformation matrix, <code>X_cvxopt</code>, is reshaped into a two-dimensional matrix so it can easily be used to determine the order of <code>data2</code> data points that matches them with those in <code>data1</code>.</p>
+<p>The variable <code>output_cvxopt</code> contains several variables, one of which indicates if the optimization converged and, if it did, another variable containing $\matrix{X}$. Normally, it's good practice to check that the optimization converged, but in this case it's known to work. The transformation matrix, <code>X_cvxopt</code>, is reshaped into a two-dimensional matrix so it can easily be used to determine the order of <code>data2</code> data points that matches them with those in <code>data1</code>.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">X_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_cvxopt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">X_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_cvxopt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
 <span class="n">match_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">X_cvxopt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
@@ -2153,19 +2140,17 @@ In&nbsp;[10]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="sanity-check-the-optimization-results">Sanity check the optimization results</h3>
-<p>It is incredibly easy to get dimensions transposed, particularly when matrices have to be flattened and reshaped. Thus, it is critical to check the results. In the above optimization, the peak labels should be identical for each point if the peaks are correctly matched.</p>
+<h3 id="Sanity-check-the-optimization-results">Sanity check the optimization results<a class="anchor-link" href="#Sanity-check-the-optimization-results">&#182;</a></h3><p>It is incredibly easy to get dimensions transposed, particularly when matrices have to be flattened and reshaped. Thus, it is critical to check the results. In the above optimization, the peak labels should be identical for each point if the peaks are correctly matched.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&#39;Optimization using CVXOPT succeeded? &#39;</span><span class="p">,</span> \
+<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&#39;Optimization using CVXOPT succeeded? &#39;</span><span class="p">,</span> \
        <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 
@@ -2179,9 +2164,7 @@ In&nbsp;[11]:
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-Optimization using CVXOPT succeeded?  True
-
+<pre>Optimization using CVXOPT succeeded?  True
 </pre>
 </div>
 </div>
@@ -2196,17 +2179,16 @@ Optimization using CVXOPT succeeded?  True
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Another, more graphical sanity check, involves plotting the data sets on two graphs and connecting the matched pairs.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Setup the figure, axes, and plot the data</span>
+<div class=" highlight hl-ipython3"><pre><span class="c"># Setup the figure, axes, and plot the data</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>\
@@ -2691,19 +2673,17 @@ AABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="implementation-using-lp_solve">Implementation using lp_solve</h2>
-<p>The <code>lp_solve</code> wrapper requires all constraint functions to be entered as a single matrix, so <span class="math">\(\matrix{A}\)</span> and <span class="math">\(\matrix{C}\)</span> must be combined and, likewise, <span class="math">\(\matrix{b}\)</span> and <span class="math">\(\matrix{d}\)</span>. The relationships (<span class="math">\(\leq\)</span>, =, and <span class="math">\(\geq\)</span>) are determined by a vector with a negative, zero, or positive value, respectively.</p>
+<h2 id="Implementation-using-lp_solve">Implementation using lp_solve<a class="anchor-link" href="#Implementation-using-lp_solve">&#182;</a></h2><p>The <code>lp_solve</code> wrapper requires all constraint functions to be entered as a single matrix, so $\matrix{A}$ and $\matrix{C}$ must be combined and, likewise, $\matrix{b}$ and $\matrix{d}$. The relationships ($\leq$, =, and $\geq$) are determined by a vector with a negative, zero, or positive value, respectively.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">))</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">b</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">),</span>\
     <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="p">))</span>
@@ -2719,18 +2699,17 @@ In&nbsp;[13]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As with CVXOPT, a set of integers, <code>binVars2</code>, is used set every value of <span class="math">\(\matrix{X}\)</span> to an integer. For <code>lp_solve</code>, the indexing for this set should start at <code>1</code> instead of <code>0</code>. To ensure that each of these integers is binary, a lower bound of <code>0</code> and upper bound of <code>1</code> has to be set as well.</p>
+<p>As with CVXOPT, a set of integers, <code>binVars2</code>, is used set every value of $\matrix{X}$ to an integer. For <code>lp_solve</code>, the indexing for this set should start at <code>1</code> instead of <code>0</code>. To ensure that each of these integers is binary, a lower bound of <code>0</code> and upper bound of <code>1</code> has to be set as well.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[14]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">binVars2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">binVars2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">vlb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 <span class="n">vub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 </pre></div>
@@ -2745,18 +2724,17 @@ In&nbsp;[14]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Important</strong>: <code>lp_solve</code> maximizes the target function. To get the optimization to minimize the function, the value of <span class="math">\(\matrix{f}\)</span> must be negated.</p>
+<p><strong>Important</strong>: <code>lp_solve</code> maximizes the target function. To get the optimization to minimize the function, the value of $\matrix{f}$ must be negated.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[15]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">fneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span>
 </pre></div>
 
 </div>
@@ -2769,18 +2747,17 @@ In&nbsp;[15]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The optimization is performed and then the transformation matrix <span class="math">\(\matrix{X}\)</span> and matched list are calculated as with CVXOPT.</p>
+<p>The optimization is performed and then the transformation matrix $\matrix{X}$ and matched list are calculated as with CVXOPT.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[16]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">output_lpsolve</span> <span class="o">=</span> <span class="n">lp_solve</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">fneg</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">G</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">h</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span><span class="n">vlb</span><span class="o">=</span><span class="n">vlb</span><span class="p">,</span><span class="n">vub</span><span class="o">=</span><span class="n">vub</span><span class="p">,</span><span class="n">xint</span><span class="o">=</span><span class="n">binVars2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">output_lpsolve</span> <span class="o">=</span> <span class="n">lp_solve</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">fneg</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">G</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">h</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span><span class="n">vlb</span><span class="o">=</span><span class="n">vlb</span><span class="p">,</span><span class="n">vub</span><span class="o">=</span><span class="n">vub</span><span class="p">,</span><span class="n">xint</span><span class="o">=</span><span class="n">binVars2</span><span class="p">)</span>
 <span class="n">X_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_lpsolve</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
 <span class="n">match_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">X_lpsolve</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -2795,18 +2772,16 @@ In&nbsp;[16]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="sanity-check-the-optimization-results">Sanity check the optimization results</h3>
+<h3 id="Sanity-check-the-optimization-results">Sanity check the optimization results<a class="anchor-link" href="#Sanity-check-the-optimization-results">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[17]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="s">&#39;Optimization using lp_solve succeeded? &#39;</span><span class="p">,</span> \
+<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&#39;Optimization using lp_solve succeeded? &#39;</span><span class="p">,</span> \
       <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_lpsolve</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 
@@ -2820,9 +2795,7 @@ In&nbsp;[17]:
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-Optimization using lp_solve succeeded?  True
-
+<pre>Optimization using lp_solve succeeded?  True
 </pre>
 </div>
 </div>
@@ -2837,6 +2810,7 @@ Optimization using lp_solve succeeded?  True
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The data could be checked graphically as well if desired.</p>
+
 </div>
 </div>
 </div></p>
@@ -2913,17 +2887,7 @@ Optimization using lp_solve succeeded?  True
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
--->
+  <!-- -->
   </section>
 
   <!-- 
@@ -2941,7 +2905,8 @@ Optimization using lp_solve succeeded?  True
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
-            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
+            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stack Overflow</a></li>
+            <li><a href="https://www.linkedin.com/in/michellelynngill" target="_blank">LinkedIn</a></li>
         </ul>
     </section>
 </aside>    </div>

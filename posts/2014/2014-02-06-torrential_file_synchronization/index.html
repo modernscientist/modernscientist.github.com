@@ -1921,39 +1921,39 @@ init_mathjax();
 <li>Second, the BitTorrent Sync web interface cannot be run if the <code>shared_folders</code> option is used within the configuration file. It is possible to switch between the two methods without resetting the synchronization state by modifying the configuration file (see below) and restarting BitTorrent Sync. Both options cannot be run at once, though.<sup id="fnref:manual"><a class="footnote-ref" href="#fn:manual" rel="footnote">4</a></sup></li>
 </ul>
 <p>Here is my configuration file for BitTorrent Sync on my Backupsy server. The first line of the file contains an example of how the configuration file is loaded as a BitTorrent Sync instance. The web interface is setup in the <code>webui</code> section. Alternatively, the <code>shared_folders</code> section is used if <code>webui</code> is disabled, as has been setup below.</p>
-<div class="highlight"><pre><span class="c1">// /home/user/btsync/bin/btsync --nodaemon --log file --config /home/user/btsync/conf/my_btsync.conf</span>
-<span class="c1">// web interface is disabled</span>
-<span class="p">{</span>
-        <span class="s">&quot;device_name&quot;</span><span class="o">:</span> <span class="s">&quot;Phog&quot;</span><span class="p">,</span>
-        <span class="s">&quot;storage_path&quot;</span> <span class="o">:</span> <span class="s">&quot;/home/user/btsync/sync&quot;</span><span class="p">,</span>
-        <span class="s">&quot;listening_port&quot;</span> <span class="o">:</span> <span class="mh">0</span><span class="p">,</span>
-        <span class="s">&quot;check_for_updates&quot;</span> <span class="o">:</span> <span class="n">false</span><span class="p">,</span>
-        <span class="s">&quot;use_upnp&quot;</span> <span class="o">:</span> <span class="n">false</span><span class="p">,</span>
-        <span class="s">&quot;download_limit&quot;</span> <span class="o">:</span> <span class="mh">0</span><span class="p">,</span>
-        <span class="s">&quot;upload_limit&quot;</span> <span class="o">:</span> <span class="mh">0</span><span class="p">,</span>
-        <span class="s">&quot;disk_low_priority&quot;</span> <span class="o">:</span> <span class="n">true</span><span class="p">,</span>
-        <span class="s">&quot;lan_encrypt_data&quot;</span> <span class="o">:</span> <span class="n">true</span><span class="p">,</span>
-        <span class="s">&quot;lan_use_tcp&quot;</span> <span class="o">:</span> <span class="n">true</span><span class="p">,</span>
-        <span class="s">&quot;rate_limit_local_peers&quot;</span> <span class="o">:</span> <span class="n">false</span><span class="p">,</span>
-        <span class="s">&quot;folder_rescan_interval&quot;</span> <span class="o">:</span> <span class="mh">600</span><span class="p">,</span>
-        <span class="s">&quot;webui&quot;</span> <span class="o">:</span>
-        <span class="p">{</span>
-                <span class="c1">// &quot;listen&quot; : &quot;0.0.0.0:8888&quot;,</span>
-                <span class="c1">// &quot;login&quot; : &quot;xxx&quot;,</span>
-                <span class="c1">// &quot;password&quot; : &quot;xxx&quot;</span>
-        <span class="p">},</span>
-        <span class="s">&quot;shared_folders&quot;</span><span class="o">:</span>
-        <span class="p">[</span>
-                <span class="p">{</span>
-                        <span class="s">&quot;secret&quot;</span><span class="o">:</span><span class="s">&quot;xxx&quot;</span><span class="p">,</span>
-                        <span class="s">&quot;dir&quot;</span><span class="o">:</span><span class="s">&quot;/home/user/research&quot;</span><span class="p">,</span>
-                        <span class="s">&quot;use_relay_server&quot;</span><span class="o">:</span><span class="n">true</span><span class="p">,</span>
-                        <span class="s">&quot;use_dht&quot;</span><span class="o">:</span><span class="n">false</span><span class="p">,</span>
-                        <span class="s">&quot;search_lan&quot;</span><span class="o">:</span><span class="n">false</span><span class="p">,</span>
-                        <span class="s">&quot;use_sync_trash&quot;</span><span class="o">:</span><span class="n">true</span>
-                <span class="p">}</span>
-          <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight"><pre>// /home/user/btsync/bin/btsync --nodaemon --log file --config /home/user/btsync/conf/my_btsync.conf
+// web interface is disabled
+{
+        &quot;device_name&quot;: &quot;Phog&quot;,
+        &quot;storage_path&quot; : &quot;/home/user/btsync/sync&quot;,
+        &quot;listening_port&quot; : 0,
+        &quot;check_for_updates&quot; : false,
+        &quot;use_upnp&quot; : false,
+        &quot;download_limit&quot; : 0,
+        &quot;upload_limit&quot; : 0,
+        &quot;disk_low_priority&quot; : true,
+        &quot;lan_encrypt_data&quot; : true,
+        &quot;lan_use_tcp&quot; : true,
+        &quot;rate_limit_local_peers&quot; : false,
+        &quot;folder_rescan_interval&quot; : 600,
+        &quot;webui&quot; :
+        {
+                // &quot;listen&quot; : &quot;0.0.0.0:8888&quot;,
+                // &quot;login&quot; : &quot;xxx&quot;,
+                // &quot;password&quot; : &quot;xxx&quot;
+        },
+        &quot;shared_folders&quot;:
+        [
+                {
+                        &quot;secret&quot;:&quot;xxx&quot;,
+                        &quot;dir&quot;:&quot;/home/user/research&quot;,
+                        &quot;use_relay_server&quot;:true,
+                        &quot;use_dht&quot;:false,
+                        &quot;search_lan&quot;:false,
+                        &quot;use_sync_trash&quot;:true
+                }
+          ]
+}
 </pre></div>
 
 
@@ -2042,17 +2042,7 @@ init_mathjax();
     <a href="http://www.themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://www.themodernscientist.com/tag/pets.html">pets</a>
     <a href="http://www.themodernscientist.com/tag/openscience.html">openscience</a>
-  <!--     <ul><li class="tag-4"><a href="/tag/meta.html">meta</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/science.html">science</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/mac.html">mac</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/python.html">python</a></li></ul>
-    <ul><li class="tag-0"><a href="/tag/shell.html">shell</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/pets.html">pets</a></li></ul>
-    <ul><li class="tag-1"><a href="/tag/automation.html">automation</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/life.html">life</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/openscience.html">openscience</a></li></ul>
-    <ul><li class="tag-2"><a href="/tag/ios.html">ios</a></li></ul>
--->
+  <!-- -->
   </section>
 
   <!-- 
@@ -2070,7 +2060,8 @@ init_mathjax();
         <ul>
             <li><a href="http://www.twitter.com/modernscientist" target="_blank">Twitter</a></li>
             <li><a href="https://github.com/mlgill" target="_blank">Github</a></li>
-            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stackoverflow</a></li>
+            <li><a href="http://stackoverflow.com/users/943044/mlgill" target="_blank">Stack Overflow</a></li>
+            <li><a href="https://www.linkedin.com/in/michellelynngill" target="_blank">LinkedIn</a></li>
         </ul>
     </section>
 </aside>    </div>
