@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/mlgill
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://themodernscientist.com
+  * I am mlgill (https://keybase.io/mlgill) on keybase.
+  * I have a public key with fingerprint 64D5 7A40 E2C2 1E49 EF96  F194 E45F 4767 96F8 74BB
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01018d1a6d7850c4dbd07209567c71eb349e89b2e5d9b30bdccb4414a3097a78ddc30a",
+            "fingerprint": "64d57a40e2c21e49ef96f194e45f476796f874bb",
+            "host": "keybase.io",
+            "key_id": "e45f476796f874bb",
+            "kid": "01018d1a6d7850c4dbd07209567c71eb349e89b2e5d9b30bdccb4414a3097a78ddc30a",
+            "uid": "b59bdeb6e5ba2432a4df3f088483b419",
+            "username": "mlgill"
+        },
+        "service": {
+            "hostname": "themodernscientist.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1453382599,
+    "expire_in": 157680000,
+    "prev": "f1da2178717013a6d8a2df234f97eb5fad7dc8644f524d5f7821cce214eeeba4",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.49
+Comment: https://keybase.io/crypto
+
+yMI4AnicrZJbSBRRGMdX3S5aYhFYmWRMIRYmczmzZ2bFsKwsMMrajELa5sw5s06u
+O+vMuLaYPZVmCSWED0kXu2CgvRS1EBilknYTMoTFKCq6UUE3EzLQzoi99dh5OXzf
++X+/8/++c/pSk1wpCfev3vAfH3nTkPDw7tkaV9n5Z/11DDJwlPHWMZVkaiNBTCzb
+X6ljxsuwHMtJmFM8GEoiqwKMMAt5VhY9UIUcQQKQiSQjnohYRgKLsKoiADigCKwM
+FShhrAqswuQymh4KEDNs6iGbYj0Ai1ABLOFVniOUockejZMBAaIGoAfSSIIAIVpY
+YVhOBTWHFIvk6QbN0cA/Ze8f+v/su2YKh0QZYYI8REQKDwReAVgTNFaSgCQgwMmO
+0CJmSKkiVF0VDOjBIFOfy9BcRFeJM1anj+lzu4JUGZjKLVUnIVu37DzVqKKMsGnY
+hmoEqabCtsNeB2FHw05NLUH+aZof6SFMx0kLIsS0dCPEeDmqVG3dwXNAFASJF2U5
+lyEHwrpJ/LqjEKFHYulyriERitQ4rPAclCAHWU6go5IUHmu8ADQZEiRqCoZYlTwA
+aCJP30uDEs+pKuE5QAhBCmCc/qpDBuMF1KYSoEhLD4QUu8YkTH3PnXK3KyHFNXNG
+ovPNXCnJ8/5+vu0Fs12XRl1po0deTLQtveLLKW2Ibrm2ba9/bE7j/qSjbxYXn2xO
+ayxpGG//6Tv4vL+9+/S9kqyCRV98TRs+Fuzpq7ldF60/1Xp0ND2+aoRdkBOPPcuQ
+z9hfe4brzn3bfSxx2+HkramfYo1ZdyZb3ncnlpdNLMt+cTnY0+R+2Rwf7PywM2Og
+I39yX+nj5e6hWz/afwl7Yxeuu/vnmhnlXZ+zR6ofFzf7Lq/2ja3bFe5MrmXebcxc
++arkQ29H/u9fsRUdRQ8ahxcOXR+sfRTPK3x/f4wZr541P33T983dhYu6W9Y2DHVe
+jLxaU9bV+1o9tORpS1JXZtuOueknKm8mtmYdsN4WDTwJr++d8/APSTJL9A==
+=oK1B
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mlgill
+
+==================================================================
