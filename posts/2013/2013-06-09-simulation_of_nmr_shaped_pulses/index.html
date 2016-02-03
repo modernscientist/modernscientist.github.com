@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <title>themodernscientist</title>
-  <meta name="author" content="modernscientist">
+  <meta name="author" content="Michelle Lynn Gill">
 
   <link href="http://feedpress.me/themodernscientist-rss" type="application/rss+xml" rel="alternate"
         title="themodernscientist RSS Feed" />
@@ -13,6 +13,59 @@
     <style type="text/css">
 
 /***************************** MLG BEGIN CUSTOM OVERRIDES MLG *****************************/
+
+/* Customize code cells */
+
+div.input_prompt, div.output_prompt, div.prompt {
+  /*display: none !important;*/
+  font-size:0.75em !important;
+}
+
+div.highlight hl-ipython2 {
+    border: 1px solid #cfcfcf !important;
+    border-radius: 2px !important;
+    background: #f7f7f7 !important;
+    background-image:none !important;
+}
+
+div.input_area {
+  padding-left: 0px !important;
+}
+
+pre {
+  box-shadow: none !important;
+  border-radius: 2px !important;
+  background: #f7f7f7 !important;
+  background-image:none !important;
+}
+
+div.output_html h2 {
+  margin-bottom:5px !important;
+}
+
+code {
+  border:0px !important;
+  padding:0px !important;
+  color:#272822 !important;
+}
+
+.entry-content table td.pygmlinenos, .entry-content table td.pygmcode {
+  padding:0px !important;
+  background: #f7f7f7 !important;
+  background-image:none !important;
+  border: 1px solid #cfcfcf !important;
+}
+
+/* Fix table outline and spaces */
+.entry-content table td.pygmlinenos div.pygmlinenodiv pre, 
+.entry-content table td.pygmcode div.pygmhighlight pre {
+  margin-bottom:0em !important;
+  border:0em !important;
+}
+
+article img,article video,article .flash-video {
+  box-shadow:none !important;
+}
 
 
 /* Fix font-size and spacing in snippets and snippet line numbers, part 1/2 */
@@ -1793,7 +1846,7 @@ pre.ipynb {
 img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
 </style>
 
-<script src="http://themodernscientist.com/static/MathJax/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 <script type="text/javascript">
 init_mathjax = function() {
     if (window.MathJax) {
@@ -1914,12 +1967,13 @@ init_mathjax();
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">spy</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="kn">as</span> <span class="nn">spy</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
 </div>
@@ -1942,7 +1996,7 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">load_ext</span> f2pymagic
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">load_ext</span> f2pymagic
 </pre></div>
 
 </div>
@@ -1983,10 +2037,10 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">pulseLength</span> <span class="o">=</span> <span class="mf">1000.</span> <span class="c"># in microseconds</span>
-<span class="n">offset</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">5000.</span><span class="p">,</span> <span class="mf">5000.</span><span class="p">]</span> <span class="c"># in hertz</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">pulseLength</span> <span class="o">=</span> <span class="mf">1000.</span> <span class="c1"># in microseconds</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">5000.</span><span class="p">,</span> <span class="mf">5000.</span><span class="p">]</span> <span class="c1"># in hertz</span>
 <span class="n">n_freq</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">inputMagnetization</span> <span class="o">=</span> <span class="s">&#39;Mz&#39;</span> <span class="c"># &#39;Mx&#39;, &#39;My&#39;, or &#39;Mz&#39;</span>
+<span class="n">inputMagnetization</span> <span class="o">=</span> <span class="s1">&#39;Mz&#39;</span> <span class="c1"># &#39;Mx&#39;, &#39;My&#39;, or &#39;Mz&#39;</span>
 </pre></div>
 
 </div>
@@ -2009,8 +2063,8 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">deltaomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">n_freq</span>
-<span class="n">relativeomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span><span class="n">deltaomega</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">deltaomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">n_freq</span>
+<span class="n">relativeomega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span> <span class="n">deltaomega</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2034,15 +2088,17 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">n_pulse</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c"># number of points in the pulse, set by user</span>
-<span class="n">totalRotation</span> <span class="o">=</span> <span class="mf">180.</span> <span class="c"># in degrees, set by user</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">n_pulse</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># number of points in the pulse, set by user</span>
+<span class="n">totalRotation</span> <span class="o">=</span> <span class="mf">180.</span> <span class="c1"># in degrees, set by user</span>
 
-<span class="n">fourierCoeffA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.49</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">])</span>
+<span class="n">fourierCoeffA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.49</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> 
+                          <span class="o">-</span><span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07</span><span class="p">,</span> 
+                          <span class="mf">0.04</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">])</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">)</span><span class="o">/</span><span class="n">n_pulse</span><span class="o">*</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
-<span class="n">nCosCoef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">fourierCoeffA</span><span class="p">))</span>
+<span class="n">nCosCoef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fourierCoeffA</span><span class="p">))</span>
 <span class="n">cosMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">nCosCoef</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]</span><span class="o">*</span><span class="n">x</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
-<span class="n">cosMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_pulse</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">cosMat</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fourierCoeffA</span>
-<span class="n">sumMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cosMat</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cosMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_pulse</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">cosMat</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fourierCoeffA</span>
+<span class="n">sumMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cosMat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2065,7 +2121,7 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">pulseShapeArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pulse</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">pulseShapeArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pulse</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sumMat</span><span class="p">)</span>
 <span class="n">pulseShapeArray</span><span class="p">[</span><span class="n">sumMat</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">180.</span>
 </pre></div>
@@ -2090,7 +2146,7 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">pulseFile</span> <span class="o">=</span> <span class="s">&#39;/opt/topspin/exp/stan/nmr/lists/wave/Reburp.1000&#39;</span> <span class="c"># path to shaped pulse file, set by user</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">pulseFile</span> <span class="o">=</span> <span class="s1">&#39;/opt/topspin/exp/stan/nmr/lists/wave/Reburp.1000&#39;</span> <span class="c1"># path to shaped pulse file, set by user</span>
 </pre></div>
 
 </div>
@@ -2113,14 +2169,14 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">StringIO</span> <span class="k">import</span> <span class="n">StringIO</span>
-<span class="n">pulseString</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">pulseFile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">pulseShapeArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">pulseString</span><span class="p">),</span><span class="n">comments</span><span class="o">=</span><span class="s">&#39;#&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;, &#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="n">pulseString</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">pulseFile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">pulseShapeArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">pulseString</span><span class="p">),</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
 <span class="n">n_pulse</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">totalRotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&quot;&quot;&quot;SHAPE_TOTROT=\s?(.*)&quot;&quot;&quot;</span><span class="p">,</span><span class="n">pulseString</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="c"># Option to read the scaling factor from the file instead of calculating it below</span>
-<span class="c"># scalingFactor = np.float(re.search(&quot;&quot;&quot;SHAPE_INTEGFAC=\s?(.*)&quot;&quot;&quot;,pulseString).group(1))</span>
+<span class="n">totalRotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;SHAPE_TOTROT=\s?(.*)&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">pulseString</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># Option to read the scaling factor from the file instead of calculating it below</span>
+<span class="c1"># scalingFactor = np.float(re.search(&quot;&quot;&quot;SHAPE_INTEGFAC=\s?(.*)&quot;&quot;&quot;,pulseString).group(1))</span>
 </pre></div>
 
 </div>
@@ -2143,7 +2199,7 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">pulseShapeInten</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">pulseShapeInten</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">pulseShapePhase</span> <span class="o">=</span> <span class="n">pulseShapeArray</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
 </pre></div>
 
@@ -2167,18 +2223,18 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">),</span><span class="n">pulseShapeInten</span><span class="p">,</span><span class="s">&#39;b-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Magnitude&#39;</span><span class="p">)</span>
-<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">),</span><span class="n">pulseShapePhase</span><span class="p">,</span><span class="s">&#39;r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Phase&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">),</span><span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">)))</span>
+<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">),</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Magnitude&#39;</span><span class="p">)</span>
+<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">),</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">),</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">)))</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.1</span><span class="p">))</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Pulse Length&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Phase&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">],[</span><span class="n">l1</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l2</span><span class="o">.</span><span class="n">get_label</span><span class="p">()])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Pulse Length&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">],</span> <span class="p">[</span><span class="n">l1</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l2</span><span class="o">.</span><span class="n">get_label</span><span class="p">()])</span>
 </pre></div>
 
 </div>
@@ -2811,7 +2867,7 @@ rkJggg==
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">xPulseShape</span> <span class="o">=</span> <span class="n">pulseShapeInten</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">xPulseShape</span> <span class="o">=</span> <span class="n">pulseShapeInten</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">)</span>
 <span class="n">yPulseShape</span> <span class="o">=</span> <span class="n">pulseShapeInten</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">)</span>
 </pre></div>
 
@@ -2835,16 +2891,16 @@ rkJggg==
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
 <span class="n">ax4</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">),</span><span class="n">xPulseShape</span><span class="p">,</span><span class="s">&#39;b-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Amplitude&#39;</span><span class="p">)</span>
-<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">),</span><span class="n">yPulseShape</span><span class="p">,</span><span class="s">&#39;r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Phase&#39;</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Pulse Length&#39;</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Amplitude&#39;</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Phase&#39;</span><span class="p">)</span>
+<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">),</span> <span class="n">xPulseShape</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">),</span> <span class="n">yPulseShape</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Pulse Length&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">],[</span><span class="n">l1</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l2</span><span class="o">.</span><span class="n">get_label</span><span class="p">()])</span>
 </pre></div>
 
@@ -3408,9 +3464,9 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">scalingFactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xPulseShape</span><span class="p">)</span><span class="o">/</span><span class="n">n_pulse</span>
-<span class="n">gammaB1max</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">pulseLength</span> <span class="o">*</span> <span class="mf">360.</span><span class="o">/</span><span class="n">totalRotation</span><span class="p">)</span><span class="o">/</span><span class="n">scalingFactor</span> <span class="o">*</span> <span class="mi">1</span><span class="n">e6</span>
-<span class="n">nu1maxdt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">gammaB1max</span><span class="o">*</span><span class="n">pulseLength</span><span class="o">/</span><span class="n">n_pulse</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">scalingFactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xPulseShape</span><span class="p">)</span><span class="o">/</span><span class="n">n_pulse</span>
+<span class="n">gammaB1max</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">pulseLength</span> <span class="o">*</span> <span class="mf">360.</span><span class="o">/</span><span class="n">totalRotation</span><span class="p">)</span><span class="o">/</span><span class="n">scalingFactor</span> <span class="o">*</span> <span class="mf">1e6</span>
+<span class="n">nu1maxdt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e-6</span><span class="o">*</span><span class="n">gammaB1max</span><span class="o">*</span><span class="n">pulseLength</span><span class="o">/</span><span class="n">n_pulse</span>
 </pre></div>
 
 </div>
@@ -3433,10 +3489,10 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">inputVector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
-<span class="n">inputMagnetizationDict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;mx&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s">&#39;my&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s">&#39;mz&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span> <span class="p">}</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">inputVector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">inputMagnetizationDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mx&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s1">&#39;my&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]),</span> <span class="s1">&#39;mz&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span> <span class="p">}</span>
 <span class="k">if</span> <span class="n">inputMagnetization</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">inputMagnetizationDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-	<span class="n">inputVector</span> <span class="o">=</span> <span class="n">inputMagnetizationDict</span><span class="p">[</span><span class="n">inputMagnetization</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+    <span class="n">inputVector</span> <span class="o">=</span> <span class="n">inputMagnetizationDict</span><span class="p">[</span><span class="n">inputMagnetization</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
 <span class="n">vectorComponent</span> <span class="o">=</span> <span class="n">inputVector</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
 </pre></div>
 
@@ -3461,25 +3517,30 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
-    <span class="c"># Functions for the y and z-rotations and the the function for a generic rotation</span>
-    <span class="n">yrotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">beta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)]])</span>
-    <span class="n">zrotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">beta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-    <span class="n">grotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">zrotation</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">yrotation</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">zrotation</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> \
+<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> 
+                      <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
+    <span class="c1"># Functions for the y and z-rotations and the the function for a generic rotation</span>
+    <span class="n">yrotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">beta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)],</span> 
+                                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                                       <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)]])</span>
+    <span class="n">zrotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">beta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                                       <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="n">grotation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">zrotation</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">yrotation</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">zrotation</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> 
                                           <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">yrotation</span><span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">),</span><span class="n">zrotation</span><span class="p">(</span><span class="o">-</span><span class="n">phi</span><span class="p">)))))</span>
     
     
     <span class="n">xyzdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">)))</span>
     <span class="n">phi</span> <span class="o">=</span> <span class="n">pulseShapePhase</span>
     
-    <span class="c"># Loop through the entire frequency range calculating the rotation matrix (r) at each frequency</span>
+    <span class="c1"># Loop through the entire frequency range calculating the rotation matrix (r) at each frequency</span>
     <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">)):</span>
     
         <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">relativeomega</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">nu1maxdt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         
         <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="c"># The rotation matrix is a recursive loop through each step of the shaped pulse</span>
+        <span class="c1"># The rotation matrix is a recursive loop through each step of the shaped pulse</span>
         <span class="k">for</span> <span class="n">pulseindex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_pulse</span><span class="p">):</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">grotation</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">pulseindex</span><span class="p">],</span><span class="n">theta</span><span class="p">[</span><span class="n">pulseindex</span><span class="p">],</span><span class="n">phi</span><span class="p">[</span><span class="n">pulseindex</span><span class="p">])</span>
             <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">prop</span><span class="p">)</span>
@@ -3498,7 +3559,9 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_py_slow(relativeomega, pulseShapeInten, pulseShapePhase, gammaB1max, nu1maxdt, inputVector, n_pulse, n_freq)
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_py_slow(relativeomega, pulseShapeInten, 
+                          <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> 
+                          <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3536,7 +3599,7 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">spy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s">&#39;a,b,t,p&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">spy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,b,t,p&#39;</span><span class="p">)</span>
 <span class="n">zr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">spy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="o">-</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">xr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">spy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="o">-</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">)]])</span>
 <span class="n">yr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">spy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">spy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">spy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">)]])</span>
@@ -3563,7 +3626,7 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">gr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">gr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3604,13 +3667,13 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">an</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">an</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">pn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">gr</span><span class="p">(</span><span class="n">an</span><span class="p">,</span><span class="n">tn</span><span class="p">,</span><span class="n">pn</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="s">&quot;Sad trombone. The SymPy function doesn&#39;t work with NumPy arrays.&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Sad trombone. The SymPy function doesn&#39;t work with NumPy arrays.&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3639,10 +3702,10 @@ VgAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">gr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">gr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="nb">print</span> <span class="s">&#39;r[%d,%d] = %s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">spy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;r[</span><span class="si">%d</span><span class="s1">,</span><span class="si">%d</span><span class="s1">] = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">spy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">])))</span>
 </pre></div>
 
 </div>
@@ -3687,13 +3750,14 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
-    <span class="c"># Use broadcasting to create 2D arrays (n_freq x n_rows) for each of the angles</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> 
+                      <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
+    <span class="c1"># Use broadcasting to create 2D arrays (n_freq x n_rows) for each of the angles</span>
     <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],(</span><span class="n">n_freq</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span> <span class="n">relativeomega</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span>
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">nu1maxdt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">relativeomega</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c"># Then calculate their cosine/sine functions</span>
+    <span class="c1"># Then calculate their cosine/sine functions</span>
     <span class="n">cosp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
     <span class="n">sinp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
     <span class="n">cosa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
@@ -3701,7 +3765,7 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
     <span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="n">sint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     
-    <span class="c"># Calculate each element of the rotation matrix</span>
+    <span class="c1"># Calculate each element of the rotation matrix</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n_freq</span><span class="p">,</span><span class="n">n_pulse</span><span class="p">))</span>
     <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sinp</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosa</span> <span class="o">+</span> <span class="n">sint</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">cosa</span><span class="o">*</span><span class="n">cosp</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cost</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">sina</span><span class="o">*</span><span class="n">cost</span> <span class="o">-</span> <span class="n">sinp</span><span class="o">*</span><span class="n">sint</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosa</span><span class="o">*</span><span class="n">cosp</span> <span class="o">+</span> <span class="n">sinp</span><span class="o">*</span><span class="n">sint</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosp</span>
@@ -3713,13 +3777,13 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
     <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">cosa</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sinp</span><span class="o">*</span><span class="n">cost</span> <span class="o">+</span> <span class="n">sina</span><span class="o">*</span><span class="n">cosp</span><span class="p">)</span><span class="o">*</span><span class="n">sint</span>
     <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sint</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosa</span> <span class="o">+</span> <span class="n">cost</span><span class="o">**</span><span class="mi">2</span>
     
-    <span class="c"># Calculate the propagator for the pulse--this is a recursive multiplication so I don&#39;t</span>
-    <span class="c"># know of a way to vectorize this loop. If someone knows, please share in the comments</span>
+    <span class="c1"># Calculate the propagator for the pulse--this is a recursive multiplication so I don&#39;t</span>
+    <span class="c1"># know of a way to vectorize this loop. If someone knows, please share in the comments</span>
     <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)[:,:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n_freq</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">pulseindex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_pulse</span><span class="p">):</span>
         <span class="n">r_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">r</span><span class="p">[:,:,:,</span><span class="n">pulseindex</span><span class="p">])</span>
         
-        <span class="c"># Must create immutable copies of the views for multiplication</span>
+        <span class="c1"># Must create immutable copies of the views for multiplication</span>
         <span class="n">prop00</span> <span class="o">=</span> <span class="n">prop</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">prop01</span> <span class="o">=</span> <span class="n">prop</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">prop02</span> <span class="o">=</span> <span class="n">prop</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -3751,14 +3815,14 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
         <span class="n">prop</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r20</span><span class="o">*</span><span class="n">prop01</span> <span class="o">+</span> <span class="n">r21</span><span class="o">*</span><span class="n">prop11</span> <span class="o">+</span> <span class="n">r22</span><span class="o">*</span><span class="n">prop21</span>
         <span class="n">prop</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">r20</span><span class="o">*</span><span class="n">prop02</span> <span class="o">+</span> <span class="n">r21</span><span class="o">*</span><span class="n">prop12</span> <span class="o">+</span> <span class="n">r22</span><span class="o">*</span><span class="n">prop22</span>
 
-        <span class="c"># This is a looped alternative to the above, but it is slower</span>
-        <span class="c"># for i in range(3):</span>
-        <span class="c">#     for j in range(3):</span>
-        <span class="c">#         for k in range(3):</span>
-        <span class="c">#             prop[i,j] += r_tmp[i,k]*prop[k,j]</span>
+        <span class="c1"># This is a looped alternative to the above, but it is slower</span>
+        <span class="c1"># for i in range(3):</span>
+        <span class="c1">#     for j in range(3):</span>
+        <span class="c1">#         for k in range(3):</span>
+        <span class="c1">#             prop[i,j] += r_tmp[i,k]*prop[k,j]</span>
         
-    <span class="c"># Since the starting magnetization is x, y, or z, just pick the right index</span>
-    <span class="c"># rather than multiplying</span>
+    <span class="c1"># Since the starting magnetization is x, y, or z, just pick the right index</span>
+    <span class="c1"># rather than multiplying</span>
     <span class="n">xyzdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">prop</span><span class="p">[:,</span><span class="n">vectorComponent</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">xyzdata</span>
@@ -3784,7 +3848,9 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_py_fast(relativeomega, pulseShapeInten, pulseShapePhase, gammaB1max, nu1maxdt, vectorComponent, n_pulse, n_freq)
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_py_fast(relativeomega, pulseShapeInten, 
+                          <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> 
+                          <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3811,7 +3877,7 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for the vectorized NumPy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.428</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for the vectorized NumPy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.428</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -3848,7 +3914,7 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%%</span><span class="k">f2py</span>
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">f2py</span>
 ! -*- f90 -*-
 subroutine propcalc(alpha, theta, phi, n_freq, n_pulse, prop)
 
@@ -3952,13 +4018,14 @@ end
 <div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
-    <span class="c"># Setup the angles using broadcasting as before</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> 
+                   <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">):</span>
+    <span class="c1"># Setup the angles using broadcasting as before</span>
     <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">pulseShapePhase</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],(</span><span class="n">n_freq</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span> <span class="n">relativeomega</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span>
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">nu1maxdt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pulseShapeInten</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">relativeomega</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">/</span><span class="n">gammaB1max</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c"># Calculate the propagator and select the appropriate magnetization</span>
+    <span class="c1"># Calculate the propagator and select the appropriate magnetization</span>
     <span class="n">prop</span> <span class="o">=</span> <span class="n">propcalc</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">)</span>
     <span class="n">xyzdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">prop</span><span class="p">[:,</span><span class="n">vectorComponent</span><span class="p">])</span>
     
@@ -3975,7 +4042,8 @@ end
 <div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_fort(relativeomega, pulseShapeInten, pulseShapePhase, gammaB1max, nu1maxdt, vectorComponent, n_pulse, n_freq)
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">timeit</span> pulseprop_fort(relativeomega, pulseShapeInten, 
+                       <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -4002,8 +4070,8 @@ end
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for fortran over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
-<span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for fortran over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span> <span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for fortran over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for fortran over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.140</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -4043,7 +4111,7 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">load_ext</span> cythonmagic
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">load_ext</span> cythonmagic
 </pre></div>
 
 </div>
@@ -4071,7 +4139,7 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">c</span><span class="o">=-</span><span class="mf">03</span>
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">c</span><span class="o">=-</span><span class="mf">03</span>
 <span class="c">#!python</span>
 <span class="c">#cython: boundscheck=False</span>
 <span class="c">#cython: wraparound=False</span>
@@ -4089,7 +4157,7 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 
 
 <span class="k">cdef</span> <span class="kt">void</span> <span class="nf">grotation</span><span class="p">(</span><span class="n">double</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">double</span> <span class="n">theta</span><span class="p">,</span> <span class="n">double</span> <span class="n">phi</span><span class="p">,</span> <span class="n">real_t</span><span class="p">[:,::</span><span class="mf">1</span><span class="p">]</span> <span class="n">r</span><span class="p">)</span> <span class="k">nogil</span><span class="p">:</span>
-    <span class="n">cdef</span><span class="p">:</span>
+    <span class="k">cdef</span><span class="p">:</span>
         <span class="n">double</span> <span class="n">cosp</span><span class="p">,</span> <span class="n">sinp</span><span class="p">,</span> <span class="n">cosa</span><span class="p">,</span> <span class="n">sina</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">sint</span>
         
     <span class="n">cosp</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
@@ -4110,7 +4178,7 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
     <span class="n">r</span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">cosa</span><span class="o">*</span><span class="n">cost</span><span class="o">**</span><span class="mf">2</span> <span class="o">+</span> <span class="n">cosa</span> <span class="o">+</span> <span class="n">cost</span><span class="o">**</span><span class="mf">2</span>
     
 <span class="k">cdef</span> <span class="kt">void</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">real_t</span><span class="p">[:,::</span><span class="mf">1</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span> <span class="n">real_t</span><span class="p">[:,::</span><span class="mf">1</span><span class="p">]</span> <span class="n">b</span><span class="p">,</span> <span class="n">real_t</span><span class="p">[:,::</span><span class="mf">1</span><span class="p">]</span> <span class="n">out</span><span class="p">)</span> <span class="k">nogil</span><span class="p">:</span>
-    <span class="n">cdef</span><span class="p">:</span>
+    <span class="k">cdef</span><span class="p">:</span>
         <span class="n">Py_ssize_t</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">m</span>
     
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">3</span><span class="p">):</span>
@@ -4129,7 +4197,7 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
                      <span class="n">real_t</span> <span class="n">nu1maxdt</span><span class="p">,</span> 
                      <span class="n">real_t</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">inputVector</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n_freq</span><span class="p">):</span>
     
-    <span class="n">cdef</span><span class="p">:</span>
+    <span class="k">cdef</span><span class="p">:</span>
         <span class="n">Py_ssize_t</span> <span class="n">ind</span><span class="p">,</span> <span class="n">pulseindex</span>
         <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">real_t</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">]</span> <span class="n">xyzdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mf">3</span><span class="p">,</span> <span class="n">relativeomega</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">real_dtype</span><span class="p">)</span>
         <span class="n">real_t</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">pulseShapePhase</span>
@@ -4172,8 +4240,10 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">inv2</span> <span class="o">=</span> <span class="n">inputVector</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-<span class="o">%</span><span class="k">timeit</span> pulseprop_cython(relativeomega, pulseShapeInten, pulseShapePhase, gammaB1max, nu1maxdt, inv2, n_pulse, n_freq)
+<div class=" highlight hl-ipython2"><pre><span class="n">inv2</span> <span class="o">=</span> <span class="n">inputVector</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> pulseprop_cython(relativeomega, pulseShapeInten, 
+                         <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> 
+                         <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inv2</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -4200,9 +4270,9 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for cython over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.152</span><span class="p">)</span>
-<span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for cython over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.152</span><span class="p">)</span>
-<span class="nb">print</span> <span class="s">&quot;Relative speed up of %.0f times for cython over the fortran function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.140</span><span class="o">/</span><span class="mf">0.152</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for cython over the slow numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">86.</span><span class="o">/</span><span class="mf">0.152</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for cython over the vectorized numpy function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.428</span><span class="o">/</span><span class="mf">0.152</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Relative speed up of </span><span class="si">%.0f</span><span class="s2"> times for cython over the fortran function.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.140</span><span class="o">/</span><span class="mf">0.152</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -4251,10 +4321,21 @@ Relative speed up of 1 times for cython over the fortran function.
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">xyzdata_numpyS</span> <span class="o">=</span> <span class="n">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
-<span class="n">xyzdata_numpyF</span> <span class="o">=</span> <span class="n">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
-<span class="n">xyzdata_fortran</span> <span class="o">=</span> <span class="n">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
-<span class="n">xyzdata_cython</span> <span class="o">=</span> <span class="n">pulseprop_cython</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inv2</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">xyzdata_numpyS</span> <span class="o">=</span> <span class="n">pulseprop_py_slow</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> 
+                                   <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> 
+                                   <span class="n">nu1maxdt</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
+
+<span class="n">xyzdata_numpyF</span> <span class="o">=</span> <span class="n">pulseprop_py_fast</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> 
+                                   <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> 
+                                   <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
+
+<span class="n">xyzdata_fortran</span> <span class="o">=</span> <span class="n">pulseprop_fort</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> 
+                                 <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> 
+                                 <span class="n">vectorComponent</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
+
+<span class="n">xyzdata_cython</span> <span class="o">=</span> <span class="n">pulseprop_cython</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">pulseShapeInten</span><span class="p">,</span> 
+                                  <span class="n">pulseShapePhase</span><span class="p">,</span> <span class="n">gammaB1max</span><span class="p">,</span> <span class="n">nu1maxdt</span><span class="p">,</span> 
+                                  <span class="n">inv2</span><span class="p">,</span> <span class="n">n_pulse</span><span class="p">,</span> <span class="n">n_freq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -4277,17 +4358,17 @@ Relative speed up of 1 times for cython over the fortran function.
 <div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 <span class="n">ax5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Slow, Mz&#39;</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Fast, Mz&#39;</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;bs&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Fortran, Mz&#39;</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;c.&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Cython, Mz&#39;</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Relative Intensity&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Slow, Mz&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Fast, Mz&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;bs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fortran, Mz&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span> <span class="p">,</span><span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;c.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cython, Mz&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Intensity&#39;</span><span class="p">)</span>
 <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
-<span class="n">ax5</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 
@@ -4865,17 +4946,17 @@ glgAAADEHYJYAAAAxB2CWAAAAMQdglgAAADEHYJYAAAAxJ3/DwkOe/beVXMdAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 <span class="n">ax6</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Slow, Mx&#39;</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Fast, Mx&#39;</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;bs&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Fortran, Mx&#39;</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;c.&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Cython, Mx&#39;</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Relative Intensity&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Slow, Mx&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Fast, Mx&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;bs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fortran, Mx&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;c.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cython, Mx&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Intensity&#39;</span><span class="p">)</span>
 <span class="n">ax6</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
-<span class="n">ax6</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">ax6</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 
@@ -5580,17 +5661,17 @@ AAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
 <span class="n">ax7</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Slow, My&#39;</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;NumPy Fast, My&#39;</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;bs&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Fortran, My&#39;</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span><span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;c.&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Cython, My&#39;</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Relative Intensity&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Slow, My&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_numpyF</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NumPy Fast, My&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_fortran</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;bs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fortran, My&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relativeomega</span><span class="p">,</span> <span class="n">xyzdata_cython</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;c.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cython, My&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Omega (Hz)&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Intensity&#39;</span><span class="p">)</span>
 <span class="n">ax7</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
-<span class="n">ax7</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">ax7</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 
@@ -6233,7 +6314,7 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 <hr />
 <p><em>Edit:</em> The original version of this notebook contained two errors. The <a href="https://gist.github.com/mlgill/5774126">first</a> involved the modification of NumPy ndarray views during matrix multiplication within the faster NumPy function. The <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-929405468">second</a> chose <code>vectorComponent</code> from the wrong axis at the conclusion of the faster NumPy function and in the Python wrapper that calls the Fortran function. This resulted in an inversion of the <em>y</em>-axis magnetization. Both errors have been corrected. Thanks to <a href="https://twitter.com/synapticarbors">Joshua Adelman</a> for catching the second error. A minor change to the matrix simplification calculation due to an update of the SymPy package was also made, however this change had no effect on the result.</p>
 <p><em>Edit:</em> A Cython version of the propagator function provided by Joshua Adelman has been added above.</p>
-<p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/NMRShapedPulseSimulation.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/NMRShapedPulseSimulation.ipynb">here</a>.</em> </p>
+<p><em>This post was written in an IPython notebook, which can be viewed and downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/NMRShapedPulseSimulation.ipynb">here</a>.</em> </p>
 <div class="footnote">
 <hr />
 <ol>
@@ -6330,7 +6411,7 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by Michelle Lynn Gill |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <title>themodernscientist</title>
-  <meta name="author" content="modernscientist">
+  <meta name="author" content="Michelle Lynn Gill">
 
   <link href="http://feedpress.me/themodernscientist-rss" type="application/rss+xml" rel="alternate"
         title="themodernscientist RSS Feed" />
@@ -13,6 +13,59 @@
     <style type="text/css">
 
 /***************************** MLG BEGIN CUSTOM OVERRIDES MLG *****************************/
+
+/* Customize code cells */
+
+div.input_prompt, div.output_prompt, div.prompt {
+  /*display: none !important;*/
+  font-size:0.75em !important;
+}
+
+div.highlight hl-ipython2 {
+    border: 1px solid #cfcfcf !important;
+    border-radius: 2px !important;
+    background: #f7f7f7 !important;
+    background-image:none !important;
+}
+
+div.input_area {
+  padding-left: 0px !important;
+}
+
+pre {
+  box-shadow: none !important;
+  border-radius: 2px !important;
+  background: #f7f7f7 !important;
+  background-image:none !important;
+}
+
+div.output_html h2 {
+  margin-bottom:5px !important;
+}
+
+code {
+  border:0px !important;
+  padding:0px !important;
+  color:#272822 !important;
+}
+
+.entry-content table td.pygmlinenos, .entry-content table td.pygmcode {
+  padding:0px !important;
+  background: #f7f7f7 !important;
+  background-image:none !important;
+  border: 1px solid #cfcfcf !important;
+}
+
+/* Fix table outline and spaces */
+.entry-content table td.pygmlinenos div.pygmlinenodiv pre, 
+.entry-content table td.pygmcode div.pygmhighlight pre {
+  margin-bottom:0em !important;
+  border:0em !important;
+}
+
+article img,article video,article .flash-video {
+  box-shadow:none !important;
+}
 
 
 /* Fix font-size and spacing in snippets and snippet line numbers, part 1/2 */
@@ -1793,7 +1846,7 @@ pre.ipynb {
 img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
 </style>
 
-<script src="http://themodernscientist.com/static/MathJax/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 <script type="text/javascript">
 init_mathjax = function() {
     if (window.MathJax) {
@@ -1919,12 +1972,13 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="k">import</span> <span class="n">ConnectionPatch</span>
-<span class="kn">from</span> <span class="nn">cvxopt</span> <span class="k">import</span> <span class="n">matrix</span>
-<span class="kn">from</span> <span class="nn">cvxopt.glpk</span> <span class="k">import</span> <span class="n">ilp</span>
-<span class="kn">from</span> <span class="nn">lp_solve.lp_solve</span> <span class="k">import</span> <span class="n">lp_solve</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">ConnectionPatch</span>
+<span class="kn">from</span> <span class="nn">cvxopt</span> <span class="kn">import</span> <span class="n">matrix</span>
+<span class="kn">from</span> <span class="nn">cvxopt.glpk</span> <span class="kn">import</span> <span class="n">ilp</span>
+<span class="kn">from</span> <span class="nn">lp_solve.lp_solve</span> <span class="kn">import</span> <span class="n">lp_solve</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
 </div>
@@ -1947,8 +2001,8 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">],[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">],[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">],[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">],[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">]])</span>
-<span class="nb">print</span> <span class="n">data1</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1989,7 +2043,7 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="mf">5.</span>
 <span class="n">peakReorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peakReorder</span><span class="p">)</span>
@@ -2016,7 +2070,7 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">data1names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;peak1&#39;</span><span class="p">,</span><span class="s">&#39;peak2&#39;</span><span class="p">,</span><span class="s">&#39;peak3&#39;</span><span class="p">,</span><span class="s">&#39;peak4&#39;</span><span class="p">,</span><span class="s">&#39;peak5&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">data1names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;peak1&#39;</span><span class="p">,</span> <span class="s1">&#39;peak2&#39;</span><span class="p">,</span> <span class="s1">&#39;peak3&#39;</span><span class="p">,</span> <span class="s1">&#39;peak4&#39;</span><span class="p">,</span> <span class="s1">&#39;peak5&#39;</span><span class="p">])</span>
 <span class="n">data2names</span> <span class="o">=</span> <span class="n">data1names</span><span class="p">[</span><span class="n">peakReorder</span><span class="p">]</span>
 </pre></div>
 
@@ -2040,8 +2094,8 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">xdist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ydist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">][:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">xdist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ydist</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="p">(</span><span class="n">xdist</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">ydist</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
 <span class="n">n_data1</span><span class="p">,</span> <span class="n">n_data2</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
@@ -2074,10 +2128,10 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">)))</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_data1</span><span class="p">))</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_data2</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_data2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_data1</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 </pre></div>
 
@@ -2101,9 +2155,10 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">binVars</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c"># ilp won&#39;t accept numpy&#39;s arange even when as a set</span>
-<span class="n">output_cvxopt</span> <span class="o">=</span> <span class="n">ilp</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">f</span><span class="p">),</span><span class="n">G</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">C</span><span class="p">),</span><span class="n">h</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="n">A</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="n">b</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>\
-                    <span class="n">I</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">),</span><span class="n">B</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">binVars</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c1"># ilp won&#39;t accept numpy&#39;s arange even when as a set</span>
+<span class="n">output_cvxopt</span> <span class="o">=</span> <span class="n">ilp</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">G</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">C</span><span class="p">),</span> <span class="n">h</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> 
+                    <span class="n">A</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="n">matrix</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+                    <span class="n">I</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">binVars</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -2126,7 +2181,7 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">X_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_cvxopt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">X_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_cvxopt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span> <span class="n">n_data2</span><span class="p">))</span>
 <span class="n">match_cvxopt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">X_cvxopt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
@@ -2150,8 +2205,8 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&#39;Optimization using CVXOPT succeeded? &#39;</span><span class="p">,</span> \
-       <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Optimization using CVXOPT succeeded? &#39;</span><span class="p">,</span> 
+       <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -2188,40 +2243,42 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Setup the figure, axes, and plot the data</span>
+<div class=" highlight hl-ipython2"><pre><span class="c1"># Setup the figure, axes, and plot the data</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>\
+<span class="n">fig</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
          <span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">data1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
 
-<span class="c"># Make the axes limits and labels nice</span>
-<span class="n">datajoin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">))</span>
-<span class="n">minLim</span> <span class="o">=</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">datajoin</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">maxLim</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datajoin</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">maxLim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">maxLim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">maxLim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">maxLim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s">&#39;data1&#39;</span><span class="p">,</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">),</span>\
-          <span class="n">xycoords</span><span class="o">=</span><span class="s">&#39;axes fraction&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;medium&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s">&#39;CVXOPT: data2&#39;</span><span class="p">,</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">),</span>\
-          <span class="n">xycoords</span><span class="o">=</span><span class="s">&#39;axes fraction&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;medium&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">)</span>
+<span class="c1"># Make the axes limits and labels nice</span>
+<span class="n">datajoin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">))</span>
+<span class="n">minLim</span> <span class="o">=</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">datajoin</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">maxLim</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datajoin</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">maxLim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">maxLim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">maxLim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">minLim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">maxLim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;data1&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">),</span> 
+          <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;CVXOPT: data2&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">),</span> 
+          <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
 
-<span class="c"># Label each data point and draw a line to connect the matched pairs</span>
+<span class="c1"># Label each data point and draw a line to connect the matched pairs</span>
 <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">l1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="ow">in</span> \
-    <span class="nb">zip</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data1names</span><span class="p">,</span> <span class="n">data2</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">],</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">]):</span>
-	<span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span><span class="n">d1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">),</span><span class="n">xycoords</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;small&#39;</span><span class="p">)</span>
-	<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">d2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span><span class="n">d2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">),</span><span class="n">xycoords</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;small&#39;</span><span class="p">)</span>
-	<span class="c"># The axis to which the ConnectionPatch is added to has to be `axesA`</span>
-	<span class="n">con</span> <span class="o">=</span> <span class="n">ConnectionPatch</span><span class="p">(</span><span class="n">xyA</span><span class="o">=</span><span class="p">(</span><span class="n">d2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">xyB</span><span class="o">=</span><span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">coordsA</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">,</span> \
-                <span class="n">coordsB</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="n">axesA</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">axesB</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
-	<span class="n">ax2</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">l1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data1names</span><span class="p">,</span> 
+                           <span class="n">data2</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">],</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_cvxopt</span><span class="p">]):</span>
+    
+    <span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span><span class="n">d1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">d2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span><span class="n">d2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offset</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># The axis to which the ConnectionPatch is added to has to be `axesA`</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">ConnectionPatch</span><span class="p">(</span><span class="n">xyA</span><span class="o">=</span><span class="p">(</span><span class="n">d2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">xyB</span><span class="o">=</span><span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">coordsA</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> 
+                <span class="n">coordsB</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">axesA</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">axesB</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2683,10 +2740,10 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">))</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">b</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">),</span>\
-    <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_data2</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -2709,9 +2766,9 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">binVars2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">vlb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
-<span class="n">vub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">binVars2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">vlb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+<span class="n">vub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2734,7 +2791,7 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">fneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">fneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span>
 </pre></div>
 
 </div>
@@ -2757,8 +2814,9 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">output_lpsolve</span> <span class="o">=</span> <span class="n">lp_solve</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">fneg</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">G</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">h</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span><span class="n">vlb</span><span class="o">=</span><span class="n">vlb</span><span class="p">,</span><span class="n">vub</span><span class="o">=</span><span class="n">vub</span><span class="p">,</span><span class="n">xint</span><span class="o">=</span><span class="n">binVars2</span><span class="p">)</span>
-<span class="n">X_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_lpsolve</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span><span class="n">n_data2</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">output_lpsolve</span> <span class="o">=</span> <span class="n">lp_solve</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">fneg</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> 
+                          <span class="n">vlb</span><span class="o">=</span><span class="n">vlb</span><span class="p">,</span> <span class="n">vub</span><span class="o">=</span><span class="n">vub</span><span class="p">,</span> <span class="n">xint</span><span class="o">=</span><span class="n">binVars2</span><span class="p">)</span>
+<span class="n">X_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output_lpsolve</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_data1</span><span class="p">,</span> <span class="n">n_data2</span><span class="p">))</span>
 <span class="n">match_lpsolve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">X_lpsolve</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
@@ -2781,8 +2839,8 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span> <span class="s">&#39;Optimization using lp_solve succeeded? &#39;</span><span class="p">,</span> \
-      <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_lpsolve</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Optimization using lp_solve succeeded? &#39;</span><span class="p">,</span> 
+      <span class="p">(</span><span class="n">data1names</span> <span class="o">==</span> <span class="n">data2names</span><span class="p">[</span><span class="n">match_lpsolve</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -2815,7 +2873,7 @@ AABJRU5ErkJggg==
 </div>
 </div></p>
 <hr />
-<p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/BinaryIntegerProgramming.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/BinaryIntegerProgramming.ipynb">here</a>.</em> </p>
+<p><em>This post was written in an IPython notebook, which can be viewed and downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/BinaryIntegerProgramming.ipynb">here</a>.</em> </p>
 <div class="footnote">
 <hr />
 <ol>
@@ -2912,7 +2970,7 @@ AABJRU5ErkJggg==
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by modernscientist |
+  Copyright &copy 2013 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> | by Michelle Lynn Gill |
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
