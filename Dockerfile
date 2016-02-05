@@ -6,4 +6,4 @@ USER main
 
 # Add my conda channel and install other dependencies
 RUN echo "channels:\n  - mlgill" >> ~/.condarc
-RUN conda install -c mlgill jsanimation cvxopt_glpk
+RUN conda install -c mlgill jsanimation cvxopt_glpk pygments-style-monokailight
