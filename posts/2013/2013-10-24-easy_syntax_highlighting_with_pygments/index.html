@@ -1916,8 +1916,8 @@ init_mathjax();
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pygments supports an <a href="http://pygments.org/languages/">incredible list</a> of input languages, called lexers, and has numerous <a href="http://pygments.org/docs/formatters/">formatters</a> for output. There are also many options available for output <a href="http://pygments.org/docs/styles/">colors and styles</a>. All of these aspects are customizable as well. Lastly, Pygments has few dependencies and can be installed using <code>easy_install</code> or MacPorts.</p>
-<p>While Pygments does include many styles, including my favorite, <a href="http://www.monokai.nl/blog/2006/07/15/textmate-color-theme">Monokai</a>, it doesn't have a version of Monokai with a light background. For storing and sharing snippets, I prefer a light background to a dark one. So, I created my own Monokai Light style based on the color scheme <a href="https://bitbucket.org/sjl/stevelosh/src/a30885eba5d365da12b264d4beac7596ce1b6ada/media/css/pygments-monokai-light.css?at=default">here</a>. The style I created can be downloaded directly from <a href="https://github.com/mlgill/macports-pygments-monokailight/blob/master/files/monokailight/monokailight.py">here</a> and placed in the style directory within Pygments or it can be installed using MacPorts by cloning this <a href="https://github.com/mlgill/macports-pygments-monokailight">GitHub repository</a>.</p>
+<p>Pygments supports an <a href="http://pygments.org/languages/">incredible list</a> of input languages, called lexers, and has numerous <a href="http://pygments.org/docs/formatters/">formatters</a> for output. There are also many options available for output <a href="http://pygments.org/docs/styles/">colors and styles</a>. All of these aspects are customizable as well. Lastly, Pygments has few dependencies and can be installed using most Python package managers.</p>
+<p>While Pygments does include many styles, including my favorite, <a href="http://www.monokai.nl/blog/2006/07/15/textmate-color-theme">Monokai</a>, it doesn't have a version of Monokai with a light background. For storing and sharing snippets, I prefer a light background to a dark one. So, I created my own Monokai Light style based on the color scheme <a href="https://bitbucket.org/sjl/stevelosh/src/a30885eba5d365da12b264d4beac7596ce1b6ada/media/css/pygments-monokai-light.css?at=default">here</a>. The style I created can be downloaded directly from <a href="https://github.com/mlgill/macports-pygments-monokailight/blob/master/files/monokailight/monokailight.py">here</a> and placed in the style directory within Pygments, or it can be installed using either this <a href="https://anaconda.org/mlgill/pygments-style-monokailight">conda package</a> or with MacPorts by cloning this <a href="https://github.com/mlgill/macports-pygments-monokailight">GitHub repository</a>.</p>
 <p>Pygments can be run from within a python script or from the terminal using a helper command called <code>pygmentize</code>. Both methods are demonstrated for comparison.</p>
 <h2 id="Input-the-Python-Snippet">Input the Python Snippet<a class="anchor-link" href="#Input-the-Python-Snippet">&#182;</a></h2><p>The code snippet to be highlighted will usually reside in a file or on the clipboard. For the purpose of a self-contained tutorial, it will be input as a string. Since this is predominantly a python blog, it is easy to guess which language is being used.</p>
 
@@ -1965,7 +1965,9 @@ init_mathjax();
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">pygments</span> <span class="kn">import</span> <span class="n">highlight</span>
 <span class="kn">from</span> <span class="nn">pygments.lexers</span> <span class="kn">import</span> <span class="n">PythonLexer</span>
 <span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="kn">import</span> <span class="n">HtmlFormatter</span>
-<span class="n">html_snippet</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span><span class="n">PythonLexer</span><span class="p">(),</span><span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;monokailight&#39;</span><span class="p">))</span>
+
+<span class="n">html_snippet</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span> <span class="n">PythonLexer</span><span class="p">(),</span>
+                         <span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;monokailight&#39;</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1989,7 +1991,7 @@ init_mathjax();
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">html_snippet_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span><span class="s2">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet</span><span class="p">)</span>
+<span class="n">html_snippet_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> <span class="s2">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2133,7 +2135,7 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Highlighting-in-the-Terminal-Using-Pygmentize">Highlighting in the Terminal Using Pygmentize<a class="anchor-link" href="#Highlighting-in-the-Terminal-Using-Pygmentize">&#182;</a></h2><p>The most common way I used Pygments is from the terminal via <code>pygmentize</code>, which is an accessory command to Pygments. Here is an example with options similar to those used in the python code above:</p>
 <div class="highlight"><pre><span></span>pygmentize -l python -f html -O full,style<span class="o">=</span>monokailight <span class="se">\</span>
--o ./python_snippet.html ./python_snippet.py
+           -o ./python_snippet.html ./python_snippet.py
 </pre></div>
 <p>This command will read the file <code>python_snippet.py</code> and output to the file whose name follows the <code>-o</code> flag, which is <code>python_snippet.html</code> in this case. If the output file is omitted, the html result is returned to the terminal as output. The language (lexer), output format, and options are set with the <code>-l</code>, <code>-f</code>, and <code>-O</code> flags, respectively. The options are <code>full</code>, which is analogous to the python <code>full=True</code> option and the style selection of monokailight. In many cases, <code>pygmentize</code> can guess lexer and output name from the input and output file extensions, so the <code>-l</code> and <code>-f</code> flags are not always necessary.</p>
 <p>On Mac OS X, code snippets can be copied to the clipboard, sent to <code>pygmentize</code>, and then the syntax highlighted result returned to the clipboard using the <code>pbpaste</code> and <code>pbcopy</code> commands.</p>
@@ -2149,7 +2151,8 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span><span class="n">PythonLexer</span><span class="p">(),</span><span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;monokailight&#39;</span><span class="p">,</span><span class="n">linenos</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="n">python_snippet</span><span class="p">,</span> <span class="n">PythonLexer</span><span class="p">(),</span> 
+                                 <span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;monokailight&#39;</span><span class="p">,</span> <span class="n">linenos</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -2176,7 +2179,8 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span><span class="s2">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet_linenos</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> 
+                                  <span class="sd">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">html_snippet_linenos</span><span class="p">)</span>
 <span class="n">HTML</span><span class="p">(</span><span class="n">html_snippet_linenos_sub</span><span class="p">)</span>
 </pre></div>
 
