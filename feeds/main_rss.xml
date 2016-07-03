@@ -666,7 +666,103 @@ https://api.prowlapp.com/publicapi/add
 
 &lt;p&gt;According to Prowl's documentation, 1,000 API calls are allowed per hour from a single IP address. That should be plenty for simple status posts.&lt;/p&gt;
 &lt;p&gt;I have also created a new version of the associated shell script that will attempt to ping the remote computer before synchronizing data and sending a Growl notification. If the remote computer is not available, the notification will be posted directly to Prowl.&lt;/p&gt;
-&lt;p&gt;[gist:id=7060718,file=Improved_Growl_Experiment_Status.sh]&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/7060718.js?file=Improved_Growl_Experiment_Status.sh'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;#!/bin/zsh
+
+#### BEGIN USER CONFIG OPTIONS ####
+
+# Path to the data file to watch for modifications
+local_progress_file="/path/to/file_that_is_periodically_modified"
+
+# Interval in minutes to wait between queries
+# Must be an integer
+interval_min=30
+
+# User account and hostname of Mac where you will be notified
+dest_user=your_login_name
+dest_address=your_mac_hostname
+
+# Set to 1 to enable data synchronization or 0 to disable
+data_sync=1
+
+# Paths for data synchronization
+local_data_path="/path/to/local/data/directory"
+remote_data_path="/path/to/remote/data/directory"
+
+# Prowl API key
+prowl_api_key="enter_your_api_key"
+
+#### END USER CONFIG OPTIONS ####
+
+# Calculate time to wait between checks in seconds
+(( sleep_sec = $interval_min * 60 ))
+
+# Check if the progress file exists
+if [[ -f ${local_progress_file} ]]; then
+    # Perform checks until the script is killed
+    while ((1)); do
+
+        # Check if the data file has been modified within the time period
+        mod_file=`find ${local_progress_file} -mmin -${interval_min}`
+
+        # Set notification message based on modification time of data file
+        if [[ $mod_file == "" ]]; then
+            message_string="NOTE: Experiment is stalled or complete."
+        else
+            message_string="OK: Experiment still running."
+        fi
+        
+        # See if the remote computer is accessible
+        ping -c 1 ${dest_address} &gt;| /dev/null 2&gt;&amp;1
+        ping_result=$? # Result will be 0 if computer is accessible
+
+        if [[ $ping_result -eq 0 ]]; then
+
+            # Synchronize the data if appropriate
+            if (($data_sync)); then
+                rsync --recursive --update --delete --owner --group \
+                --perms --times --compress --rsh=ssh \
+                ${local_data_path} ${dest_user}@${dest_address}:${remote_data_path}
+            fi
+
+            # Send the notification to your Mac
+            ssh ${dest_user}@${dest_address} 'echo `/usr/local/bin/growlnotify \
+            -p high -m "'$message_string'" -t "Experiment Update"`'
+
+        else
+
+            # Update notification if data could not be synchronized.
+            if (($data_sync)); then
+                message_string="$message_string Data not synchronized."
+            fi
+
+            # Send the notification directly to Prowl
+            prowl_output=$(curl -s --data \
+            "apikey=${prowl_api_key}&amp;application=Experiment Update&amp;event=${message_string}" \
+            https://api.prowlapp.com/publicapi/add)
+            
+            # Parse the output to get the success/error code
+            # Successive grep commands are used in lieu of other methods for BSD/GNU compatibility
+            prowl_output_code=$(echo $prowl_output | grep -oE 'code="[0-9]+"' | grep -oE '[0-9]+')
+
+            # Print a message if an error code was returned
+            if [[ $prowl_output_code -ne 200 ]]; then
+                echo "There was an error posting to Prowl: ${prowl_output_code}"
+            fi
+        fi
+
+        # Wait until it's time to check again
+        sleep $sleep_sec
+
+    done
+else
+    # Data file not found
+    echo "File ${local_progress_file} not found."
+fi&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
 &lt;p&gt;Have fun!&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
@@ -684,7 +780,71 @@ https://api.prowlapp.com/publicapi/add
 &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">modernscientist</dc:creator><pubDate>Sat, 19 Oct 2013 15:19:00 -0400</pubDate><guid>tag:themodernscientist.com,2013-10-19:posts/2013/2013-10-19-automated_notifications_of_experiment_progress_part_2/</guid><category>science</category><category>shell</category><category>automation</category><category>mac</category><category>ios</category></item><item><title>Automated Notifications of Experiment Progress: Combining Shell, SSH, Growl, and Prowl</title><link>http://themodernscientist.com/posts/2013/2013-10-12-automated_notifications_of_experiment_progress/</link><description>&lt;p&gt;In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's NMR spectrometers to periodically stop running during a series of multiple day experiments. The instrument is still useable while waiting for a replacement part to arrive, but periodic reboots of the hardware are necessary for the experiment to continue where it left off. Thus, it is critical to know when such a reboot is necessary. Rather than make constant trips to the building where the instrument is located, I rigged up a notification system using some basic unix and Mac tools. &lt;/p&gt;
 &lt;p&gt;The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends &lt;a href="http://growl.info/"&gt;Growl&lt;/a&gt; notifications to my Mac, which is located in another building.&lt;sup id="fnref:vnc"&gt;&lt;a class="footnote-ref" href="#fn:vnc" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; Because Growl on my Mac is configured to work with &lt;a href="http://www.prowlapp.com/"&gt;Prowl&lt;/a&gt;, a complimentary iOS notification system,&lt;sup id="fnref:boxcar"&gt;&lt;a class="footnote-ref" href="#fn:boxcar" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.&lt;/p&gt;
 &lt;p&gt;This solution requires &lt;a href="http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-4.html"&gt;SSH keys&lt;/a&gt; to be setup so the spectrometer's computer can login to my Mac when necessary. It also requires the installation of &lt;a href="http://growl.info/downloads#growlnotify"&gt;growlnotify&lt;/a&gt;, a command line accessory to Growl.&lt;/p&gt;
-&lt;p&gt;[gist:id=6951180,file=Growl_Experiment_Status.sh]&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/6951180.js?file=Growl_Experiment_Status.sh'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;#!/bin/zsh
+
+#### BEGIN USER CONFIG OPTIONS ####
+
+# Path to the data file to watch for modifications
+local_progress_file="/path/to/file_that_is_periodically_modified"
+
+# Interval in minutes to wait between queries
+# Must be an integer
+interval_min=30
+
+# User account and hostname of Mac where you will be notified
+dest_user=your_login_name
+dest_address=your_mac_hostname
+
+# Set to 1 to enable data synchronization or 0 to disable
+data_sync=1
+
+# Paths for data synchronization
+local_data_path="/path/to/local/data/directory"
+remote_data_path="/path/to/remote/data/directory"
+
+#### END USER CONFIG OPTIONS ####
+
+# Calculate time to wait between checks in seconds
+(( sleep_sec = $interval_min * 60 ))
+
+# Check if the progress file exists
+if [[ -f ${local_progress_file} ]]; then
+        # Perform checks until the script is killed
+        while ((1)); do
+
+          	# Synchronize the data if appropriate
+        	if (($data_sync)); then
+        		rsync --recursive --update --delete --owner --group \
+        		--perms --times --compress --rsh=ssh \
+			${local_data_path} ${dest_user}@${dest_address}:${remote_data_path}
+        	fi
+
+                # Check if the data file has been modified within the time period
+                mod_file=`find ${local_progress_file} -mmin -${interval_min}`
+
+                # Set notification message based on modification time of data file
+                if [[ $mod_file == "" ]]; then
+                        message_string="NOTE: Experiment is stalled or complete"
+                else
+                        message_string="OK: Experiment still running"
+                fi
+                
+                # Send the notification to your Mac
+                ssh ${dest_user}@${dest_address} 'echo `/usr/local/bin/growlnotify \
+                -p high -m "'$message_string'" -t "Experiment Update"`'
+
+                # Wait until it's time to check again
+                sleep $sleep_sec
+        done
+else
+        # Data file not found
+        echo "File ${local_progress_file} not found."
+fi&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
 &lt;p&gt;The script is written in the Z-shell&lt;sup id="fnref:zsh"&gt;&lt;a class="footnote-ref" href="#fn:zsh" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; and can be downloaded &lt;a href="https://gist.github.com/mlgill/6951180"&gt;here&lt;/a&gt;. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync&lt;sup id="fnref:rsync"&gt;&lt;a class="footnote-ref" href="#fn:rsync" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.&lt;/p&gt;
 &lt;p&gt;There are a few nuances associated with the encoding of the growlnotify string. First, the entire command has to be enclosed in quotes because it is sent through ssh to the remote Mac. Additionally, each of the arguments passed to growlnotify, such as the contents of the &lt;code&gt;$message_string&lt;/code&gt; variable, must themselves be enclosed in quotes when executed on the remote Mac. I prefer to use single quotes for the growlnotify command and double quotes for the individual arguments. However, variables, such as &lt;code&gt;$message_string&lt;/code&gt;, are not expanded within single quotes, so they must appear outside of the single quotes, as can be seen above. The contents of &lt;code&gt;$message_string&lt;/code&gt; must still be enclosed in double quotes, which appear before and after the respective single quotes flanking &lt;code&gt;$message_string&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Once I start my experiment on the spectrometer, I setup this script to run indefinitely. An added bonus is that it will notify you when the experiment has finished. If the instrument writes progress information to a plain text log file, this file can be queried and more detailed status information that can be included in the &lt;code&gt;$message_string&lt;/code&gt;.&lt;/p&gt;
