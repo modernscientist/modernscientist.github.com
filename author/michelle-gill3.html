@@ -443,9 +443,11 @@ init_mathjax();
   <li><a href="https://feed.press/e/mailverify?feed_id=themodernscientist-rss" rel="subscribe-email">Email</a></li>
 </ul>
 
-<form class="navbar-search" action="http://themodernscientist.com/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+<!-- <form class="navbar-search" action="http://themodernscientist.com/search.html" onsubmit="return validateForm(this.elements['q'].value);">
   <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
-    <!-- <input type="submit" value="Go!"> -->
+</form> -->
+<form class="navbar-search" action="/search.html">
+  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
 </form>
 </nav>
   <div id="main">
