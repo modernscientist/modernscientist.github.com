@@ -920,11 +920,11 @@ padding:0
 }
 
 .maskImage a[rel=subscribe-rss],.maskImage a[rel=subscribe-rss]:after {
--webkit-mask-image:url(../theme/images/rss.png?1364213904);
--moz-mask-image:url(../theme/images/rss.png?1364213904);
--ms-mask-image:url(../theme/images/rss.png?1364213904);
--o-mask-image:url(../theme/images/rss.png?1364213904);
-mask-image:url(../theme/images/rss.png?1364213904);
+-webkit-mask-image:url(./theme/images/rss.png?1364213904);
+-moz-mask-image:url(./theme/images/rss.png?1364213904);
+-ms-mask-image:url(./theme/images/rss.png?1364213904);
+-o-mask-image:url(./theme/images/rss.png?1364213904);
+mask-image:url(./theme/images/rss.png?1364213904);
 -webkit-mask-repeat:no-repeat;
 -moz-mask-repeat:no-repeat;
 -ms-mask-repeat:no-repeat;
@@ -956,11 +956,11 @@ padding:0
 }
 
 .maskImage a[rel=subscribe-email],.maskImage a[rel=subscribe-email]:after {
--webkit-mask-image:url(../theme/images/email.png?1364213904);
--moz-mask-image:url(../theme/images/email.png?1364213904);
--ms-mask-image:url(../theme/images/email.png?1364213904);
--o-mask-image:url(../theme/images/email.png?1364213904);
-mask-image:url(../theme/images/email.png?1364213904);
+-webkit-mask-image:url(./theme/images/email.png?1364213904);
+-moz-mask-image:url(./theme/images/email.png?1364213904);
+-ms-mask-image:url(./theme/images/email.png?1364213904);
+-o-mask-image:url(./theme/images/email.png?1364213904);
+mask-image:url(./theme/images/email.png?1364213904);
 -webkit-mask-repeat:no-repeat;
 -moz-mask-repeat:no-repeat;
 -ms-mask-repeat:no-repeat;
