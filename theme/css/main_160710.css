@@ -114,8 +114,7 @@ border-right:1px solid #e0e0e0
 }
 
 .heading,body>header h1,h1,h2,h3,h4,h5,h6 {
-/*font-family:"PT Serif","Georgia","Helvetica Neue",Arial,sans-serif*/
-font-family:"Helvetica Neue",Arial,sans-serif
+font-family:"PT Serif","Georgia","Helvetica Neue",Arial,sans-serif
 }
 
 .sans,body>header h2,article header p.meta,article>footer,#content .blog-index footer,html .gist .gist-file .gist-meta,#blog-archives a.category,#blog-archives time,aside.sidebar section,body>footer {
@@ -123,9 +122,7 @@ font-family:"PT Sans","Helvetica Neue",Arial,sans-serif
 }
 
 .serif,body,#content .blog-index a[rel=full-article] {
-/*font-family:"PT Serif",Georgia,Times,"Times New Roman",serif*/
-font-family:"Helvetica Neue",Arial,sans-serif;
-font-size:90%!important;
+font-family:"PT Serif",Georgia,Times,"Times New Roman",serif
 }
 
 .mono,pre,code,tt,p code,p tt,li code,li tt {
@@ -134,8 +131,7 @@ font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace
 
 body>header h1 {
 font-size:2.2em;
-/*font-family:"PT Serif","Georgia","Helvetica Neue",Arial,sans-serif;*/
-font-family:"PT Sans","Georgia","Helvetica Neue",Arial,sans-serif;
+font-family:"PT Serif","Georgia","Helvetica Neue",Arial,sans-serif;
 font-weight:400;
 line-height:1.2em;
 margin-bottom:.6667em
