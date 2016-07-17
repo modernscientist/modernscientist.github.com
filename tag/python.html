@@ -455,6 +455,25 @@ init_mathjax();
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="http://themodernscientist.com/posts/2016/2016-07-17-pdLSR_pandas_aware_least_squares_regression/">pdLSR: Pandas-aware least squares regression</a>
+      </h1>
+      <p class="meta"><time datetime="2016-07-17T20:14:00-04:00" pubdate>2016/07/17</time></p>
+</header>
+
+  <div class="entry-content"><p>I have a new Python project I would like to share with the community. Actually, this project isn't so new. I developed an initial version about two years before completing my postdoctoral research, and it has undergone various revisions over the past three years. Having finally made time to give it the clean-up it needed,<sup id="fnref:nudge"><a class="footnote-ref" href="#fn:nudge" rel="footnote">1</a></sup> I am excited to share it on <a href="https://github.com/mlgill/pdLSR">GitHub</a>.</p>
+<h2>Overview</h2>
+<p><code>pdLSR</code> is a library for performing least squares minimization. It attempts to seamlessly incorporate this task in a Pandas-focused workflow. Input data are expected in dataframes, and multiple regressions can be performed using functionality similar to Pandas <code>groupby</code>. Results are returned as grouped dataframes and include best-fit parameters, statistics, residuals, and more. The results can be easily visualized using <a href="https://github.com/mwaskom/seaborn"><code>seaborn</code></a>.</p>
+<p><code>pdLSR</code> currently utilizes <a href="https://github.com/lmfit/lmfit-py"><code>lmfit</code></a>, a flexible and powerful library for least squares minimization, which in turn, makes use of <code>scipy.optimize.leastsq</code>. I began using <code>lmfit</code> because it is one of the few libraries that supports non-linear least squares regression, which is commonly used in the natural sciences. I also like the flexibility it offers for testing different modeling scenarios and the variety of assessment statistics it provides. However, I found myself writing many <code>for</code> loops to perform regressions on groups of data and aggregate the resulting output. Simplification of this task was my inspiration for writing <code>pdLSR</code>.</p>
+<p><code>pdLSR</code> is related to libraries such as <a href="http://statsmodels.sourceforge.net"><code>statsmodels</code></a> and <a href="http://scikit-learn.org/stable/"><code>scikit-learn</code></a> that provide linear regression functions that operate on dataframes. However, these libraries don't directly support grouping operations on dataframes. </p>
+<p>The aggregation of minimization output parameters that is performed by <code>pdLSR</code> has many similarities to the <a href="https://github.com/dgrtwo/broom">R library <code>broom</code></a>, which is written by <a href="http://varianceexplained.org/">David Robinson</a> and with whom I had an excellent conversation about our two libraries. <code>broom</code> is more general in its ability to accept input from many minimizers, and I think expanding <code>pdLSR</code> in this fashion, for compatibility with <code>statsmodels</code> and <code>scikit-learn</code> for example, could be useful in the future.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="http://themodernscientist.com/posts/2016/2016-07-17-pdLSR_pandas_aware_least_squares_regression/">More &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="http://themodernscientist.com/posts/2015/2015-07-22-throwing_the_book_at_your_data/">Throwing the Book at Your Data</a>
       </h1>
       <p class="meta"><time datetime="2015-07-22T07:42:00-04:00" pubdate>2015/07/22</time></p>
@@ -510,19 +529,6 @@ init_mathjax();
     <a rel="full-article" href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/">More &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/">My Octopelican Python Blog</a>
-      </h1>
-      <p class="meta"><time datetime="2013-06-02T15:48:00-04:00" pubdate>2013/06/02</time></p>
-</header>
-
-  <div class="entry-content"><p>Many have asked about my blog design and how I incorporate IPython notebooks, such as the one used in the <a href="http://themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/">previous post</a>. I merely glued all the pieces together for this setup, so to give credit where it is due and to provide a documented how-to for my future self ...</p></div>
-  <footer>
-    <a rel="full-article" href="http://themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/">More &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="http://themodernscientist.com/tag/python2.html">&larr; Older</a>
 
@@ -540,6 +546,9 @@ init_mathjax();
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://themodernscientist.com/posts/2016/2016-07-17-pdLSR_pandas_aware_least_squares_regression/">pdLSR: Pandas-aware least squares regression</a>
+      </li>
+      <li class="post">
           <a href="http://themodernscientist.com/posts/2015/2015-07-22-throwing_the_book_at_your_data/">Throwing the Book at Your Data</a>
       </li>
       <li class="post">
@@ -550,9 +559,6 @@ init_mathjax();
       </li>
       <li class="post">
           <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/">Simulation of NMR Shaped Pulses: NumPy vs Fortran</a>
-      </li>
-      <li class="post">
-          <a href="http://themodernscientist.com/posts/2013/2013-06-02-my_octopelican_python_blog/">My Octopelican Python Blog</a>
       </li>
     </ul>
   </section>
