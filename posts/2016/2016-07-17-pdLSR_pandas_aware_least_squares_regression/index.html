@@ -624,22 +624,26 @@ init_mathjax();
     <tr>
       <th></th>
       <th></th>
-      <th colspan="3" halign="left">inten</th>
-      <th colspan="3" halign="left">rate</th>
+      <th colspan="4" halign="left">inten</th>
+      <th colspan="4" halign="left">rate</th>
     </tr>
     <tr>
       <th></th>
       <th></th>
       <th>value</th>
       <th>stderr</th>
-      <th>ci0.95</th>
+      <th>ci0.95_lo</th>
+      <th>ci0.95_hi</th>
       <th>value</th>
       <th>stderr</th>
-      <th>ci0.95</th>
+      <th>ci0.95_lo</th>
+      <th>ci0.95_hi</th>
     </tr>
     <tr>
       <th>resi</th>
       <th>field</th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -654,38 +658,46 @@ init_mathjax();
       <th>14.10</th>
       <td>1714.80</td>
       <td>37.87</td>
-      <td>58.41</td>
+      <td>1656.39</td>
+      <td>1833.26</td>
       <td>19.65</td>
       <td>1.02</td>
-      <td>1.74</td>
+      <td>17.91</td>
+      <td>22.46</td>
     </tr>
     <tr>
       <th>18.80</th>
       <td>24122.68</td>
       <td>689.03</td>
-      <td>1134.59</td>
+      <td>22988.09</td>
+      <td>25953.74</td>
       <td>21.64</td>
       <td>1.58</td>
-      <td>2.81</td>
+      <td>18.83</td>
+      <td>25.55</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">52</th>
       <th>14.10</th>
       <td>1778.90</td>
       <td>17.87</td>
-      <td>32.10</td>
+      <td>1746.80</td>
+      <td>1814.00</td>
       <td>23.35</td>
       <td>0.49</td>
-      <td>0.96</td>
+      <td>22.39</td>
+      <td>24.36</td>
     </tr>
     <tr>
       <th>18.80</th>
       <td>23889.26</td>
       <td>232.87</td>
-      <td>538.02</td>
+      <td>23351.24</td>
+      <td>24329.26</td>
       <td>29.96</td>
       <td>0.79</td>
-      <td>1.69</td>
+      <td>28.27</td>
+      <td>31.59</td>
     </tr>
   </tbody>
 </table>
@@ -746,7 +758,7 @@ init_mathjax();
       <th>npar</th>
       <th>dof</th>
       <th>chisqr</th>
-      <th>redchi</th>
+      <th>r_chisqr</th>
       <th>aic</th>
       <th>bic</th>
     </tr>
