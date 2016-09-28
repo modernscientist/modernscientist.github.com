@@ -431,7 +431,7 @@ init_mathjax();
   <header role="banner">
 <hgroup>
   <h1><a href="http://themodernscientist.com/">themodernscientist</a></h1>
-    <h2>biophysicist, data scientist, mac-unix zealot, pythonista</h2>
+    <h2>data scientist, biophysicist, mac-unix zealot, pythonista</h2>
 </hgroup>  </header>
   <nav role="navigation"><ul class="main-navigation">
   <li><a href="http://themodernscientist.com/">Blog</a></li>
@@ -462,7 +462,20 @@ init_mathjax();
       <p class="meta"><time datetime="2016-09-30T20:14:00-04:00" pubdate>2016/09/30</time></p>
 </header>
 
-  <div class="entry-content"></div>
+  <div class="entry-content"><h2>Analysis and Results</h2>
+<p>I scraped 190,000 expert wine reviews from <a href="http://wineenthusiast.com">Wine Enthusiast</a>. Reviews from additional websites were also scraped. However, professional reviews seemed to cluster the best during analysis. </p>
+<p>Four clusters were identified during the analysis. Based on wordclouds (below), these clusters were named as follows:</p>
+<ol>
+<li>Spicy Reds</li>
+<li>White Wines</li>
+<li>Sweet Reds</li>
+<li>Portugese Reds</li>
+</ol>
+<p><img alt="" src="./figures/10_wine_enthusiast_wordcloud.png" /></p>
+<p>These clusters persisted in the LDA model as well.</p>
+<p><img alt="" src="./figures/10_gensim_analysis_lda_vis_4.png" /></p>
+<p>There also appears to be some correlation between vintage years and review sentiment.</p>
+<p><img alt="" src="./figures/11_wine_enthusiast_sentiment.png" /></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
