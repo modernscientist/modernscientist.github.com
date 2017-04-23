@@ -464,16 +464,16 @@ init_mathjax();
 
   <div class="entry-content"><p>Many have asked about my blog design and how I incorporate IPython notebooks, such as the one used in the <a href="http://themodernscientist.com/posts/2013/2013-05-29-binary_integer_programming_with_python/">previous post</a>. I merely glued all the pieces together for this setup, so to give credit where it is due and to provide a documented how-to for my future self, I've described both blog design and incorporating IPython notebooks into posts.</p>
 <p>My desire for this blog has always been to have a platform for sharing useful and sometimes interesting information related to my research and to provide an opportunity to learn, which for me means tinkering. As someone who does not have extensive knowledge of CSS or other web-centric languages, I knew I wanted to use a template-based solution rather than coding a website from scratch. However, the inevitable desire to tinker meant that browser-based template options, such as those offered by Wordpress and Blogger, wouldn't suffice. Solutions that compile templates locally, such as Octopress, allow more customization and, thus, seemed like a good option. The downside of Octopress is that it uses ruby, which I don't know. After more searching, I discovered <a href="http://docs.getpelican.com">Pelican</a>, which works similarly to Octopress but is written in my beloved Python. Having a blogging engine that speaks the same language as the topic of much of the content I envisioned posting seemed like a natural solution.</p>
-<p>After settling on a blogging solution, I had to find a Pelican-based template. Having browsed many Octopress blogs, I developed an affinity for the default template used by this engine. Fortunately, a kind soul had converted the Octopress template to Pelican and <a href="https://github.com/duilio/pelican-octopress-theme">shared</a> it. Since I prefer lighter tones for websites and the default format of this template is quite dark, I wanted to modify it. I found an excellent tutorial by Aijaz Ansari on <a href="http://aijazansari.com/2012/08/27/how-to-customize-octopress-theme/">customizing</a> this theme within Octopress and was able to apply these changes directly because the CSS portion of this template is identical to the Pelican version. These theme modifications are based on <a href="http://sass-lang.com/">SASS</a>, so I did need to break out my ruby chops to compile<sup id="fnref:compass"><a class="footnote-ref" href="#fn:compass" rel="footnote">1</a></sup> the modified theme into CSS<sup id="fnref:cssdown"><a class="footnote-ref" href="#fn:cssdown" rel="footnote">2</a></sup>.</p>
+<p>After settling on a blogging solution, I had to find a Pelican-based template. Having browsed many Octopress blogs, I developed an affinity for the default template used by this engine. Fortunately, a kind soul had converted the Octopress template to Pelican and <a href="https://github.com/duilio/pelican-octopress-theme">shared</a> it. Since I prefer lighter tones for websites and the default format of this template is quite dark, I wanted to modify it. I found an excellent tutorial by Aijaz Ansari on <a href="http://aijazansari.com/2012/08/27/how-to-customize-octopress-theme/">customizing</a> this theme within Octopress and was able to apply these changes directly because the CSS portion of this template is identical to the Pelican version. These theme modifications are based on <a href="http://sass-lang.com/">SASS</a>, so I did need to break out my ruby chops to compile<sup id="fnref-compass"><a class="footnote-ref" href="#fn-compass">1</a></sup> the modified theme into CSS<sup id="fnref-cssdown"><a class="footnote-ref" href="#fn-cssdown">2</a></sup>.</p>
 <p>The last step was adding the ability to insert IPython notebooks in blog posts. Fortunately, Jake Vanderplas recently <a href="http://jakevdp.github.io/blog/2013/05/07/migrating-from-octopress-to-pelican/">posted</a> about doing so in Pelican. He even created a Pelican extension, called <a href="https://github.com/getpelican/pelican-plugins/pull/21">liquid tags</a>, capable of inserting an IPython notebook referenced in a markdown post. If you go this route, please be aware that liquid tags is very new--as of the writing of this post, it is still a pull request on GitHub. Furthermore, liquid tags depends on <a href="https://github.com/ipython/nbconvert">nbconvert</a>, an IPython utility for converting notebooks to html and other formats, which itself is currently being rewritten. Thus, any efforts in this area will likely have to be duplicated again in the future once these packages stabilize. For the fearless, I have described the installation in more detail <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notes/importing_ipython_notebooks_in_a_pelican_blog.md">here</a>.</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:compass">
-<p>This requires installation of the <code>compass</code> ruby gem. Once installed, the CSS is compiled by running <code>compass compile</code> from the top directory of the theme (where <code>config.rb</code> is located). The compiled file is created in <code>static/css/main.css</code> of the theme and will be copied to the correct directory upon blog generation with pelican.&#160;<a class="footnote-backref" href="#fnref:compass" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-compass">
+<p>This requires installation of the <code>compass</code> ruby gem. Once installed, the CSS is compiled by running <code>compass compile</code> from the top directory of the theme (where <code>config.rb</code> is located). The compiled file is created in <code>static/css/main.css</code> of the theme and will be copied to the correct directory upon blog generation with pelican.&#160;<a class="footnote-backref" href="#fnref-compass" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:cssdown">
-<p>The compiled CSS file used for this blog can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/theme/css/main.css">here</a>.&#160;<a class="footnote-backref" href="#fnref:cssdown" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn-cssdown">
+<p>The compiled CSS file used for this blog can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/theme/css/main.css">here</a>.&#160;<a class="footnote-backref" href="#fnref-cssdown" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -527,19 +527,19 @@ init_mathjax();
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>

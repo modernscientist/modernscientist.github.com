@@ -462,38 +462,38 @@ init_mathjax();
       <p class="meta"><time datetime="2014-02-21T19:48:00-05:00" pubdate>2014/02/21</time></p>
 </header>
 
-  <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the advantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref:caveat"><a class="footnote-ref" href="#fn:caveat" rel="footnote">1</a></sup> Once written to a hard drive, though, these files are often not encrypted. This is the case for BitTorrent Sync and many other cloud storage options.<sup id="fnref:exceptions"><a class="footnote-ref" href="#fn:exceptions" rel="footnote">2</a></sup> For BitTorrent Sync, this issue is of limited concern if all peers are under your control. However, it may be desirable to utilize peers to which others may have access, such as a virtual private server (VPS). In the previous post, I mentioned using a VPS to help guarantee a synchronized peer was always accessible. In these situations, it is desirable to add additional privacy by selectively encrypting data on such peers.</p>
+  <div class="entry-content"><p>I'd like to follow up on a previous <a href="http://themodernscientist.com/posts/2014/2014-02-06-torrential_file_synchronization/">post</a> covering <a href="http://www.bittorrent.com/sync">BitTorrent Sync</a>. In this post, I mentioned privacy is one of the advantages afforded by BitTorrent Sync over traditional cloud storage options, such as Dropbox. Like most cloud storage options, data are encrypted during transmission with BitTorrent Sync.<sup id="fnref-caveat"><a class="footnote-ref" href="#fn-caveat">1</a></sup> Once written to a hard drive, though, these files are often not encrypted. This is the case for BitTorrent Sync and many other cloud storage options.<sup id="fnref-exceptions"><a class="footnote-ref" href="#fn-exceptions">2</a></sup> For BitTorrent Sync, this issue is of limited concern if all peers are under your control. However, it may be desirable to utilize peers to which others may have access, such as a virtual private server (VPS). In the previous post, I mentioned using a VPS to help guarantee a synchronized peer was always accessible. In these situations, it is desirable to add additional privacy by selectively encrypting data on such peers.</p>
 <p>Previously, I didn't think peer data encryption was possible (yet). As I have since discovered, the recently added <a href="http://www.bittorrent.com/sync/developers/api">BitTorrent Sync API</a> enables the encryption of torrent data on selected peers. The BitTorrent forums also <a href="http://forum.bittorrent.com/topic/25823-generate-encrypted-read-only-secret-without-api-key/?p=76262">describe</a> how to enable this encryption without using the API, which eliminates the need to be issued an API key.</p>
 <h2>Encryption for Existing Torrents</h2>
 <p>I won't repeat the above forum instructions for encrypting torrents without using the API, but it is useful to describe how <em>existing</em> torrents were converted to encrypted versions. I would also like to share some observations about how various BitTorrent Sync features apply to encrypted peers.</p>
 <p>Broadly, the conversion process involves removing existing torrents and then reinstating them with an adjusted shared secret. For unencrypted peers, the existing torrent files will be reindexed automatically so minimal synchronization is required. Torrents on encrypted peers will need to be resynchronized since the existing files are not encrypted.</p>
 <h3>Unencrypted Peer Setup</h3>
-<p>Before torrent conversion, all peers were fully synchronized and an unsynchronized backup of each of the torrents was created.<sup id="fnref:notbackup"><a class="footnote-ref" href="#fn:notbackup" rel="footnote">3</a></sup> After backing up the files, the existing shared secret was noted for each of the torrents that would be encrypted. Then the torrent instances—but not the files themselves—were deleted from each of the peers. For each unencrypted peer, the torrent instance was recreated with the first letter of the shared secret changed from an <code>A</code> to a <code>D</code>, as described in the aforementioned forum directions. Each peer was allowed to completely reindex all files associated with a torrent before adding another peer into the mix.</p>
+<p>Before torrent conversion, all peers were fully synchronized and an unsynchronized backup of each of the torrents was created.<sup id="fnref-notbackup"><a class="footnote-ref" href="#fn-notbackup">3</a></sup> After backing up the files, the existing shared secret was noted for each of the torrents that would be encrypted. Then the torrent instances—but not the files themselves—were deleted from each of the peers. For each unencrypted peer, the torrent instance was recreated with the first letter of the shared secret changed from an <code>A</code> to a <code>D</code>, as described in the aforementioned forum directions. Each peer was allowed to completely reindex all files associated with a torrent before adding another peer into the mix.</p>
 <h3>Encrypted Peer Setup</h3>
 <p>The process was slightly more complicated for peers that contained an encrypted version of the torrent. First, the existing unencrypted files were moved to a different location, as a temporary backup, and empty destination directories were created for the torrents. By definition, encrypted peers contain read-only copies of the torrent. So, generating the correct shared secret required noting the read-only shared secret from one of the existing unencrypted peers. To convert this to an <em>encrypted</em> read-only secret, the first letter was changed from an <code>E</code> to an <code>F</code> and only the first 33 characters were used.</p>
 <p>After setup, the encrypted peer was allowed to synchronize the torrent. Unlike the unencrypted peers, quite a few errors were generated during this process in the log file of the encrypted peer. However, synchronization did complete, and the encrypted torrent was successfully used as the sole restore point to an unencrypted torrent on a new peer. Thus, the log errors likely refer to recoverable issues that may even be sorted out as this feature matures.</p>
 <h2>Other Notes About Encryption</h2>
-<p>I didn't measure the time required for the encrypted peer to fully synchronize, but I don't think the process took longer than it previously had for the same unencrypted torrent on this machine.<sup id="fnref:lotsoffactors"><a class="footnote-ref" href="#fn:lotsoffactors" rel="footnote">4</a></sup> According to forum <a href="http://forum.bittorrent.com/topic/25854-read-only-encrypted-peers/?hl=encrypt%2A">discussion</a>, this process may take 2–3 times longer for lower end hardware, such as that containing an ARM processor, but little difference is noted for higher end computers. Torrent encryption may also slow down the listing of files on mobile devices.</p>
+<p>I didn't measure the time required for the encrypted peer to fully synchronize, but I don't think the process took longer than it previously had for the same unencrypted torrent on this machine.<sup id="fnref-lotsoffactors"><a class="footnote-ref" href="#fn-lotsoffactors">4</a></sup> According to forum <a href="http://forum.bittorrent.com/topic/25854-read-only-encrypted-peers/?hl=encrypt%2A">discussion</a>, this process may take 2–3 times longer for lower end hardware, such as that containing an ARM processor, but little difference is noted for higher end computers. Torrent encryption may also slow down the listing of files on mobile devices.</p>
 <p>The resulting encrypted torrent maintained the same folder structure as the unencrypted peers, except that all file contents and file/directory names were encrypted. I suspect the directory structure is maintained in effort to keep encrypted peers compatible with other API features, such as selective file synchronization. File exclusion entries in <code>.SyncIgnore</code> don't seem to work, which I assume is because the file and directory names can't be matched since they are encrypted. Because the nature of the files cannot be discerned, I decided there was no point in enabling the archive feature on the encrypted peer.</p>
-<p>One concern with utilizing a seemingly unsanctioned method is that future software updates may disable loopholes allowing encryption to work without requiring the API. It is even possible such updates could cause file corruption. There are three reasons I'm not worried about either of these scenarios. First, I make incremental <em>unsynchronized</em> backups of all my files using an <code>rsync</code>-based script,<sup id="fnref:future"><a class="footnote-ref" href="#fn:future" rel="footnote">5</a></sup> so there is always a recent, working copy to roll back to. Second, the forums mention encryption will eventually be added to the main program once the aforementioned speed issues are addressed. Third, the encrypted peer is by definition read-only, so (in theory) it can't make any changes to files in the torrents. Thus, I suspect it would, at worst, stop being able to connect to other peers if such software changes were made. As always, you should make your own decision about how to proceed.</p>
+<p>One concern with utilizing a seemingly unsanctioned method is that future software updates may disable loopholes allowing encryption to work without requiring the API. It is even possible such updates could cause file corruption. There are three reasons I'm not worried about either of these scenarios. First, I make incremental <em>unsynchronized</em> backups of all my files using an <code>rsync</code>-based script,<sup id="fnref-future"><a class="footnote-ref" href="#fn-future">5</a></sup> so there is always a recent, working copy to roll back to. Second, the forums mention encryption will eventually be added to the main program once the aforementioned speed issues are addressed. Third, the encrypted peer is by definition read-only, so (in theory) it can't make any changes to files in the torrents. Thus, I suspect it would, at worst, stop being able to connect to other peers if such software changes were made. As always, you should make your own decision about how to proceed.</p>
 <p>Happy <em>encrypted</em> synchronizing!</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:caveat">
-<p>According to the web site, BitTorrent Sync uses <a href="http://www.bittorrent.com/sync/technology">AES-128</a> in counter mode. Security and encryption aren't my areas of expertise. Constructive, informative comments on this topic are welcome.&#160;<a class="footnote-backref" href="#fnref:caveat" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-caveat">
+<p>According to the web site, BitTorrent Sync uses <a href="http://www.bittorrent.com/sync/technology">AES-128</a> in counter mode. Security and encryption aren't my areas of expertise. Constructive, informative comments on this topic are welcome.&#160;<a class="footnote-backref" href="#fnref-caveat" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:exceptions">
-<p>Some cloud services do offer end-to-end encryption, such as <a href="https://spideroak.com/">SpiderOak</a>. However, these services still use a fee schedule similar to that of Dropbox, making them very expensive for storing large amounts of data.&#160;<a class="footnote-backref" href="#fnref:exceptions" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn-exceptions">
+<p>Some cloud services do offer end-to-end encryption, such as <a href="https://spideroak.com/">SpiderOak</a>. However, these services still use a fee schedule similar to that of Dropbox, making them very expensive for storing large amounts of data.&#160;<a class="footnote-backref" href="#fnref-exceptions" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:notbackup">
-<p>Remember that synchronization is not the same thing as backup. If error(s) are introduced to a set of synchronized files, such as those in a torrent, they will be propagated across all synchronization sources resulting in file corruption.&#160;<a class="footnote-backref" href="#fnref:notbackup" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn-notbackup">
+<p>Remember that synchronization is not the same thing as backup. If error(s) are introduced to a set of synchronized files, such as those in a torrent, they will be propagated across all synchronization sources resulting in file corruption.&#160;<a class="footnote-backref" href="#fnref-notbackup" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:lotsoffactors">
-<p>There are many factors that affect this rate, including the fact that three peers were already synchronized when the encrypted peer was setup. Thus, I didn't feel it was worth timing the encrypted synchronization.&#160;<a class="footnote-backref" href="#fnref:lotsoffactors" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<li id="fn-lotsoffactors">
+<p>There are many factors that affect this rate, including the fact that three peers were already synchronized when the encrypted peer was setup. Thus, I didn't feel it was worth timing the encrypted synchronization.&#160;<a class="footnote-backref" href="#fnref-lotsoffactors" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
-<li id="fn:future">
-<p>I plan to cover this <code>rsync</code> script in a blog post in the near future.&#160;<a class="footnote-backref" href="#fnref:future" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<li id="fn-future">
+<p>I plan to cover this <code>rsync</code> script in a blog post in the near future.&#160;<a class="footnote-backref" href="#fnref-future" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -547,19 +547,19 @@ init_mathjax();
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>

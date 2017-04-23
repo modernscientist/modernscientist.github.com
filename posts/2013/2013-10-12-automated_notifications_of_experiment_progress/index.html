@@ -463,96 +463,94 @@ init_mathjax();
 </header>
 
   <div class="entry-content"><p>In addition to covering my use of python in research, one of my goals for this blog is to share ways I use various other computational tools to automate basic research tasks. Such an opportunity arose this week with the onset of hardware issues causing one of our laboratory's NMR spectrometers to periodically stop running during a series of multiple day experiments. The instrument is still useable while waiting for a replacement part to arrive, but periodic reboots of the hardware are necessary for the experiment to continue where it left off. Thus, it is critical to know when such a reboot is necessary. Rather than make constant trips to the building where the instrument is located, I rigged up a notification system using some basic unix and Mac tools. </p>
-<p>The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends <a href="http://growl.info/">Growl</a> notifications to my Mac, which is located in another building.<sup id="fnref:vnc"><a class="footnote-ref" href="#fn:vnc" rel="footnote">1</a></sup> Because Growl on my Mac is configured to work with <a href="http://www.prowlapp.com/">Prowl</a>, a complimentary iOS notification system,<sup id="fnref:boxcar"><a class="footnote-ref" href="#fn:boxcar" rel="footnote">2</a></sup> I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.</p>
+<p>The instrument periodically writes data to a file when an experiment is running. So, my solution is a shell script that periodically monitors this file for updates and then sends <a href="http://growl.info/">Growl</a> notifications to my Mac, which is located in another building.<sup id="fnref-vnc"><a class="footnote-ref" href="#fn-vnc">1</a></sup> Because Growl on my Mac is configured to work with <a href="http://www.prowlapp.com/">Prowl</a>, a complimentary iOS notification system,<sup id="fnref-boxcar"><a class="footnote-ref" href="#fn-boxcar">2</a></sup> I also receive notifications on my phone whenever the remote Mac is idle. As a bonus, I added the option to send the experimental data to my Mac for processing.</p>
 <p>This solution requires <a href="http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-4.html">SSH keys</a> to be setup so the spectrometer's computer can login to my Mac when necessary. It also requires the installation of <a href="http://growl.info/downloads#growlnotify">growlnotify</a>, a command line accessory to Growl.</p>
-<div class="gist">
-    <script src='https://gist.github.com/6951180.js?file=Growl_Experiment_Status.sh'></script>
-    <noscript>
-        <pre><code>#!/bin/zsh
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/zsh</span>
 
-#### BEGIN USER CONFIG OPTIONS ####
+<span class="c1">#### BEGIN USER CONFIG OPTIONS ####</span>
 
-# Path to the data file to watch for modifications
-local_progress_file="/path/to/file_that_is_periodically_modified"
+<span class="c1"># Path to the data file to watch for modifications</span>
+<span class="nv">local_progress_file</span><span class="o">=</span><span class="s2">&quot;/path/to/file_that_is_periodically_modified&quot;</span>
 
-# Interval in minutes to wait between queries
-# Must be an integer
-interval_min=30
+<span class="c1"># Interval in minutes to wait between queries</span>
+<span class="c1"># Must be an integer</span>
+<span class="nv">interval_min</span><span class="o">=</span><span class="m">30</span>
 
-# User account and hostname of Mac where you will be notified
-dest_user=your_login_name
-dest_address=your_mac_hostname
+<span class="c1"># User account and hostname of Mac where you will be notified</span>
+<span class="nv">dest_user</span><span class="o">=</span>your_login_name
+<span class="nv">dest_address</span><span class="o">=</span>your_mac_hostname
 
-# Set to 1 to enable data synchronization or 0 to disable
-data_sync=1
+<span class="c1"># Set to 1 to enable data synchronization or 0 to disable</span>
+<span class="nv">data_sync</span><span class="o">=</span><span class="m">1</span>
 
-# Paths for data synchronization
-local_data_path="/path/to/local/data/directory"
-remote_data_path="/path/to/remote/data/directory"
+<span class="c1"># Paths for data synchronization</span>
+<span class="nv">local_data_path</span><span class="o">=</span><span class="s2">&quot;/path/to/local/data/directory&quot;</span>
+<span class="nv">remote_data_path</span><span class="o">=</span><span class="s2">&quot;/path/to/remote/data/directory&quot;</span>
 
-#### END USER CONFIG OPTIONS ####
+<span class="c1">#### END USER CONFIG OPTIONS ####</span>
 
-# Calculate time to wait between checks in seconds
-(( sleep_sec = $interval_min * 60 ))
+<span class="c1"># Calculate time to wait between checks in seconds</span>
+<span class="o">((</span> <span class="nv">sleep_sec</span> <span class="o">=</span> <span class="nv">$interval_min</span> * <span class="m">60</span> <span class="o">))</span>
 
-# Check if the progress file exists
-if [[ -f ${local_progress_file} ]]; then
-        # Perform checks until the script is killed
-        while ((1)); do
+<span class="c1"># Check if the progress file exists</span>
+<span class="k">if</span> <span class="o">[[</span> -f <span class="si">${</span><span class="nv">local_progress_file</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="c1"># Perform checks until the script is killed</span>
+        <span class="k">while</span> <span class="o">((</span><span class="m">1</span><span class="o">))</span><span class="p">;</span> <span class="k">do</span>
 
-          	# Synchronize the data if appropriate
-        	if (($data_sync)); then
-        		rsync --recursive --update --delete --owner --group \
-        		--perms --times --compress --rsh=ssh \
-			${local_data_path} ${dest_user}@${dest_address}:${remote_data_path}
-        	fi
+            <span class="c1"># Synchronize the data if appropriate</span>
+            <span class="k">if</span> <span class="o">((</span><span class="nv">$data_sync</span><span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+                rsync --recursive --update --delete --owner --group <span class="se">\</span>
+                --perms --times --compress --rsh<span class="o">=</span>ssh <span class="se">\</span>
+            <span class="si">${</span><span class="nv">local_data_path</span><span class="si">}</span> <span class="si">${</span><span class="nv">dest_user</span><span class="si">}</span>@<span class="si">${</span><span class="nv">dest_address</span><span class="si">}</span>:<span class="si">${</span><span class="nv">remote_data_path</span><span class="si">}</span>
+            <span class="k">fi</span>
 
-                # Check if the data file has been modified within the time period
-                mod_file=`find ${local_progress_file} -mmin -${interval_min}`
+                <span class="c1"># Check if the data file has been modified within the time period</span>
+                <span class="nv">mod_file</span><span class="o">=</span><span class="sb">`</span>find <span class="si">${</span><span class="nv">local_progress_file</span><span class="si">}</span> -mmin -<span class="si">${</span><span class="nv">interval_min</span><span class="si">}</span><span class="sb">`</span>
 
-                # Set notification message based on modification time of data file
-                if [[ $mod_file == "" ]]; then
-                        message_string="NOTE: Experiment is stalled or complete"
-                else
-                        message_string="OK: Experiment still running"
-                fi
-                
-                # Send the notification to your Mac
-                ssh ${dest_user}@${dest_address} 'echo `/usr/local/bin/growlnotify \
-                -p high -m "'$message_string'" -t "Experiment Update"`'
+                <span class="c1"># Set notification message based on modification time of data file</span>
+                <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mod_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+                        <span class="nv">message_string</span><span class="o">=</span><span class="s2">&quot;NOTE: Experiment is stalled or complete&quot;</span>
+                <span class="k">else</span>
+                        <span class="nv">message_string</span><span class="o">=</span><span class="s2">&quot;OK: Experiment still running&quot;</span>
+                <span class="k">fi</span>
 
-                # Wait until it's time to check again
-                sleep $sleep_sec
-        done
-else
-        # Data file not found
-        echo "File ${local_progress_file} not found."
-fi</code></pre>
-    </noscript>
-</div>
-<p>The script is written in the Z-shell<sup id="fnref:zsh"><a class="footnote-ref" href="#fn:zsh" rel="footnote">3</a></sup> and can be downloaded <a href="https://gist.github.com/mlgill/6951180">here</a>. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync<sup id="fnref:rsync"><a class="footnote-ref" href="#fn:rsync" rel="footnote">4</a></sup>. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.</p>
+                <span class="c1"># Send the notification to your Mac</span>
+                ssh <span class="si">${</span><span class="nv">dest_user</span><span class="si">}</span>@<span class="si">${</span><span class="nv">dest_address</span><span class="si">}</span> <span class="s1">&#39;echo `/usr/local/bin/growlnotify \</span>
+<span class="s1">                -p high -m &quot;&#39;</span><span class="nv">$message_string</span><span class="s1">&#39;&quot; -t &quot;Experiment Update&quot;`&#39;</span>
+
+                <span class="c1"># Wait until it&#39;s time to check again</span>
+                sleep <span class="nv">$sleep_sec</span>
+        <span class="k">done</span>
+<span class="k">else</span>
+        <span class="c1"># Data file not found</span>
+        <span class="nb">echo</span> <span class="s2">&quot;File </span><span class="si">${</span><span class="nv">local_progress_file</span><span class="si">}</span><span class="s2"> not found.&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+
+
+<p>The script is written in the Z-shell<sup id="fnref-zsh"><a class="footnote-ref" href="#fn-zsh">3</a></sup> and can be downloaded <a href="https://gist.github.com/mlgill/6951180">here</a>. It asks for several configuration options, ensures the file that is used to track experiment progress exists, and then performs periodic checks on the modification time of this file until the script is halted. The optional transfer of data takes place via rsync<sup id="fnref-rsync"><a class="footnote-ref" href="#fn-rsync">4</a></sup>. The interval time must be adjusted so that the data file is written to more frequently than it is polled for modifications, otherwise the script will incorrectly indicate the experiment has stalled.</p>
 <p>There are a few nuances associated with the encoding of the growlnotify string. First, the entire command has to be enclosed in quotes because it is sent through ssh to the remote Mac. Additionally, each of the arguments passed to growlnotify, such as the contents of the <code>$message_string</code> variable, must themselves be enclosed in quotes when executed on the remote Mac. I prefer to use single quotes for the growlnotify command and double quotes for the individual arguments. However, variables, such as <code>$message_string</code>, are not expanded within single quotes, so they must appear outside of the single quotes, as can be seen above. The contents of <code>$message_string</code> must still be enclosed in double quotes, which appear before and after the respective single quotes flanking <code>$message_string</code>.</p>
 <p>Once I start my experiment on the spectrometer, I setup this script to run indefinitely. An added bonus is that it will notify you when the experiment has finished. If the instrument writes progress information to a plain text log file, this file can be queried and more detailed status information that can be included in the <code>$message_string</code>.</p>
-<p>Here is an example<sup id="fnref:secret"><a class="footnote-ref" href="#fn:secret" rel="footnote">5</a></sup> of the Prowl status updates I receive on my iPhone. The actual script I use derives additional information from the log file of the NMR spectrometer.</p>
-<p><img alt="&quot;Prowl Status Updates&quot;" src="http://themodernscientist.com/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates" /></p>
+<p>Here is an example<sup id="fnref-secret"><a class="footnote-ref" href="#fn-secret">5</a></sup> of the Prowl status updates I receive on my iPhone. The actual script I use derives additional information from the log file of the NMR spectrometer.</p>
+<p><img alt="&quot;Prowl Status Updates&quot;" src="http://themodernscientist.com/images/2013-10-12_automated_notifications_of_experiment_progress_1.jpg" title="Prowl Status Updates"></p>
 <p>This is a script I have been meaning to write for quite some time and I plan to use it, perhaps with less frequent notification times, even after the spectrometer is repaired.</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:vnc">
-<p>VNC could also be used to to check on the experiment, but I prefer a method that also notifies me when I am away from my computer.&#160;<a class="footnote-backref" href="#fnref:vnc" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-vnc">
+<p>VNC could also be used to to check on the experiment, but I prefer a method that also notifies me when I am away from my computer.&#160;<a class="footnote-backref" href="#fnref-vnc" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:boxcar">
-<p>There are other notification systems that will also work with Growl. I've also used <a href="http://boxcar.io/download_mac">Boxcar</a>, but I switched to Prowl after Boxcar became unreliable at times.&#160;<a class="footnote-backref" href="#fnref:boxcar" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn-boxcar">
+<p>There are other notification systems that will also work with Growl. I've also used <a href="http://boxcar.io/download_mac">Boxcar</a>, but I switched to Prowl after Boxcar became unreliable at times.&#160;<a class="footnote-backref" href="#fnref-boxcar" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:zsh">
-<p>I believe it will run in Bash with minimal or no modifications; however, if you're not using the Z-shell, you <a href="http://scottlab.ucsc.edu/~wgscott/xtal/wiki/index.php/ZSH_on_OS_X">should be</a>.&#160;<a class="footnote-backref" href="#fnref:zsh" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn-zsh">
+<p>I believe it will run in Bash with minimal or no modifications; however, if you're not using the Z-shell, you <a href="http://scottlab.ucsc.edu/~wgscott/xtal/wiki/index.php/ZSH_on_OS_X">should be</a>.&#160;<a class="footnote-backref" href="#fnref-zsh" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:rsync">
-<p>When using rsync in a script, I prefer the long version of argument names for readability because I never remember what the short versions mean.&#160;<a class="footnote-backref" href="#fnref:rsync" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<li id="fn-rsync">
+<p>When using rsync in a script, I prefer the long version of argument names for readability because I never remember what the short versions mean.&#160;<a class="footnote-backref" href="#fnref-rsync" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
-<li id="fn:secret">
-<p>With super secret science stuff obscured.&#160;<a class="footnote-backref" href="#fnref:secret" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<li id="fn-secret">
+<p>With super secret science stuff obscured.&#160;<a class="footnote-backref" href="#fnref-secret" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -609,19 +607,19 @@ fi</code></pre>
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>

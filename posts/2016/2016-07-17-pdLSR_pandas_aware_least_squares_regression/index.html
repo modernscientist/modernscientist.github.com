@@ -462,7 +462,7 @@ init_mathjax();
       <p class="meta"><time datetime="2016-07-17T20:14:00-04:00" pubdate>2016/07/17</time></p>
 </header>
 
-  <div class="entry-content"><p>I have a new Python project I would like to share with the community. Actually, this project isn't so new. I developed an initial version about two years before completing my postdoctoral research, and it has undergone various revisions over the past three years. Having finally made time to give it the clean-up it needed,<sup id="fnref:nudge"><a class="footnote-ref" href="#fn:nudge" rel="footnote">1</a></sup> I am excited to share it on <a href="https://github.com/mlgill/pdLSR">GitHub</a>.</p>
+  <div class="entry-content"><p>I have a new Python project I would like to share with the community. Actually, this project isn't so new. I developed an initial version about two years before completing my postdoctoral research, and it has undergone various revisions over the past three years. Having finally made time to give it the clean-up it needed,<sup id="fnref-nudge"><a class="footnote-ref" href="#fn-nudge">1</a></sup> I am excited to share it on <a href="https://github.com/mlgill/pdLSR">GitHub</a>.</p>
 <h2>Overview</h2>
 <p><code>pdLSR</code> is a library for performing least squares minimization. It attempts to seamlessly incorporate this task in a Pandas-focused workflow. Input data are expected in dataframes, and multiple regressions can be performed using functionality similar to Pandas <code>groupby</code>. Results are returned as grouped dataframes and include best-fit parameters, statistics, residuals, and more. The results can be easily visualized using <a href="https://github.com/mwaskom/seaborn"><code>seaborn</code></a>.</p>
 <p><code>pdLSR</code> currently utilizes <a href="https://github.com/lmfit/lmfit-py"><code>lmfit</code></a>, a flexible and powerful library for least squares minimization, which in turn, makes use of <code>scipy.optimize.leastsq</code>. I began using <code>lmfit</code> because it is one of the few libraries that supports non-linear least squares regression, which is commonly used in the natural sciences. I also like the flexibility it offers for testing different modeling scenarios and the variety of assessment statistics it provides. However, I found myself writing many <code>for</code> loops to perform regressions on groups of data and aggregate the resulting output. Simplification of this task was my inspiration for writing <code>pdLSR</code>.</p>
@@ -499,7 +499,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>resi	field	time	intensity
 51	14.1	0.004	1624.219428
@@ -616,7 +618,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -746,7 +750,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -855,7 +861,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -929,7 +937,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -942,7 +952,10 @@ init_mathjax();
 </div>
 </div>
 
-</div></p>
+</div>
+ 
+
+</p>
 <h2>Visualization</h2>
 <p>The results can be visualized in facet plots with Seaborn. To make it easier to view the data, all intensities have been normalized.  </p>
 <p>
@@ -986,7 +999,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -1838,7 +1853,9 @@ YII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -2020,7 +2037,10 @@ SaooQ1ySpIr6/4AG52g9TIvoAAAAAElFTkSuQmCC
 </div>
 </div>
 
-</div></p>
+</div>
+ 
+
+</p>
 <h2>Conclusion</h2>
 <p>Easy right? Using <code>pdLSR</code> over the past few years has made my Python-based analytical workflows much smoother. Let me know how it works for you if you decide to try it!</p>
 <p>If you are interested in trying <code>pdLSR</code>, you can do so without even installing it. There is a live demo available on GitHub. Click <a href="http://mybinder.org/repo/mlgill/pdLSR">here</a> and navigate to <code>pdLSR --&gt; demo --&gt; pdLSR_demo.ipynb</code>.</p>
@@ -2032,10 +2052,10 @@ SaooQ1ySpIr6/4AG52g9TIvoAAAAAElFTkSuQmCC
 </ul>
 <p><em>This post was written in a Jupyter notebook, which can be downloaded and viewed statically <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/pdLSR_demo.ipynb">here</a>.</em></p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:nudge">
-<p>And with a helpful nudge in the form of the excellent <a href="http://www.thisismetis.com">data science bootcamp</a> I'm currently attending. Stay tuned for more about that!&#160;<a class="footnote-backref" href="#fnref:nudge" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-nudge">
+<p>And with a helpful nudge in the form of the excellent <a href="http://www.thisismetis.com">data science bootcamp</a> I'm currently attending. Stay tuned for more about that!&#160;<a class="footnote-backref" href="#fnref-nudge" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -2089,19 +2109,19 @@ SaooQ1ySpIr6/4AG52g9TIvoAAAAAElFTkSuQmCC
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>

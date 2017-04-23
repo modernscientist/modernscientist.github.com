@@ -463,7 +463,7 @@ init_mathjax();
 </header>
 
   <div class="entry-content"><p>Bandwidth-selective excitation in NMR is commonly accomplished through the use of shaped pulses. These pulses require careful calibration to ensure power levels and pulse lengths are correctly determined for optimal excitation of only the desired frequency range. Simulating the shaped pulse over a range of frequencies is one way of accomplishing this task. Many spectrometer control programs contain software capable of this (Bruker's TopSpin has ShapeTool and Aglient's VNMRJ has Pbox), but these simulations can also be performed quite easily in an IPython notebook.</p>
-<hr />
+<hr>
 <p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -756,7 +756,9 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -765,7 +767,9 @@ R_{z}(\beta) = \left[ \begin{array}{ccc} cos(\beta) & -sin(\beta) & 0 \\ sin(\be
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -1423,7 +1427,9 @@ rkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[13]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1432,7 +1438,9 @@ rkJggg==
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -2083,7 +2091,9 @@ VgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1 loops, best of 3: 1min 26s per loop
 </pre>
@@ -2148,7 +2158,9 @@ VgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2195,7 +2207,9 @@ VgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sad trombone. The SymPy function doesn&#39;t work with NumPy arrays.
 </pre>
@@ -2205,8 +2219,11 @@ VgAAAABJRU5ErkJggg==
 </div>
 </div>
 
-</div></p>
-<p>None of my attempts at automatically vectorizing this function were successful.<sup id="fnref:sympytheano"><a class="footnote-ref" href="#fn:sympytheano" rel="footnote">1</a></sup> Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
+</div>
+ 
+
+</p>
+<p>None of my attempts at automatically vectorizing this function were successful.<sup id="fnref-sympytheano"><a class="footnote-ref" href="#fn-sympytheano">1</a></sup> Since the matrix is only 3x3, it is not difficult to calculate each of the nine matrix elements. Their symbolic values can be determined by printing each element of the SymPy function. Note the use of SymPy's <code>simplify</code> function for algebraic simplification.</p>
 <p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -2227,7 +2244,9 @@ VgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>r[0,0] = sin(p)**2*cos(a) + sin(t)**2*cos(p)**2 + cos(a)*cos(p)**2*cos(t)**2
 r[0,1] = -sin(a)*cos(t) - sin(p)*sin(t)**2*cos(a)*cos(p) + sin(p)*sin(t)**2*cos(p)
@@ -2372,7 +2391,9 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1 loops, best of 3: 428 ms per loop
 </pre>
@@ -2399,7 +2420,9 @@ r[2,2] = sin(t)**2*cos(a) + cos(t)**2
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Relative speed up of 201 times for the vectorized NumPy function.
 </pre>
@@ -2511,7 +2534,9 @@ end
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_text output_subarea ">
@@ -2565,7 +2590,9 @@ end
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>10 loops, best of 3: 140 ms per loop
 </pre>
@@ -2593,7 +2620,9 @@ end
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Relative speed up of 614 times for fortran over the slow numpy function.
 Relative speed up of 3 times for fortran over the vectorized numpy function.
@@ -2604,8 +2633,11 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 </div>
 </div>
 
-</div></p>
-<p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest.<sup id="fnref:numbacython"><a class="footnote-ref" href="#fn:numbacython" rel="footnote">2</a></sup> The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)</p>
+</div>
+ 
+
+</p>
+<p>As expected, this function is much faster than the original NumPy version. In this case, the speed increase over the improved NumPy version is rather modest.<sup id="fnref-numbacython"><a class="footnote-ref" href="#fn-numbacython">2</a></sup> The relative speed of the fortran function will likely grow as the number of points increases, but this is also a lesson about spending time optimizing a particular technique before moving onto something more powerful. (If major improvements can be made to either of the subroutines, then there is also a lesson about being familiar with the nuances of a language.)</p>
 <p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2633,7 +2665,9 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The cythonmagic extension is already loaded. To reload it, use:
   %reload_ext cythonmagic
@@ -2765,7 +2799,9 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>10 loops, best of 3: 152 ms per loop
 </pre>
@@ -2794,7 +2830,9 @@ Relative speed up of 3 times for fortran over the vectorized numpy function.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Relative speed up of 566 times for cython over the slow numpy function.
 Relative speed up of 3 times for cython over the vectorized numpy function.
@@ -2891,7 +2929,9 @@ Relative speed up of 1 times for cython over the fortran function.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[38]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2900,7 +2940,9 @@ Relative speed up of 1 times for cython over the fortran function.
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -3479,7 +3521,9 @@ glgAAADEHYJYAAAAxB2CWAAAAMQdglgAAADEHYJYAAAAxJ3/DwkOe/beVXMdAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[39]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3488,7 +3532,9 @@ glgAAADEHYJYAAAAxB2CWAAAAMQdglgAAADEHYJYAAAAxJ3/DwkOe/beVXMdAAAAAElFTkSuQmCC
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -4194,7 +4240,9 @@ AAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[40]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -4203,7 +4251,9 @@ AAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -4821,19 +4871,22 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 </div>
 </div>
 
-</div></p>
-<hr />
+</div>
+ 
+
+</p>
+<hr>
 <p><em>Edit:</em> The original version of this notebook contained two errors. The <a href="https://gist.github.com/mlgill/5774126">first</a> involved the modification of NumPy ndarray views during matrix multiplication within the faster NumPy function. The <a href="http://themodernscientist.com/posts/2013/2013-06-09-simulation_of_nmr_shaped_pulses/#comment-929405468">second</a> chose <code>vectorComponent</code> from the wrong axis at the conclusion of the faster NumPy function and in the Python wrapper that calls the Fortran function. This resulted in an inversion of the <em>y</em>-axis magnetization. Both errors have been corrected. Thanks to <a href="https://twitter.com/synapticarbors">Joshua Adelman</a> for catching the second error. A minor change to the matrix simplification calculation due to an update of the SymPy package was also made, however this change had no effect on the result.</p>
 <p><em>Edit:</em> A Cython version of the propagator function provided by Joshua Adelman has been added above.</p>
 <p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/NMRShapedPulseSimulation.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/NMRShapedPulseSimulation.ipynb">here</a>.</em> </p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:sympytheano">
-<p>Ideally this function could be vectorized with something like SymPy's <a href="http://docs.sympy.org/dev/modules/utilities/lambdify.html">lambdify</a>, <a href="http://ojensen.wordpress.com/2010/08/10/fast-ufunc-ish-hydrogen-solutions/">autowrap</a>, or <a href="http://docs.sympy.org/0.7.0/modules/utilities/autowrap.html#ufuncify">ufuncify</a> functions or with the <a href="http://matthewrocklin.com/blog/work/2013/03/19/SymPy-Theano-part-1/">Theano</a> package. Unfortunately, <code>lambdify</code> isn't compatible with NumPy arrays. Likewise, <code>autowrap</code> isn't compatible with SymPy's <code>Matrix</code> function <a href="https://groups.google.com/forum/?fromgroups#!msg/sympy/Lo62rCmPTm8/G4GuHzp5wpQJ">yet</a>. I was unsuccessful in getting <code>unfuncify</code> to work with this case, and my MacBook Air doesn't have the graphics card necessary for GPU computing, so I didn't attempt to use Theano.&#160;<a class="footnote-backref" href="#fnref:sympytheano" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-sympytheano">
+<p>Ideally this function could be vectorized with something like SymPy's <a href="http://docs.sympy.org/dev/modules/utilities/lambdify.html">lambdify</a>, <a href="http://ojensen.wordpress.com/2010/08/10/fast-ufunc-ish-hydrogen-solutions/">autowrap</a>, or <a href="http://docs.sympy.org/0.7.0/modules/utilities/autowrap.html#ufuncify">ufuncify</a> functions or with the <a href="http://matthewrocklin.com/blog/work/2013/03/19/SymPy-Theano-part-1/">Theano</a> package. Unfortunately, <code>lambdify</code> isn't compatible with NumPy arrays. Likewise, <code>autowrap</code> isn't compatible with SymPy's <code>Matrix</code> function <a href="https://groups.google.com/forum/?fromgroups#!msg/sympy/Lo62rCmPTm8/G4GuHzp5wpQJ">yet</a>. I was unsuccessful in getting <code>unfuncify</code> to work with this case, and my MacBook Air doesn't have the graphics card necessary for GPU computing, so I didn't attempt to use Theano.&#160;<a class="footnote-backref" href="#fnref-sympytheano" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:numbacython">
-<p>It would also be interesting to compare the speed of these functions to versions implemented in <a href="http://numba.pydata.org">Numba</a> and <a href="http://www.cython.org">Cython</a>. My efforts at implementing this subroutine in Numba were not very successful and I'm not fond of C, so I decided to pass on Cython.&#160;<a class="footnote-backref" href="#fnref:numbacython" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn-numbacython">
+<p>It would also be interesting to compare the speed of these functions to versions implemented in <a href="http://numba.pydata.org">Numba</a> and <a href="http://www.cython.org">Cython</a>. My efforts at implementing this subroutine in Numba were not very successful and I'm not fond of C, so I decided to pass on Cython.&#160;<a class="footnote-backref" href="#fnref-numbacython" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -4887,19 +4940,19 @@ XOf/A5AwBQD/WAmJAAAAAElFTkSuQmCC
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>

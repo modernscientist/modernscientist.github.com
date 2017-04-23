@@ -472,8 +472,11 @@ init_mathjax();
 
 </div>
 </div>
-</div></p>
-<p>I spend most of my time writing code in text editors<sup id="fnref:ed"><a class="footnote-ref" href="#fn:ed" rel="footnote">1</a></sup> that have syntax highlighting and I prefer my snippets similarly highlighted. While there are many syntax highlighting engines and websites in existence, one of the most powerful engines happens to be <a href="http://pygments.org/">Pygments</a>, which is python-based, as the name implies.</p>
+</div>
+ 
+
+</p>
+<p>I spend most of my time writing code in text editors<sup id="fnref-ed"><a class="footnote-ref" href="#fn-ed">1</a></sup> that have syntax highlighting and I prefer my snippets similarly highlighted. While there are many syntax highlighting engines and websites in existence, one of the most powerful engines happens to be <a href="http://pygments.org/">Pygments</a>, which is python-based, as the name implies.</p>
 <p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -493,7 +496,7 @@ init_mathjax();
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">python_snippet</span> <span class="o">=</span> <span class="s2">r&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">python_snippet</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">#!/usr/bin/env python</span>
 
 <span class="s2">import numpy as np</span>
@@ -555,7 +558,7 @@ init_mathjax();
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">html_snippet_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> <span class="s2">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet</span><span class="p">)</span>
+<span class="n">html_snippet_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span><span class="n">html_snippet</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -590,7 +593,9 @@ init_mathjax();
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -743,8 +748,8 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">r&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> 
-                                  <span class="sd">r&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">html_snippet_linenos</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">html_snippet_linenos_sub</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;(body \.|class=&quot;)&quot;&quot;&quot;</span><span class="p">,</span> 
+                                  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;\1pygm&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">html_snippet_linenos</span><span class="p">)</span>
 <span class="n">HTML</span><span class="p">(</span><span class="n">html_snippet_linenos_sub</span><span class="p">)</span>
 </pre></div>
 
@@ -756,7 +761,9 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -876,13 +883,16 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 
 </div>
 </div>
-</div></p>
+</div>
+ 
+
+</p>
 <p><em>This post was written in an IPython notebook, which can be downloaded <a href="https://github.com/modernscientist/modernscientist.github.com/blob/master/notebooks/EasySyntaxHighlightingWithPygments.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/modernscientist.github.com/notebooks/EasySyntaxHighlightingWithPygments.ipynb">here</a>.</em> </p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
-<li id="fn:ed">
-<p><a href="http://www.vim.org/">Vim</a> and <a href="http://www.sublimetext.com/">Sublime Text</a> really are the <em>only</em> editors worth using.&#160;<a class="footnote-backref" href="#fnref:ed" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn-ed">
+<p><a href="http://www.vim.org/">Vim</a> and <a href="http://www.sublimetext.com/">Sublime Text</a> really are the <em>only</em> editors worth using.&#160;<a class="footnote-backref" href="#fnref-ed" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>
@@ -936,19 +946,19 @@ body .pygmil { color: #ae81ff } /* Literal.Number.Integer.Long */
 
   <section>
   <h1>Tags</h1>
-    <a href="http://themodernscientist.com/tag/life.html">life</a>
-    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
-    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
-    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
-    <a href="http://themodernscientist.com/tag/python.html">python</a>
-    <a href="http://themodernscientist.com/tag/science.html">science</a>
-    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
-    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
     <a href="http://themodernscientist.com/tag/deep-learning.html">deep learning</a>
-    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
-    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
+    <a href="http://themodernscientist.com/tag/artificial-intelligence.html">artificial intelligence</a>
+    <a href="http://themodernscientist.com/tag/data-science.html">data science</a>
     <a href="http://themodernscientist.com/tag/machine-learning.html">machine learning</a>
+    <a href="http://themodernscientist.com/tag/python.html">python</a>
+    <a href="http://themodernscientist.com/tag/life.html">life</a>
+    <a href="http://themodernscientist.com/tag/science.html">science</a>
     <a href="http://themodernscientist.com/tag/openscience.html">openscience</a>
+    <a href="http://themodernscientist.com/tag/shell.html">shell</a>
+    <a href="http://themodernscientist.com/tag/mac.html">mac</a>
+    <a href="http://themodernscientist.com/tag/automation.html">automation</a>
+    <a href="http://themodernscientist.com/tag/ios.html">ios</a>
+    <a href="http://themodernscientist.com/tag/meta.html">meta</a>
     <a href="http://themodernscientist.com/tag/pets.html">pets</a>
   <!-- -->
   </section>
